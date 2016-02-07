@@ -1,0 +1,1 @@
+# nstack-translations-generator

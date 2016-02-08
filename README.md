@@ -9,9 +9,9 @@ A tool to generate translations from [NStack](http://nstack.io) API.
 ## 📦 How does it work
 > **TODO:** Elaborate  
 
-Since Swift frameworks unfortunately can't be used inside other frameworks, this project has a special structure to be able to generate one executable, which is wrapped in a bundle. Checkout this [great article](https://colemancda.github.io/programming/2015/02/12/embedded-swift-frameworks-osx-command-line-tools/) Alsey Miller on how this works. 
+Since Swift frameworks unfortunately can't be used inside other frameworks, this project has a special structure to be able to generate one executable, which is wrapped in a bundle. Check out this [great article](https://colemancda.github.io/programming/2015/02/12/embedded-swift-frameworks-osx-command-line-tools/) by Alsey Miller on how this works. 
 
-However, this makes it even more portable and could requires you to copy just one file.
+However, this makes it even more portable and could require you to copy just one file.
 
 ## 🔧 Setup
 > **TODO:** Improve

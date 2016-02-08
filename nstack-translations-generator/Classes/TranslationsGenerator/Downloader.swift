@@ -64,9 +64,10 @@ extension DownloaderSettings {
 
 struct Downloader {
 
-    static func dataWithDownloaderSettings(settings: DownloaderSettings, completion: ((data: NSData?, error: NSError?) -> Void)) {
+    static func dataWithDownloaderSettings(settings: DownloaderSettings, completion: ((data: NSData?, error: ErrorType?) -> Void)) {
         var requestURL = settings.URL
 
+        // Add flat if needed
         if settings.flatTranslations, let comps = NSURLComponents(URL: requestURL, resolvingAgainstBaseURL: false) {
             let queryItem = NSURLQueryItem(name: "flat", value: "true")
             comps.queryItems?.append(queryItem)
@@ -75,7 +76,12 @@ struct Downloader {
 
         let request = NSMutableURLRequest(URL: requestURL)
 
+        // Add headers
+        request.setValue("application/vnd.nodes", forHTTPHeaderField: "accept")
+        request.setValue(settings.appKey, forHTTPHeaderField: "X-Rest-Api-Key")
+        request.setValue(settings.appID, forHTTPHeaderField: "X-Application-Id")
 
+        // Start data task
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { data, response, error in
             var customError: NSError?
 
@@ -84,7 +90,8 @@ struct Downloader {
                 case 300...999:
                     let content: String?
                     if let data = data {
-                        content = (try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0)) ?? "") as? String
+                        let json = try? NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as? [String: AnyObject]
+                        content = "\(json ?? [:])"
                     } else {
                         content = nil
                     }

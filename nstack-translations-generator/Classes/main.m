@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 @import TranslationsGenerator;
 
+SInt32 resultCode = 0;
+
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
 
@@ -26,7 +28,20 @@ int main(int argc, const char * argv[]) {
 
         if (error) {
             // Handle errors
+            NSLog(@"%@", error.localizedDescription);
         }
+
+        while (1)
+        {
+            @autoreleasepool
+            {
+                resultCode = CFRunLoopRunInMode(kCFRunLoopDefaultMode, DBL_MAX, false);
+            }
+
+            if (kCFRunLoopRunStopped == resultCode || kCFRunLoopRunFinished == resultCode)
+                break;
+        }
+
+        return 0;
     }
-    return 0;
 }

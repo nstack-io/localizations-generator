@@ -27,14 +27,29 @@ public enum ErrorCode: Int {
         // 2. Download translations from API
         let dSettings = try settings.downloaderSettings()
         Downloader.dataWithDownloaderSettings(dSettings) { data, error in
+            if let error = error as? NSError {
+                print(error.localizedDescription)
+                self.finish()
+                return
+            }
 
+            if let data = data {
+                print(data)
+            }
+
+            self.finish()
         }
 
         // 3. Parse translations
         // 4. Generate model code
         // 5. Insert model code into template
         // 6. Write to disk
+        // 7. Finish
 
         return ""
+    }
+
+    class func finish() {
+        CFRunLoopStop(CFRunLoopGetMain());
     }
 }

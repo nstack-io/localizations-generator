@@ -49,7 +49,7 @@ extension GeneratorSettings {
 
         // Get keys if present
         if let keysArray = parsedArguments["-keys"] where keysArray.count == 2 {
-            keys = (keysArray[0], keysArray[2])
+            keys = (keysArray[0], keysArray[1])
         }
 
         // Check if we have keys

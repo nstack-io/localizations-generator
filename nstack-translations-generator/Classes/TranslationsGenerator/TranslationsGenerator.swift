@@ -9,11 +9,27 @@
 import Foundation
 import ModelGenerator
 
+public enum ErrorCode: Int {
+    case WrongArguments = 1000
+    case DownloaderError
+    case ParserError
+    case GeneratorError
+}
+
 @objc public class TranslationsGenerator: NSObject {
+    static let errorDomain = "com.nodes.translations-generator"
+
     public class func generate(arguments: [String]) throws -> String {
 
         // 1. Parse arguments
+        let settings = try GeneratorSettings.parseFromArguments(arguments)
+
         // 2. Download translations from API
+        let dSettings = try settings.downloaderSettings()
+        Downloader.dataWithDownloaderSettings(dSettings) { data, error in
+
+        }
+
         // 3. Parse translations
         // 4. Generate model code
         // 5. Insert model code into template

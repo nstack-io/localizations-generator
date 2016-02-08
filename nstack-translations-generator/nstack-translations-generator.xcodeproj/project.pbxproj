@@ -14,6 +14,8 @@
 		017CE2A71C6787F70075CE41 /* TranslationsGenerator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 017CE28D1C6785A30075CE41 /* TranslationsGenerator.framework */; };
 		017CE2AF1C6792730075CE41 /* TranslationsGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017CE29B1C6786990075CE41 /* TranslationsGenerator.swift */; };
 		017CE2C01C6795890075CE41 /* ModelGenerator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 017CE2B91C6795720075CE41 /* ModelGenerator.framework */; };
+		017CE2C51C689D8E0075CE41 /* Downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017CE2C41C689D8E0075CE41 /* Downloader.swift */; };
+		017CE2C71C68BBB80075CE41 /* GeneratorSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017CE2C61C68BBB80075CE41 /* GeneratorSettings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +96,8 @@
 		017CE29B1C6786990075CE41 /* TranslationsGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationsGenerator.swift; sourceTree = "<group>"; };
 		017CE29D1C6786990075CE41 /* Bundle-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Bundle-Info.plist"; sourceTree = "<group>"; };
 		017CE2B21C6795720075CE41 /* model-generator.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "model-generator.xcodeproj"; path = "../Carthage/Checkouts/model-generator/model-generator.xcodeproj"; sourceTree = "<group>"; };
+		017CE2C41C689D8E0075CE41 /* Downloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Downloader.swift; sourceTree = "<group>"; };
+		017CE2C61C68BBB80075CE41 /* GeneratorSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratorSettings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +176,8 @@
 			isa = PBXGroup;
 			children = (
 				017CE29B1C6786990075CE41 /* TranslationsGenerator.swift */,
+				017CE2C61C68BBB80075CE41 /* GeneratorSettings.swift */,
+				017CE2C41C689D8E0075CE41 /* Downloader.swift */,
 				017CE2981C6786990075CE41 /* Supporting Files */,
 			);
 			path = TranslationsGenerator;
@@ -381,7 +387,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				017CE2C51C689D8E0075CE41 /* Downloader.swift in Sources */,
 				017CE2AF1C6792730075CE41 /* TranslationsGenerator.swift in Sources */,
+				017CE2C71C68BBB80075CE41 /* GeneratorSettings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,7 +10,7 @@ import Foundation
 
 struct GeneratorSettings {
     var plistPath: String?
-    var keys: [String]?
+    var keys: (appID: String, appKey: String)?
     var outputPath: String
 }
 
@@ -40,7 +40,7 @@ extension GeneratorSettings {
         }
 
         var plistPath: String?
-        var keys: [String]?
+        var keys: (appID: String, appKey: String)?
 
         // Get plist path if present
         if let plistPaths = parsedArguments["-plist"] where plistPaths.count == 1 {
@@ -49,11 +49,11 @@ extension GeneratorSettings {
 
         // Get keys if present
         if let keysArray = parsedArguments["-keys"] where keysArray.count == 2 {
-            keys = keysArray
+            keys = (keysArray[0], keysArray[2])
         }
 
         // Check if we have keys
-        if plistPath == nil && keys?.count != 2 {
+        if plistPath == nil && (keys?.appKey == nil || keys?.appID == nil) {
             throw NSError(domain: TranslationsGenerator.errorDomain, code: ErrorCode.WrongArguments.rawValue,
                 userInfo: [NSLocalizedDescriptionKey : "No or multiple plist paths, or wrong keys format."])
         }
@@ -63,7 +63,7 @@ extension GeneratorSettings {
 
     func downloaderSettings() throws -> DownloaderSettings {
         if let keys = keys {
-            return DownloaderSettings(appID: keys[0], appKey: keys[2])
+            return DownloaderSettings(appID: keys.appID, appKey: keys.appKey)
         } else if let plistPath = plistPath {
             return try DownloaderSettings.settingsFromConfigurationFile(plistPath: plistPath)
         }

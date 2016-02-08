@@ -313,9 +313,9 @@
 			);
 			projectRoot = "";
 			targets = (
-				017CE2781C6781F20075CE41 /* nstack-translations-generatorBundle */,
 				017CE2231C6776B50075CE41 /* nstack-translations-generator */,
 				017CE28C1C6785A30075CE41 /* TranslationsGenerator */,
+				017CE2781C6781F20075CE41 /* nstack-translations-generatorBundle */,
 			);
 		};
 /* End PBXProject section */

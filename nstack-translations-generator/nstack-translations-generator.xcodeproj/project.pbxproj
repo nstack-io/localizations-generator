@@ -7,16 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0132B4CD1C70E361007BC588 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0132B4CC1C70E361007BC588 /* Parser.swift */; };
 		017CE2821C6782030075CE41 /* nstack-translations-generator in CopyFiles */ = {isa = PBXBuildFile; fileRef = 017CE2241C6776B50075CE41 /* nstack-translations-generator */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		017CE2A01C6786C90075CE41 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 017CE2961C6786990075CE41 /* main.m */; };
 		017CE2A51C6787E40075CE41 /* TranslationsGenerator.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 017CE28D1C6785A30075CE41 /* TranslationsGenerator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		017CE2A71C6787F70075CE41 /* TranslationsGenerator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 017CE28D1C6785A30075CE41 /* TranslationsGenerator.framework */; };
-		017CE2AF1C6792730075CE41 /* TranslationsGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017CE29B1C6786990075CE41 /* TranslationsGenerator.swift */; };
+		017CE2AF1C6792730075CE41 /* Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017CE29B1C6786990075CE41 /* Generator.swift */; };
 		017CE2C01C6795890075CE41 /* ModelGenerator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 017CE2B91C6795720075CE41 /* ModelGenerator.framework */; };
 		017CE2C51C689D8E0075CE41 /* Downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017CE2C41C689D8E0075CE41 /* Downloader.swift */; };
 		017CE2C71C68BBB80075CE41 /* GeneratorSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017CE2C61C68BBB80075CE41 /* GeneratorSettings.swift */; };
 		018121771C69ED21003AEDEA /* TranslationsGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 018121761C69ECF7003AEDEA /* TranslationsGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		018121791C69ED45003AEDEA /* DownloaderSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018121781C69ED45003AEDEA /* DownloaderSettings.swift */; };
+		01DA430D1C78976900D0FC04 /* ImplementationTemplate.txt in Resources */ = {isa = PBXBuildFile; fileRef = 01DA430C1C78976900D0FC04 /* ImplementationTemplate.txt */; };
+		01DA43111C78A1CF00D0FC04 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DA43101C78A1CF00D0FC04 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,11 +91,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0132B4CC1C70E361007BC588 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		017CE2241C6776B50075CE41 /* nstack-translations-generator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "nstack-translations-generator"; sourceTree = BUILT_PRODUCTS_DIR; };
 		017CE2791C6781F20075CE41 /* nstack-translations-generator.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "nstack-translations-generator.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
 		017CE28D1C6785A30075CE41 /* TranslationsGenerator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TranslationsGenerator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		017CE2961C6786990075CE41 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		017CE29B1C6786990075CE41 /* TranslationsGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationsGenerator.swift; sourceTree = "<group>"; };
+		017CE29B1C6786990075CE41 /* Generator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Generator.swift; sourceTree = "<group>"; };
 		017CE29D1C6786990075CE41 /* Bundle-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Bundle-Info.plist"; sourceTree = "<group>"; };
 		017CE2B21C6795720075CE41 /* model-generator.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "model-generator.xcodeproj"; path = "../Carthage/Checkouts/model-generator/model-generator.xcodeproj"; sourceTree = "<group>"; };
 		017CE2C41C689D8E0075CE41 /* Downloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Downloader.swift; sourceTree = "<group>"; };
@@ -100,6 +104,8 @@
 		018121751C69ECF7003AEDEA /* Generator-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Generator-Info.plist"; sourceTree = "<group>"; };
 		018121761C69ECF7003AEDEA /* TranslationsGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TranslationsGenerator.h; sourceTree = "<group>"; };
 		018121781C69ED45003AEDEA /* DownloaderSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloaderSettings.swift; sourceTree = "<group>"; };
+		01DA430C1C78976900D0FC04 /* ImplementationTemplate.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ImplementationTemplate.txt; sourceTree = "<group>"; };
+		01DA43101C78A1CF00D0FC04 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,10 +183,12 @@
 		017CE2971C6786990075CE41 /* TranslationsGenerator */ = {
 			isa = PBXGroup;
 			children = (
-				017CE29B1C6786990075CE41 /* TranslationsGenerator.swift */,
+				017CE29B1C6786990075CE41 /* Generator.swift */,
 				017CE2C61C68BBB80075CE41 /* GeneratorSettings.swift */,
 				017CE2C41C689D8E0075CE41 /* Downloader.swift */,
 				018121781C69ED45003AEDEA /* DownloaderSettings.swift */,
+				0132B4CC1C70E361007BC588 /* Parser.swift */,
+				01DA43101C78A1CF00D0FC04 /* Extensions.swift */,
 			);
 			path = TranslationsGenerator;
 			sourceTree = "<group>";
@@ -188,6 +196,7 @@
 		017CE29C1C6786990075CE41 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				01DA430C1C78976900D0FC04 /* ImplementationTemplate.txt */,
 				018121761C69ECF7003AEDEA /* TranslationsGenerator.h */,
 				018121751C69ECF7003AEDEA /* Generator-Info.plist */,
 				017CE29D1C6786990075CE41 /* Bundle-Info.plist */,
@@ -357,6 +366,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01DA430D1C78976900D0FC04 /* ImplementationTemplate.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,7 +393,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				017CE2C51C689D8E0075CE41 /* Downloader.swift in Sources */,
-				017CE2AF1C6792730075CE41 /* TranslationsGenerator.swift in Sources */,
+				01DA43111C78A1CF00D0FC04 /* Extensions.swift in Sources */,
+				017CE2AF1C6792730075CE41 /* Generator.swift in Sources */,
+				0132B4CD1C70E361007BC588 /* Parser.swift in Sources */,
 				017CE2C71C68BBB80075CE41 /* GeneratorSettings.swift in Sources */,
 				018121791C69ED45003AEDEA /* DownloaderSettings.swift in Sources */,
 			);

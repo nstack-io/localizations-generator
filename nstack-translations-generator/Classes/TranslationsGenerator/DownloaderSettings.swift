@@ -30,14 +30,14 @@ extension DownloaderSettings {
         let plist = try NSPropertyListSerialization.propertyListWithData(data, options: .Immutable, format: nil)
 
         guard let dictionary = plist as? [String: AnyObject] else {
-            throw NSError(domain: TranslationsGenerator.errorDomain, code: ErrorCode.DownloaderError.rawValue,
+            throw NSError(domain: Generator.errorDomain, code: ErrorCode.DownloaderError.rawValue,
                 userInfo: [NSLocalizedDescriptionKey : "Couldn't parse plist into a dictionary."])
         }
 
         var downloadURL = defaultURL
 
         guard let appID = dictionary[plistAppIDKey] as? String, appKey = dictionary[plistAppKeyKey] as? String else {
-            throw NSError(domain: TranslationsGenerator.errorDomain, code: ErrorCode.DownloaderError.rawValue,
+            throw NSError(domain: Generator.errorDomain, code: ErrorCode.DownloaderError.rawValue,
                 userInfo: [NSLocalizedDescriptionKey : "App ID or API key not found in the plist file."])
         }
 
@@ -54,10 +54,10 @@ extension DownloaderSettings {
             flatTranslations: flat ?? false)
     }
 
-    init(appID: String, appKey: String) {
+    init(appID: String, appKey: String, flatTranslations: Bool = false) {
         self.URL = DownloaderSettings.defaultURL
         self.appID = appID
         self.appKey = appKey
-        self.flatTranslations = false
+        self.flatTranslations = flatTranslations
     }
 }

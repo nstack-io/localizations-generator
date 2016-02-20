@@ -9,8 +9,13 @@
 import Foundation
 
 struct Downloader {
+    var semaphore = dispatch_semaphore_create(0)
 
-    static func dataWithDownloaderSettings(settings: DownloaderSettings, completion: ((data: NSData?, error: ErrorType?) -> Void)) {
+    static func dataWithDownloaderSettings(settings: DownloaderSettings) throws -> NSData? {
+        return try Downloader().dataWithDownloaderSettings(settings)
+    }
+
+    func dataWithDownloaderSettings(settings: DownloaderSettings) throws -> NSData? {
         var requestURL = settings.URL
 
         // Add flat if needed
@@ -27,8 +32,11 @@ struct Downloader {
         request.setValue(settings.appKey, forHTTPHeaderField: "X-Rest-Api-Key")
         request.setValue(settings.appID, forHTTPHeaderField: "X-Application-Id")
 
+        var actualData: NSData?
+        var finalError: ErrorType?
+
         // Start data task
-        let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { data, response, error in
+        NSURLSession.sharedSession().dataTaskWithRequest(request) { data, response, error in
             var customError: NSError?
 
             if let response = response as? NSHTTPURLResponse {
@@ -43,15 +51,24 @@ struct Downloader {
                     }
 
                     let errorString = "Server response contained error: \(content ?? "")"
-                    customError = NSError(domain: TranslationsGenerator.errorDomain, code: ErrorCode.DownloaderError.rawValue,
+                    customError = NSError(domain: Generator.errorDomain, code: ErrorCode.DownloaderError.rawValue,
                         userInfo: [NSLocalizedDescriptionKey : errorString])
                 default: break
                 }
             }
 
-            completion(data: data, error: error ?? customError)
+            actualData = data
+            finalError = customError ?? error
+
+            dispatch_semaphore_signal(self.semaphore)
+        }.resume()
+
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
+
+        if let error = finalError {
+            throw error
         }
 
-        task.resume()
+        return actualData
     }
 }

@@ -96,7 +96,9 @@ struct Generator {
 
         for key in output.mainKeys {
             modelString += indent.string()
-            modelString += "var \(key) = \(output.isFlat ? "\"\"" : "\(key.uppercasedFirstLetter)()")\n"
+            modelString += "var \(key) = \(output.isFlat ? "\"\"" : "\(key.uppercasedFirstLetter)()")"
+            if key == "defaultSection" { modelString += " //<-default" }
+            modelString += "\n"
         }
 
         indent = indent.previousLevel()
@@ -138,6 +140,7 @@ struct Generator {
             // Generate Serializable extensions
             var settings = self.generatorSettings
             settings.noConvertCamelCase = true
+            settings.moduleName = self.modelName
 
             extensionsString += try ModelGenerator.modelCodeFromSourceCode(subString, withSettings: settings)
         }

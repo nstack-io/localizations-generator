@@ -16,23 +16,24 @@ However, this makes it even more portable because you need to copy a single file
 ## 🔧 Setup
 > **TODO:** Improve
 
-1. In your Xcode project *(build phases)* add **New Run Script Phase**
+1. In your Xcode project *(build phases)* add **New Run Script Phase** and drag it before **Compile Sources** phase
 2. Put in the script below and change your project specific IDs and Paths
+3. Everytime you do **Clean** and then **Build**, your translations will be fetched and models generated
 
 ~~~sh
-TL_GEN_PATH="$SOURCE_ROOT/Resources/Language/nstack-translations-generatorBundle"
-TL_CONFIG_PATH="$SOURCE_ROOT/Resources/NStack.plist"
-TL_OUT_PATH="$SOURCE_ROOT/Resources/Language"
+TL_PROJ_ROOT_FOLDER="ProjectName"
+TL_GEN_PATH="${SRCROOT}/${TL_PROJ_ROOT_FOLDER}/Resources/NStack/nstack-translations-generator.bundle"
+TL_CONFIG_PATH="${SRCROOT}/${TL_PROJ_ROOT_FOLDER}/Resources/NStack/NStack.plist"
+TL_OUT_PATH="${SRCROOT}/${TL_PROJ_ROOT_FOLDER}/Classes/Language"
 
 # Check if doing a clean build
-if test -d "$BUILT_PRODUCTS_DIR"; then
-	echo "Not clean build, won't fetch translations this time."
+if test -d "${DERIVED_FILE_DIR}"; then
+echo "Not clean build, won't fetch translations this time."
 else
-	echo "Clean build. Getting translations..."
-	"${TL_GEN_PATH}/Contents/MacOS/nstack-translations-generator" -plist $TL_CONFIG_PATH -output $TL_OUT_PATH
+echo "Clean build. Getting translations..."
+"${TL_GEN_PATH}/Contents/MacOS/nstack-translations-generator" -plist "${TL_CONFIG_PATH}" -output "${TL_OUT_PATH}"
 fi
 ~~~
-
 
 ## 👥 Credits
 Made with ❤️ at [Nodes](http://nodesagency.com).

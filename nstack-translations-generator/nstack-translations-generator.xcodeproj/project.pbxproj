@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0132B4CD1C70E361007BC588 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0132B4CC1C70E361007BC588 /* Parser.swift */; };
+		0135E6991C7C5194007982E1 /* ModelGenerator.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 017CE2B91C6795720075CE41 /* ModelGenerator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		017CE2821C6782030075CE41 /* nstack-translations-generator in CopyFiles */ = {isa = PBXBuildFile; fileRef = 017CE2241C6776B50075CE41 /* nstack-translations-generator */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		017CE2A01C6786C90075CE41 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 017CE2961C6786990075CE41 /* main.m */; };
 		017CE2A51C6787E40075CE41 /* TranslationsGenerator.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 017CE28D1C6785A30075CE41 /* TranslationsGenerator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -84,6 +85,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				0135E6991C7C5194007982E1 /* ModelGenerator.framework in CopyFiles */,
 				017CE2A51C6787E40075CE41 /* TranslationsGenerator.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

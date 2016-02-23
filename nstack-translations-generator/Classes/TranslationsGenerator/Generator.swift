@@ -142,6 +142,7 @@ struct Generator {
             settings.noConvertCamelCase = true
             settings.moduleName = self.modelName
 
+            extensionsString += "\n\n"
             extensionsString += try ModelGenerator.modelCodeFromSourceCode(subString, withSettings: settings)
         }
 

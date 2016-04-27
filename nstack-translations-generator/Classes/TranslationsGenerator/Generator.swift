@@ -90,7 +90,7 @@ struct Generator {
     private static func generateMainModelFromParserOutput(output: ParserOutput, subModels: String?) throws -> String {
         var indent = Indentation(level: 0)
 
-        var modelString = "public struct \(self.modelName): Translatable {\n"
+        var modelString = "public final class \(self.modelName): Translatable {\n"
 
         indent = indent.nextLevel()
 
@@ -122,7 +122,7 @@ struct Generator {
         var indent = Indentation(level: 1)
 
         for case let (key, value as [String: AnyObject]) in output.language {
-            var subString = "\n\n" + indent.string() + "public struct \(key.uppercasedFirstLetter) {\n"
+            var subString = "\n\n" + indent.string() + "public final class \(key.uppercasedFirstLetter) {\n"
 
             indent = indent.nextLevel()
 

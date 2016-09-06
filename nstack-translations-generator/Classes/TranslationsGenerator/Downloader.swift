@@ -9,49 +9,49 @@
 import Foundation
 
 struct Downloader {
-    var semaphore = dispatch_semaphore_create(0)
+    var semaphore = DispatchSemaphore(value: 0)
 
-    static func dataWithDownloaderSettings(settings: DownloaderSettings) throws -> NSData? {
+    static func dataWithDownloaderSettings(_ settings: DownloaderSettings) throws -> Data? {
         return try Downloader().dataWithDownloaderSettings(settings)
     }
 
-    func dataWithDownloaderSettings(settings: DownloaderSettings) throws -> NSData? {
+    func dataWithDownloaderSettings(_ settings: DownloaderSettings) throws -> Data? {
         var requestURL = settings.URL
 
         // Add flat if needed
-        if settings.flatTranslations, let comps = NSURLComponents(URL: requestURL, resolvingAgainstBaseURL: false) {
-            let queryItem = NSURLQueryItem(name: "flat", value: "true")
+        if settings.flatTranslations, var comps = URLComponents(url: requestURL as URL, resolvingAgainstBaseURL: false) {
+            let queryItem = URLQueryItem(name: "flat", value: "true")
             comps.queryItems?.append(queryItem)
-            requestURL = comps.URL ?? requestURL
+            requestURL = comps.url as URL? ?? requestURL
         }
 
-        let request = NSMutableURLRequest(URL: requestURL)
+        let request = NSMutableURLRequest(url: requestURL as URL)
 
         // Add headers
         request.setValue("application/vnd.nodes", forHTTPHeaderField: "accept")
         request.setValue(settings.appKey, forHTTPHeaderField: "X-Rest-Api-Key")
         request.setValue(settings.appID, forHTTPHeaderField: "X-Application-Id")
 
-        var actualData: NSData?
-        var finalError: ErrorType?
+        var actualData: Data?
+        var finalError: Error?
 
         // Start data task
-        NSURLSession.sharedSession().dataTaskWithRequest(request) { data, response, error in
+        URLSession.shared.dataTask(with: request as URLRequest) { data, response, error in
             var customError: NSError?
 
-            if let response = response as? NSHTTPURLResponse {
+            if let response = response as? HTTPURLResponse {
                 switch response.statusCode {
                 case 300...999:
                     let content: String?
                     if let data = data {
-                        let json = try? NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as? [String: AnyObject]
+                        let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: AnyObject]
                         content = "\(json ?? [:])"
                     } else {
                         content = nil
                     }
 
                     let errorString = "Server response contained error: \(content ?? "")"
-                    customError = NSError(domain: Generator.errorDomain, code: ErrorCode.DownloaderError.rawValue,
+                    customError = NSError(domain: Generator.errorDomain, code: ErrorCode.downloaderError.rawValue,
                         userInfo: [NSLocalizedDescriptionKey : errorString])
                 default: break
                 }
@@ -60,10 +60,10 @@ struct Downloader {
             actualData = data
             finalError = customError ?? error
 
-            dispatch_semaphore_signal(self.semaphore)
+            self.semaphore.signal()
         }.resume()
 
-        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
+        semaphore.wait(timeout: DispatchTime.distantFuture)
 
         if let error = finalError {
             throw error

@@ -16,10 +16,10 @@ struct ParserOutput {
 }
 
 struct Parser {
-    static func parseResponseData(data: NSData) throws -> ParserOutput {
-        let object = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0))
+    static func parseResponseData(_ data: Data) throws -> ParserOutput {
+        let object = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions(rawValue: 0))
         guard let dictionary = object as? [String: AnyObject] else {
-            throw NSError(domain: Generator.errorDomain, code: ErrorCode.ParserError.rawValue, userInfo:
+            throw NSError(domain: Generator.errorDomain, code: ErrorCode.parserError.rawValue, userInfo:
                 [NSLocalizedDescriptionKey : "The data isn't in the correct format. Translations JSON file should have a dictionary as it's root object."])
         }
 
@@ -31,15 +31,15 @@ struct Parser {
             content = t
         }
 
-        guard let langsDictionary = content, firstLanguage = langsDictionary.values.first as? [String: AnyObject] else {
-            throw NSError(domain: Generator.errorDomain, code: ErrorCode.ParserError.rawValue, userInfo:
+        guard let langsDictionary = content, let firstLanguage = langsDictionary.values.first as? [String: AnyObject] else {
+            throw NSError(domain: Generator.errorDomain, code: ErrorCode.parserError.rawValue, userInfo:
                 [NSLocalizedDescriptionKey : "Parsed JSON wasn't containing translations data."])
         }
 
         // Fix for default
         var language = firstLanguage
         if let object = language["default"] {
-            language.removeValueForKey("default")
+            language.removeValue(forKey: "default")
             language["defaultSection"] = object
         }
 

@@ -10,15 +10,15 @@ import Foundation
 import ModelGenerator
 
 public enum ErrorCode: Int {
-    case WrongArguments = 1000
-    case DownloaderError
-    case ParserError
-    case GeneratorError
+    case wrongArguments = 1000
+    case downloaderError
+    case parserError
+    case generatorError
 }
 
 // Public interface/implementation
-@objc public class TranslationsGenerator: NSObject {
-    public class func generate(arguments: [String]) throws -> String {
+@objc open class TranslationsGenerator: NSObject {
+    open class func generate(_ arguments: [String]) throws -> String {
         return try Generator.generate(arguments)
     }
 }
@@ -32,7 +32,7 @@ struct Generator {
         return settings
     }
 
-    static func generate(arguments: [String]) throws -> String {
+    static func generate(_ arguments: [String]) throws -> String {
 
         // 1. Parse arguments
         let settings = try GeneratorSettings.parseFromArguments(arguments)
@@ -43,7 +43,7 @@ struct Generator {
 
         // If we got data, continue with generation, throw otherwise
         guard let data = dData else {
-            throw NSError(domain: errorDomain, code: ErrorCode.GeneratorError.rawValue, userInfo:
+            throw NSError(domain: errorDomain, code: ErrorCode.generatorError.rawValue, userInfo:
                 [NSLocalizedDescriptionKey : "No data received from downloader."])
         }
 
@@ -51,24 +51,24 @@ struct Generator {
         let generatedOutput = try self.generateFromData(data)
 
         // 8. Write to disk (optionally)
-        if let outputPath: NSString = settings.outputPath {
-            let path: NSString   = outputPath.stringByExpandingTildeInPath
-            let jsonFile         = path.stringByAppendingPathComponent(self.modelName + ".json")
-            let translationsFile = path.stringByAppendingPathComponent(self.modelName + ".swift")
+        if let outputPath: NSString = settings.outputPath as NSString? {
+            let path: NSString   = outputPath.expandingTildeInPath as NSString
+            let jsonFile         = path.appendingPathComponent(self.modelName + ".json")
+            let translationsFile = path.appendingPathComponent(self.modelName + ".swift")
 
             // Save translations
-            try generatedOutput.code.writeToFile(translationsFile, atomically: true, encoding: NSUTF8StringEncoding)
+            try generatedOutput.code.write(toFile: translationsFile, atomically: true, encoding: String.Encoding.utf8)
 
             // Save json
-            let jsonData = try NSJSONSerialization.dataWithJSONObject(generatedOutput.JSON, options: .PrettyPrinted)
-            try jsonData.writeToFile(jsonFile, options: .DataWritingAtomic)
+            let jsonData = try JSONSerialization.data(withJSONObject: generatedOutput.JSON, options: .prettyPrinted)
+            try jsonData.write(to: URL(fileURLWithPath: jsonFile), options: .atomic)
         }
 
         // 7. Finish
         return generatedOutput.code
     }
 
-    static func generateFromData(data: NSData) throws -> (code: String, JSON: [String: AnyObject]) {
+    static func generateFromData(_ data: Data) throws -> (code: String, JSON: [String: AnyObject]) {
         // 3. Parse translations
         let parsed = try Parser.parseResponseData(data)
 
@@ -87,7 +87,7 @@ struct Generator {
         return (finalString, parsed.JSON)
     }
 
-    private static func generateMainModelFromParserOutput(output: ParserOutput, subModels: String?) throws -> String {
+    fileprivate static func generateMainModelFromParserOutput(_ output: ParserOutput, subModels: String?) throws -> String {
         var indent = Indentation(level: 0)
 
         var modelString = "public final class \(self.modelName): Translatable {\n"
@@ -115,7 +115,7 @@ struct Generator {
         return modelString
     }
 
-    private static func generateSubModelsFromParserOutput(output: ParserOutput) throws -> (models: String, extensions: String) {
+    fileprivate static func generateSubModelsFromParserOutput(_ output: ParserOutput) throws -> (models: String, extensions: String) {
         var modelsString = ""
         var extensionsString = ""
 
@@ -149,16 +149,16 @@ struct Generator {
         return (modelsString, extensionsString)
     }
 
-    private static func templateString() throws -> String {
-        let templatePath = NSBundle(forClass: TranslationsGenerator.self).pathForResource("ImplementationTemplate", ofType: "txt")
+    fileprivate static func templateString() throws -> String {
+        let templatePath = Bundle(for: TranslationsGenerator.self).path(forResource: "ImplementationTemplate", ofType: "txt")
         guard let path = templatePath else {
-            throw NSError(domain: self.errorDomain, code: ErrorCode.GeneratorError.rawValue,
+            throw NSError(domain: self.errorDomain, code: ErrorCode.generatorError.rawValue,
                 userInfo: [NSLocalizedDescriptionKey : "Internal inconsistency error. Couldn't find template file to insert generated code into."])
         }
 
         var string = try String(contentsOfFile: path)
-        let dateString = NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .ShortStyle, timeStyle: .LongStyle)
-        string = string.stringByReplacingOccurrencesOfString("#DATE#", withString: dateString)
+        let dateString = DateFormatter.localizedString(from: Date(), dateStyle: .short, timeStyle: .long)
+        string = string.replacingOccurrences(of: "#DATE#", with: dateString)
 
         return string
     }

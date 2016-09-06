@@ -16,9 +16,9 @@ struct GeneratorSettings {
 }
 
 extension GeneratorSettings {
-    static func parseFromArguments(arguments: [String]) throws -> GeneratorSettings {
+    static func parseFromArguments(_ arguments: [String]) throws -> GeneratorSettings {
         if arguments.count < 5 || arguments.count > 8 {
-            throw NSError(domain: Generator.errorDomain, code: ErrorCode.WrongArguments.rawValue,
+            throw NSError(domain: Generator.errorDomain, code: ErrorCode.wrongArguments.rawValue,
                 userInfo: [NSLocalizedDescriptionKey : "Error, wrong number of arguments passed."])
         }
 
@@ -45,22 +45,22 @@ extension GeneratorSettings {
         }
 
         // Get plist path if present
-        if let plistPaths = parsedArguments["-plist"] where plistPaths.count == 1 {
+        if let plistPaths = parsedArguments["-plist"] , plistPaths.count == 1 {
             plistPath = plistPaths[0]
         }
 
         // Get keys if present
-        if let keysArray = parsedArguments["-keys"] where keysArray.count == 2 {
+        if let keysArray = parsedArguments["-keys"] , keysArray.count == 2 {
             keys = (keysArray[0], keysArray[1])
         }
 
         // Check if we have keys
         if plistPath == nil && (keys?.appKey == nil || keys?.appID == nil) {
-            throw NSError(domain: Generator.errorDomain, code: ErrorCode.WrongArguments.rawValue,
+            throw NSError(domain: Generator.errorDomain, code: ErrorCode.wrongArguments.rawValue,
                 userInfo: [NSLocalizedDescriptionKey : "No or multiple plist paths, or wrong keys format."])
         }
 
-        if let flat = parsedArguments["-flat"] where flat.count == 1 && flat[0] == "1" {
+        if let flat = parsedArguments["-flat"] , flat.count == 1 && flat[0] == "1" {
             flatTranslations = true
         }
 
@@ -73,7 +73,7 @@ extension GeneratorSettings {
         } else if let plistPath = plistPath {
             return try DownloaderSettings.settingsFromConfigurationFile(plistPath: plistPath)
         }
-        throw NSError(domain: Generator.errorDomain, code: ErrorCode.GeneratorError.rawValue,
+        throw NSError(domain: Generator.errorDomain, code: ErrorCode.generatorError.rawValue,
             userInfo: [NSLocalizedDescriptionKey : "Couldn't generate downloader settings from arguments."])
     }
 }

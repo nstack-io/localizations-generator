@@ -10,6 +10,6 @@ import Foundation
 
 extension String {
     var uppercasedFirstLetter: String {
-        return String(characters.prefix(1)).uppercaseString + String(characters.dropFirst())
+        return String(characters.prefix(1)).uppercased() + String(characters.dropFirst())
     }
 }

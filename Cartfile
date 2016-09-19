@@ -1,2 +1,2 @@
-github "nodes-ios/model-generator" "master"
+github "nodes-ios/model-generator" ~> 1.0
 

@@ -63,7 +63,7 @@ struct Downloader {
             self.semaphore.signal()
         }.resume()
 
-        semaphore.wait(timeout: DispatchTime.distantFuture)
+        _ = semaphore.wait(timeout: DispatchTime.distantFuture)
 
         if let error = finalError {
             throw error

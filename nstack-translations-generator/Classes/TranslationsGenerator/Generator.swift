@@ -103,7 +103,7 @@ struct Generator {
 
         indent = indent.previousLevel()
 
-        let extensionString = try ModelGenerator.modelCodeFromSourceCode(modelString + "}", withSettings: self.generatorSettings)
+        let extensionString = try ModelGenerator.modelCode(fromSourceCode: modelString + "}", withSettings: self.generatorSettings)
 
         if let subModels = subModels {
             modelString += subModels + "\n"
@@ -143,7 +143,7 @@ struct Generator {
             settings.moduleName = self.modelName
 
             extensionsString += "\n\n"
-            extensionsString += try ModelGenerator.modelCodeFromSourceCode(subString, withSettings: settings)
+            extensionsString += try ModelGenerator.modelCode(fromSourceCode: subString, withSettings: settings)
         }
 
         return (modelsString, extensionsString)

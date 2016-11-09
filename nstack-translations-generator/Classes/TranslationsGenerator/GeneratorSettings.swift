@@ -13,6 +13,7 @@ struct GeneratorSettings {
     var keys: (appID: String, appKey: String)?
     var outputPath: String?
     var flatTranslations: Bool
+    var availableFromObjC: Bool
 }
 
 extension GeneratorSettings {
@@ -38,6 +39,7 @@ extension GeneratorSettings {
         var plistPath: String?
         var keys: (appID: String, appKey: String)?
         var flatTranslations = false
+        var availableFromObjC = false
 
         // Get output path if present
         if let path = parsedArguments["-output"]?.first {
@@ -63,8 +65,12 @@ extension GeneratorSettings {
         if let flat = parsedArguments["-flat"] , flat.count == 1 && flat[0] == "1" {
             flatTranslations = true
         }
+        
+        if let _ = parsedArguments["--use-objc"] {
+            availableFromObjC = true
+        }
 
-        return GeneratorSettings(plistPath: plistPath, keys: keys, outputPath: outputPath, flatTranslations: flatTranslations)
+        return GeneratorSettings(plistPath: plistPath, keys: keys, outputPath: outputPath, flatTranslations: flatTranslations, availableFromObjC: availableFromObjC)
     }
 
     func downloaderSettings() throws -> DownloaderSettings {

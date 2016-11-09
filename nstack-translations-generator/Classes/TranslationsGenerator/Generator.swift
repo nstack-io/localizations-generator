@@ -48,7 +48,7 @@ struct Generator {
         }
 
         // 3. - 7. Generate the code
-        let generatedOutput = try self.generateFromData(data)
+        let generatedOutput = try self.generateFromData(data, settings)
 
         // 8. Write to disk (optionally)
         if let outputPath: NSString = settings.outputPath as NSString? {
@@ -68,15 +68,15 @@ struct Generator {
         return generatedOutput.code
     }
 
-    static func generateFromData(_ data: Data) throws -> (code: String, JSON: [String: AnyObject]) {
+    static func generateFromData(_ data: Data, _ settings: GeneratorSettings) throws -> (code: String, JSON: [String: AnyObject]) {
         // 3. Parse translations
         let parsed = try Parser.parseResponseData(data)
 
         // 4. If not flat, generate submodels
-        let subModels: (models: String, extensions: String)? = !parsed.isFlat ? try self.generateSubModelsFromParserOutput(parsed) : nil
+        let subModels: (models: String, extensions: String)? = !parsed.isFlat ? try self.generateSubModelsFromParserOutput(parsed, settings) : nil
 
         // 5. Generate main model code
-        var mainModel = try self.generateMainModelFromParserOutput(parsed, subModels: subModels?.models)
+        var mainModel = try self.generateMainModelFromParserOutput(parsed, subModels: subModels?.models, settings: settings)
 
         // 6. Append submodels, if existent
         mainModel += subModels?.extensions ?? ""
@@ -87,11 +87,13 @@ struct Generator {
         return (finalString, parsed.JSON)
     }
 
-    fileprivate static func generateMainModelFromParserOutput(_ output: ParserOutput, subModels: String?) throws -> String {
+    fileprivate static func generateMainModelFromParserOutput(_ output: ParserOutput, subModels: String?, settings: GeneratorSettings) throws -> String {
         var indent = Indentation(level: 0)
 
-        var modelString = "public final class \(self.modelName): Translatable {\n"
+        var modelString = ""
 
+        settings.availableFromObjC ?    ( modelString = "@objc public final class \(self.modelName):  NSObject, Translatable {\n" ) :
+                                        ( modelString = "public final class \(self.modelName): Translatable {\n" )
         indent = indent.nextLevel()
 
         for key in output.mainKeys {
@@ -115,14 +117,16 @@ struct Generator {
         return modelString
     }
 
-    fileprivate static func generateSubModelsFromParserOutput(_ output: ParserOutput) throws -> (models: String, extensions: String) {
+    fileprivate static func generateSubModelsFromParserOutput(_ output: ParserOutput, _ settings: GeneratorSettings) throws -> (models: String, extensions: String) {
         var modelsString = ""
         var extensionsString = ""
 
         var indent = Indentation(level: 1)
 
         for case let (key, value as [String: AnyObject]) in output.language {
-            var subString = "\n\n" + indent.string() + "public final class \(key.uppercasedFirstLetter) {\n"
+            var subString = ""
+            settings.availableFromObjC ?    ( subString = "\n\n" + indent.string() + "@objc public final class \(key.uppercasedFirstLetter) : NSObject {\n" ) :
+                                            ( subString = "\n\n" + indent.string() + "public final class \(key.uppercasedFirstLetter) {\n" )
 
             indent = indent.nextLevel()
 

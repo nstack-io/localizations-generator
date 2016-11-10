@@ -18,7 +18,7 @@ struct GeneratorSettings {
 
 extension GeneratorSettings {
     static func parseFromArguments(_ arguments: [String]) throws -> GeneratorSettings {
-        if arguments.count < 5 || arguments.count > 8 {
+        if arguments.count < 5 || arguments.count > 9 {
             throw NSError(domain: Generator.errorDomain, code: ErrorCode.wrongArguments.rawValue,
                 userInfo: [NSLocalizedDescriptionKey : "Error, wrong number of arguments passed."])
         }
@@ -66,7 +66,7 @@ extension GeneratorSettings {
             flatTranslations = true
         }
         
-        if let _ = parsedArguments["--use-objc"] {
+        if let _ = parsedArguments["-use-objc"] {
             availableFromObjC = true
         }
 

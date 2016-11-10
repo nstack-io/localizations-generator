@@ -90,10 +90,10 @@ struct Generator {
     fileprivate static func generateMainModelFromParserOutput(_ output: ParserOutput, subModels: String?, settings: GeneratorSettings) throws -> String {
         var indent = Indentation(level: 0)
 
-        var modelString = ""
-
-        settings.availableFromObjC ?    ( modelString = "@objc public final class \(self.modelName):  NSObject, Translatable {\n" ) :
-                                        ( modelString = "public final class \(self.modelName): Translatable {\n" )
+        let prefix = (settings.availableFromObjC ? "@objc " : "") + "public final class "
+        let postfix = " : " + (settings.availableFromObjC ? "NSObject, " : "") + "Translatable {\n"
+        var modelString = prefix + self.modelName + postfix
+        
         indent = indent.nextLevel()
 
         for key in output.mainKeys {
@@ -124,10 +124,12 @@ struct Generator {
         var indent = Indentation(level: 1)
 
         for case let (key, value as [String: AnyObject]) in output.language {
-            var subString = ""
-            settings.availableFromObjC ?    ( subString = "\n\n" + indent.string() + "@objc public final class \(key.uppercasedFirstLetter) : NSObject {\n" ) :
-                                            ( subString = "\n\n" + indent.string() + "public final class \(key.uppercasedFirstLetter) {\n" )
-
+            
+            
+            let prefix = (settings.availableFromObjC ? "@objc " : "") + "public final class "
+            let postfix = (settings.availableFromObjC ? " : NSObject" : "") + " {\n"
+            var subString = "\n\n" + indent.string() + prefix + "\(key.uppercasedFirstLetter)" + postfix
+            
             indent = indent.nextLevel()
 
             // Add the translation keys for the model

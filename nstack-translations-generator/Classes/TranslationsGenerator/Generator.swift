@@ -143,7 +143,7 @@ struct Generator {
             subString += indent.string() + "}"
             modelsString += subString
 
-            // Generate Serializable extensions
+            // Generate Serpent extensions
             var settings = self.generatorSettings
             settings.noConvertCamelCase = true
             settings.moduleName = self.modelName

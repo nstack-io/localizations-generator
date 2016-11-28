@@ -28,10 +28,16 @@ struct Downloader {
         let request = NSMutableURLRequest(url: requestURL as URL)
 
         // Add headers
-        request.setValue("application/vnd.nodes", forHTTPHeaderField: "accept")
-        request.setValue(settings.appKey, forHTTPHeaderField: "X-Rest-Api-Key")
         request.setValue(settings.appID, forHTTPHeaderField: "X-Application-Id")
+        request.setValue(settings.appKey, forHTTPHeaderField: "X-Rest-Api-Key")
+        
+        var versionString = "1.0"
+        if let bundleVersionString = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String {
+            versionString = bundleVersionString
+        }
 
+        request.setValue("ios;nstack-translations-generator;\(versionString);macOS;mac", forHTTPHeaderField: "n-meta")
+        
         var actualData: Data?
         var finalError: Error?
 

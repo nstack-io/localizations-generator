@@ -36,7 +36,8 @@ extension DownloaderSettings {
 
         var downloadURL = defaultURL
 
-        guard let appID = dictionary[plistAppIDKey] as? String, let appKey = dictionary[plistAppKeyKey] as? String else {
+        
+        guard let appID = dictionary[plistAppIDKey] as? String, !appID.isEmpty, let appKey = dictionary[plistAppKeyKey] as? String, !appKey.isEmpty else {
             throw NSError(domain: Generator.errorDomain, code: ErrorCode.downloaderError.rawValue,
                 userInfo: [NSLocalizedDescriptionKey : "App ID or API key not found in the plist file."])
         }

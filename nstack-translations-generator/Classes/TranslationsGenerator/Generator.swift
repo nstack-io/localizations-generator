@@ -167,11 +167,9 @@ struct Generator {
         string = string.replacingOccurrences(of: "#DATE#", with: dateString)
         
         guard let versionString = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else {
-            string = string.replacingOccurrences(of: " v#VERSION#", with: "")
-            return string
+            return string.replacingOccurrences(of: " v#VERSION#", with: "")
         }
-        string = string.replacingOccurrences(of: "#VERSION#", with: versionString)
-        
-        return string
+
+        return string.replacingOccurrences(of: "#VERSION#", with: versionString)
     }
 }

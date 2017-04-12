@@ -161,11 +161,15 @@ struct Generator {
             throw NSError(domain: self.errorDomain, code: ErrorCode.generatorError.rawValue,
                 userInfo: [NSLocalizedDescriptionKey : "Internal inconsistency error. Couldn't find template file to insert generated code into."])
         }
-
+        
         var string = try String(contentsOfFile: path)
         let dateString = DateFormatter.localizedString(from: Date(), dateStyle: .short, timeStyle: .long)
         string = string.replacingOccurrences(of: "#DATE#", with: dateString)
+        
+        guard let versionString = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else {
+            return string.replacingOccurrences(of: " v#VERSION#", with: "")
+        }
 
-        return string
+        return string.replacingOccurrences(of: "#VERSION#", with: versionString)
     }
 }

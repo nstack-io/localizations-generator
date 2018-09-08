@@ -18,6 +18,7 @@ public enum ErrorCode: Int {
 
 // Public interface/implementation
 @objc open class TranslationsGenerator: NSObject {
+    @discardableResult @objc
     open class func generate(_ arguments: [String]) throws -> String {
         return try Generator.generate(arguments)
     }

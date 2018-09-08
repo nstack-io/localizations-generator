@@ -50,7 +50,8 @@ struct Downloader {
                 case 300...999:
                     let content: String?
                     if let data = data {
-                        let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: AnyObject]
+                        let object = try? JSONSerialization.jsonObject(with: data, options: .allowFragments)
+                        let json = object as? [String: AnyObject]
                         content = "\(json ?? [:])"
                     } else {
                         content = nil

@@ -18,6 +18,7 @@ public enum ErrorCode: Int {
 
 // Public interface/implementation
 @objc open class TranslationsGenerator: NSObject {
+    @discardableResult @objc
     open class func generate(_ arguments: [String]) throws -> String {
         return try Generator.generate(arguments)
     }
@@ -162,9 +163,7 @@ struct Generator {
                 userInfo: [NSLocalizedDescriptionKey : "Internal inconsistency error. Couldn't find template file to insert generated code into."])
         }
         
-        var string = try String(contentsOfFile: path)
-        let dateString = DateFormatter.localizedString(from: Date(), dateStyle: .short, timeStyle: .long)
-        string = string.replacingOccurrences(of: "#DATE#", with: dateString)
+        let string = try String(contentsOfFile: path)
         
         guard let versionString = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else {
             return string.replacingOccurrences(of: " v#VERSION#", with: "")

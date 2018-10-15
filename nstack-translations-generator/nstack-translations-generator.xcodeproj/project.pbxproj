@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0132B4CD1C70E361007BC588 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0132B4CC1C70E361007BC588 /* Parser.swift */; };
-		0135E6991C7C5194007982E1 /* ModelGenerator.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 017CE2B91C6795720075CE41 /* ModelGenerator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		017CE2821C6782030075CE41 /* nstack-translations-generator in CopyFiles */ = {isa = PBXBuildFile; fileRef = 017CE2241C6776B50075CE41 /* nstack-translations-generator */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		017CE2A01C6786C90075CE41 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 017CE2961C6786990075CE41 /* main.m */; };
 		017CE2A51C6787E40075CE41 /* TranslationsGenerator.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 017CE28D1C6785A30075CE41 /* TranslationsGenerator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -20,6 +19,8 @@
 		018121791C69ED45003AEDEA /* DownloaderSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018121781C69ED45003AEDEA /* DownloaderSettings.swift */; };
 		01DA430D1C78976900D0FC04 /* ImplementationTemplate.txt in Resources */ = {isa = PBXBuildFile; fileRef = 01DA430C1C78976900D0FC04 /* ImplementationTemplate.txt */; };
 		01DA43111C78A1CF00D0FC04 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DA43101C78A1CF00D0FC04 /* Extensions.swift */; };
+		C05B0A962174A448003612DE /* Indentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05B0A952174A448003612DE /* Indentation.swift */; };
+		C05B0A982174A469003612DE /* Escaping.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05B0A972174A469003612DE /* Escaping.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,34 +37,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 017CE28C1C6785A30075CE41;
 			remoteInfo = TranslationsGenerator;
-		};
-		017CE2B81C6795720075CE41 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 017CE2B21C6795720075CE41 /* model-generator.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 0169B8A91C567AA400ADF94F;
-			remoteInfo = ModelGenerator;
-		};
-		017CE2BA1C6795720075CE41 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 017CE2B21C6795720075CE41 /* model-generator.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 0142C69A1C4E9099004FBF93;
-			remoteInfo = "model-generator-cli";
-		};
-		017CE2BC1C6795720075CE41 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 017CE2B21C6795720075CE41 /* model-generator.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 0142C6C61C4EB94B004FBF93;
-			remoteInfo = "model-generator-tests";
-		};
-		017CE2BE1C6795860075CE41 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 017CE2B21C6795720075CE41 /* model-generator.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 0169B8A81C567AA400ADF94F;
-			remoteInfo = ModelGenerator;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -84,7 +57,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				0135E6991C7C5194007982E1 /* ModelGenerator.framework in CopyFiles */,
 				017CE2A51C6787E40075CE41 /* TranslationsGenerator.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -99,7 +71,6 @@
 		017CE2961C6786990075CE41 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		017CE29B1C6786990075CE41 /* Generator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Generator.swift; sourceTree = "<group>"; };
 		017CE29D1C6786990075CE41 /* Bundle-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Bundle-Info.plist"; sourceTree = "<group>"; };
-		017CE2B21C6795720075CE41 /* model-generator.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "model-generator.xcodeproj"; path = "../Carthage/Checkouts/model-generator/model-generator.xcodeproj"; sourceTree = "<group>"; };
 		017CE2C41C689D8E0075CE41 /* Downloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Downloader.swift; sourceTree = "<group>"; };
 		017CE2C61C68BBB80075CE41 /* GeneratorSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratorSettings.swift; sourceTree = "<group>"; };
 		018121751C69ECF7003AEDEA /* Generator-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Generator-Info.plist"; sourceTree = "<group>"; };
@@ -107,6 +78,8 @@
 		018121781C69ED45003AEDEA /* DownloaderSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloaderSettings.swift; sourceTree = "<group>"; };
 		01DA430C1C78976900D0FC04 /* ImplementationTemplate.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ImplementationTemplate.txt; sourceTree = "<group>"; };
 		01DA43101C78A1CF00D0FC04 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		C05B0A952174A448003612DE /* Indentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Indentation.swift; sourceTree = "<group>"; };
+		C05B0A972174A469003612DE /* Escaping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Escaping.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,7 +111,6 @@
 		017CE21B1C6776B50075CE41 = {
 			isa = PBXGroup;
 			children = (
-				017CE2B21C6795720075CE41 /* model-generator.xcodeproj */,
 				017CE2571C67788B0075CE41 /* Translations Generator */,
 				017CE2561C6778780075CE41 /* Frameworks */,
 				017CE2251C6776B50075CE41 /* Products */,
@@ -189,6 +161,8 @@
 				018121781C69ED45003AEDEA /* DownloaderSettings.swift */,
 				0132B4CC1C70E361007BC588 /* Parser.swift */,
 				01DA43101C78A1CF00D0FC04 /* Extensions.swift */,
+				C05B0A952174A448003612DE /* Indentation.swift */,
+				C05B0A972174A469003612DE /* Escaping.swift */,
 			);
 			path = TranslationsGenerator;
 			sourceTree = "<group>";
@@ -202,16 +176,6 @@
 				017CE29D1C6786990075CE41 /* Bundle-Info.plist */,
 			);
 			path = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		017CE2B31C6795720075CE41 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				017CE2B91C6795720075CE41 /* ModelGenerator.framework */,
-				017CE2BB1C6795720075CE41 /* model-generator-cli */,
-				017CE2BD1C6795720075CE41 /* model-generator-tests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,7 +241,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				017CE2BF1C6795860075CE41 /* PBXTargetDependency */,
 			);
 			name = TranslationsGenerator;
 			productName = TranslationsGenerator;
@@ -317,12 +280,6 @@
 			mainGroup = 017CE21B1C6776B50075CE41;
 			productRefGroup = 017CE2251C6776B50075CE41 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 017CE2B31C6795720075CE41 /* Products */;
-					ProjectRef = 017CE2B21C6795720075CE41 /* model-generator.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				017CE2231C6776B50075CE41 /* nstack-translations-generator */,
@@ -331,30 +288,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		017CE2B91C6795720075CE41 /* ModelGenerator.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = ModelGenerator.framework;
-			remoteRef = 017CE2B81C6795720075CE41 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		017CE2BB1C6795720075CE41 /* model-generator-cli */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.executable";
-			path = "model-generator-cli";
-			remoteRef = 017CE2BA1C6795720075CE41 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		017CE2BD1C6795720075CE41 /* model-generator-tests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "model-generator-tests.xctest";
-			remoteRef = 017CE2BC1C6795720075CE41 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		017CE2771C6781F20075CE41 /* Resources */ = {
@@ -397,8 +330,10 @@
 				017CE2C51C689D8E0075CE41 /* Downloader.swift in Sources */,
 				01DA43111C78A1CF00D0FC04 /* Extensions.swift in Sources */,
 				017CE2AF1C6792730075CE41 /* Generator.swift in Sources */,
+				C05B0A982174A469003612DE /* Escaping.swift in Sources */,
 				0132B4CD1C70E361007BC588 /* Parser.swift in Sources */,
 				017CE2C71C68BBB80075CE41 /* GeneratorSettings.swift in Sources */,
+				C05B0A962174A448003612DE /* Indentation.swift in Sources */,
 				018121791C69ED45003AEDEA /* DownloaderSettings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -415,11 +350,6 @@
 			isa = PBXTargetDependency;
 			target = 017CE28C1C6785A30075CE41 /* TranslationsGenerator */;
 			targetProxy = 017CE2A31C6787B00075CE41 /* PBXContainerItemProxy */;
-		};
-		017CE2BF1C6795860075CE41 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ModelGenerator;
-			targetProxy = 017CE2BE1C6795860075CE41 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

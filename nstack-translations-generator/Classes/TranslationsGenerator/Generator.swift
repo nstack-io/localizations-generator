@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import ModelGenerator
 
 public enum ErrorCode: Int {
     case wrongArguments = 1000
@@ -27,11 +26,6 @@ public enum ErrorCode: Int {
 struct Generator {
     static let errorDomain = "com.nodes.translations-generator"
     static let modelName   = "Translations"
-    static var generatorSettings: ModelGeneratorSettings {
-        var settings = ModelGeneratorSettings()
-        settings.noConvertCamelCase = true
-        return settings
-    }
 
     static func generate(_ arguments: [String]) throws -> String {
 
@@ -74,15 +68,12 @@ struct Generator {
         let parsed = try Parser.parseResponseData(data)
 
         // 4. If not flat, generate submodels
-        let subModels: (models: String, extensions: String)? = !parsed.isFlat ? try self.generateSubModelsFromParserOutput(parsed, settings) : nil
+        let subModels: String? = !parsed.isFlat ? try self.generateSubModelsFromParserOutput(parsed, settings) : nil
 
         // 5. Generate main model code
-        var mainModel = try self.generateMainModelFromParserOutput(parsed, subModels: subModels?.models, settings: settings)
+        let mainModel = try self.generateMainModelFromParserOutput(parsed, subModels: subModels, settings: settings)
 
-        // 6. Append submodels, if existent
-        mainModel += subModels?.extensions ?? ""
-
-        // 7. Insert model code into template
+        // 6. Insert model code into template
         let finalString = try templateString() + mainModel
 
         return (finalString, parsed.JSON)
@@ -106,21 +97,17 @@ struct Generator {
 
         indent = indent.previousLevel()
 
-        let extensionString = try ModelGenerator.modelCode(fromSourceCode: modelString + "}", withSettings: self.generatorSettings)
-
         if let subModels = subModels {
             modelString += subModels + "\n"
         }
 
         modelString += "}\n\n"
-        modelString += extensionString + "\n\n"
 
         return modelString
     }
 
-    fileprivate static func generateSubModelsFromParserOutput(_ output: ParserOutput, _ settings: GeneratorSettings) throws -> (models: String, extensions: String) {
+    fileprivate static func generateSubModelsFromParserOutput(_ output: ParserOutput, _ settings: GeneratorSettings) throws -> String {
         var modelsString = ""
-        var extensionsString = ""
 
         var indent = Indentation(level: 1)
 
@@ -143,17 +130,9 @@ struct Generator {
 
             subString += indent.string() + "}"
             modelsString += subString
-
-            // Generate Serpent extensions
-            var settings = self.generatorSettings
-            settings.noConvertCamelCase = true
-            settings.moduleName = self.modelName
-
-            extensionsString += "\n\n"
-            extensionsString += try ModelGenerator.modelCode(fromSourceCode: subString, withSettings: settings)
         }
 
-        return (modelsString, extensionsString)
+        return modelsString
     }
 
     fileprivate static func templateString() throws -> String {

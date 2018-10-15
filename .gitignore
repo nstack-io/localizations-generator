@@ -1,9 +1,9 @@
-
-# Created by https://www.gitignore.io/api/swift,xcode,macos,carthage,cocoapods,objective-c
+# Created by https://www.gitignore.io/api/git,swift,xcode,macos,swiftpm,carthage,cocoapods,objective-c
 
 ### Carthage ###
 # Carthage
 #
+# Add this line if you want to avoid checking in source code from Carthage dependencies.
 Carthage/Checkouts
 Carthage/Build
 
@@ -14,6 +14,21 @@ Carthage/Build
 #           - Also handy if you have a large number of dependant pods
 #           - AS PER https://guides.cocoapods.org/using/using-cocoapods.html NEVER IGNORE THE LOCK FILE
 Pods/
+
+### Git ###
+# Created by git for backups. To disable backups in Git:
+# $ git config --global mergetool.keepBackup false
+*.orig
+
+# Created by git when using merge tools for conflicts
+*.BACKUP.*
+*.BASE.*
+*.LOCAL.*
+*.REMOTE.*
+*_BACKUP_*.txt
+*_BASE_*.txt
+*_LOCAL_*.txt
+*_REMOTE_*.txt
 
 ### macOS ###
 # General
@@ -168,6 +183,11 @@ playground.xcworkspace
 # https://github.com/johnno1962/injectionforxcode
 
 
+### SwiftPM ###
+Packages
+xcuserdata
+*.xcodeproj
+
 ### Xcode ###
 # Xcode
 #
@@ -187,4 +207,4 @@ playground.xcworkspace
 /*.gcno
 
 
-# End of https://www.gitignore.io/api/swift,xcode,macos,carthage,cocoapods,objective-c
+# End of https://www.gitignore.io/api/git,swift,xcode,macos,swiftpm,carthage,cocoapods,objective-c

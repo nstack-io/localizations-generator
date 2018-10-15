@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0132B4CD1C70E361007BC588 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0132B4CC1C70E361007BC588 /* Parser.swift */; };
 		017CE2821C6782030075CE41 /* nstack-translations-generator in CopyFiles */ = {isa = PBXBuildFile; fileRef = 017CE2241C6776B50075CE41 /* nstack-translations-generator */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		017CE2A01C6786C90075CE41 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 017CE2961C6786990075CE41 /* main.m */; };
 		017CE2A51C6787E40075CE41 /* TranslationsGenerator.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 017CE28D1C6785A30075CE41 /* TranslationsGenerator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		017CE2A71C6787F70075CE41 /* TranslationsGenerator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 017CE28D1C6785A30075CE41 /* TranslationsGenerator.framework */; };
 		017CE2AF1C6792730075CE41 /* Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017CE29B1C6786990075CE41 /* Generator.swift */; };
@@ -19,14 +18,13 @@
 		018121791C69ED45003AEDEA /* DownloaderSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018121781C69ED45003AEDEA /* DownloaderSettings.swift */; };
 		01DA430D1C78976900D0FC04 /* ImplementationTemplate.txt in Resources */ = {isa = PBXBuildFile; fileRef = 01DA430C1C78976900D0FC04 /* ImplementationTemplate.txt */; };
 		01DA43111C78A1CF00D0FC04 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DA43101C78A1CF00D0FC04 /* Extensions.swift */; };
-		2A80F9A6A9FF2C162A2B5347 /* Pods_nstack_translations_generatorBundle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BDD6A274A7EF9C93589B97E /* Pods_nstack_translations_generatorBundle.framework */; };
 		4BEB675802B887383D43E489 /* Pods_TranslationsGenerator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E542EC77F964BEA400B6BF8 /* Pods_TranslationsGenerator.framework */; };
-		A3199474492EE55B4F045646 /* Pods_nstack_translations_generator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE1DC8C95A74407F104D0A3E /* Pods_nstack_translations_generator.framework */; };
 		A95D3AA6B98CC1065FAA7AE9 /* Pods_TranslationsGeneratorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5793EFD3A20502E2E0D0C7BF /* Pods_TranslationsGeneratorTests.framework */; };
 		C05B0A962174A448003612DE /* Indentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05B0A952174A448003612DE /* Indentation.swift */; };
 		C05B0A982174A469003612DE /* Escaping.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05B0A972174A469003612DE /* Escaping.swift */; };
 		C05B0AA02174B126003612DE /* TranslationsGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05B0A9F2174B126003612DE /* TranslationsGeneratorTests.swift */; };
 		C05B0AA22174B126003612DE /* TranslationsGenerator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 017CE28D1C6785A30075CE41 /* TranslationsGenerator.framework */; };
+		C05B0ABC2174B335003612DE /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05B0ABB2174B335003612DE /* main.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,7 +79,6 @@
 		017CE2241C6776B50075CE41 /* nstack-translations-generator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "nstack-translations-generator"; sourceTree = BUILT_PRODUCTS_DIR; };
 		017CE2791C6781F20075CE41 /* nstack-translations-generator.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "nstack-translations-generator.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
 		017CE28D1C6785A30075CE41 /* TranslationsGenerator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TranslationsGenerator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		017CE2961C6786990075CE41 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		017CE29B1C6786990075CE41 /* Generator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Generator.swift; sourceTree = "<group>"; };
 		017CE29D1C6786990075CE41 /* Bundle-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Bundle-Info.plist"; sourceTree = "<group>"; };
 		017CE2C41C689D8E0075CE41 /* Downloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Downloader.swift; sourceTree = "<group>"; };
@@ -91,20 +88,17 @@
 		018121781C69ED45003AEDEA /* DownloaderSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloaderSettings.swift; sourceTree = "<group>"; };
 		01DA430C1C78976900D0FC04 /* ImplementationTemplate.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ImplementationTemplate.txt; sourceTree = "<group>"; };
 		01DA43101C78A1CF00D0FC04 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		0909C9366DD8502CBAB9E1A9 /* Pods-nstack-translations-generator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nstack-translations-generator.debug.xcconfig"; path = "Target Support Files/Pods-nstack-translations-generator/Pods-nstack-translations-generator.debug.xcconfig"; sourceTree = "<group>"; };
 		1B477C03F51C597E021B9C4D /* Pods-TranslationsGenerator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TranslationsGenerator.release.xcconfig"; path = "Target Support Files/Pods-TranslationsGenerator/Pods-TranslationsGenerator.release.xcconfig"; sourceTree = "<group>"; };
-		212D84C70D62A1FB060FC858 /* Pods-nstack-translations-generatorBundle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nstack-translations-generatorBundle.debug.xcconfig"; path = "Target Support Files/Pods-nstack-translations-generatorBundle/Pods-nstack-translations-generatorBundle.debug.xcconfig"; sourceTree = "<group>"; };
 		3CAE0327A1B39683BC5E858A /* Pods-TranslationsGeneratorTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TranslationsGeneratorTests.debug.xcconfig"; path = "Target Support Files/Pods-TranslationsGeneratorTests/Pods-TranslationsGeneratorTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5793EFD3A20502E2E0D0C7BF /* Pods_TranslationsGeneratorTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TranslationsGeneratorTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6A181CF5DF6AE3F858E1A8AB /* Pods-nstack-translations-generator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nstack-translations-generator.release.xcconfig"; path = "Target Support Files/Pods-nstack-translations-generator/Pods-nstack-translations-generator.release.xcconfig"; sourceTree = "<group>"; };
 		6BDD6A274A7EF9C93589B97E /* Pods_nstack_translations_generatorBundle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nstack_translations_generatorBundle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E542EC77F964BEA400B6BF8 /* Pods_TranslationsGenerator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TranslationsGenerator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B9A1BE5DABA4E85530DF3AD7 /* Pods-nstack-translations-generatorBundle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nstack-translations-generatorBundle.release.xcconfig"; path = "Target Support Files/Pods-nstack-translations-generatorBundle/Pods-nstack-translations-generatorBundle.release.xcconfig"; sourceTree = "<group>"; };
 		C05B0A952174A448003612DE /* Indentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Indentation.swift; sourceTree = "<group>"; };
 		C05B0A972174A469003612DE /* Escaping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Escaping.swift; sourceTree = "<group>"; };
 		C05B0A9D2174B126003612DE /* TranslationsGeneratorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TranslationsGeneratorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C05B0A9F2174B126003612DE /* TranslationsGeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationsGeneratorTests.swift; sourceTree = "<group>"; };
 		C05B0AA12174B126003612DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C05B0ABB2174B335003612DE /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		C3CE17F3B15AD77873122945 /* Pods-TranslationsGenerator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TranslationsGenerator.debug.xcconfig"; path = "Target Support Files/Pods-TranslationsGenerator/Pods-TranslationsGenerator.debug.xcconfig"; sourceTree = "<group>"; };
 		DE1DC8C95A74407F104D0A3E /* Pods_nstack_translations_generator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nstack_translations_generator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9D811A6D919726C62BA068E /* Pods-TranslationsGeneratorTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TranslationsGeneratorTests.release.xcconfig"; path = "Target Support Files/Pods-TranslationsGeneratorTests/Pods-TranslationsGeneratorTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -115,7 +109,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2A80F9A6A9FF2C162A2B5347 /* Pods_nstack_translations_generatorBundle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,7 +117,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				017CE2A71C6787F70075CE41 /* TranslationsGenerator.framework in Frameworks */,
-				A3199474492EE55B4F045646 /* Pods_nstack_translations_generator.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,7 +185,7 @@
 		017CE2951C6786990075CE41 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				017CE2961C6786990075CE41 /* main.m */,
+				C05B0ABB2174B335003612DE /* main.swift */,
 				017CE2971C6786990075CE41 /* TranslationsGenerator */,
 			);
 			path = Classes;
@@ -241,10 +233,6 @@
 				1B477C03F51C597E021B9C4D /* Pods-TranslationsGenerator.release.xcconfig */,
 				3CAE0327A1B39683BC5E858A /* Pods-TranslationsGeneratorTests.debug.xcconfig */,
 				E9D811A6D919726C62BA068E /* Pods-TranslationsGeneratorTests.release.xcconfig */,
-				0909C9366DD8502CBAB9E1A9 /* Pods-nstack-translations-generator.debug.xcconfig */,
-				6A181CF5DF6AE3F858E1A8AB /* Pods-nstack-translations-generator.release.xcconfig */,
-				212D84C70D62A1FB060FC858 /* Pods-nstack-translations-generatorBundle.debug.xcconfig */,
-				B9A1BE5DABA4E85530DF3AD7 /* Pods-nstack-translations-generatorBundle.release.xcconfig */,
 			);
 			name = Pods;
 			path = ../Pods;
@@ -268,7 +256,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 017CE22B1C6776B50075CE41 /* Build configuration list for PBXNativeTarget "nstack-translations-generator" */;
 			buildPhases = (
-				77A8BDCD369DD953CB5D33F7 /* [CP] Check Pods Manifest.lock */,
 				017CE2201C6776B50075CE41 /* Sources */,
 				017CE2A61C6787F20075CE41 /* Frameworks */,
 			);
@@ -285,7 +272,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 017CE27C1C6781F20075CE41 /* Build configuration list for PBXNativeTarget "nstack-translations-generatorBundle" */;
 			buildPhases = (
-				33695392A2498653D81A7881 /* [CP] Check Pods Manifest.lock */,
 				017CE2751C6781F20075CE41 /* Sources */,
 				017CE2761C6781F20075CE41 /* Frameworks */,
 				017CE2771C6781F20075CE41 /* Resources */,
@@ -354,6 +340,7 @@
 				TargetAttributes = {
 					017CE2231C6776B50075CE41 = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 1000;
 					};
 					017CE2781C6781F20075CE41 = {
 						CreatedOnToolsVersion = 7.2;
@@ -415,28 +402,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		33695392A2498653D81A7881 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-nstack-translations-generatorBundle-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		4C27808CB04990EAFE9326D4 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -453,28 +418,6 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-TranslationsGenerator-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		77A8BDCD369DD953CB5D33F7 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-nstack-translations-generator-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -534,7 +477,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				017CE2A01C6786C90075CE41 /* main.m in Sources */,
+				C05B0ABC2174B335003612DE /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -693,27 +636,29 @@
 		};
 		017CE22C1C6776B50075CE41 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0909C9366DD8502CBAB9E1A9 /* Pods-nstack-translations-generator.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_MODULES = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/$(PRODUCT_NAME).bundle/Contents/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
 		017CE22D1C6776B50075CE41 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6A181CF5DF6AE3F858E1A8AB /* Pods-nstack-translations-generator.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_MODULES = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
 		017CE27D1C6781F20075CE41 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 212D84C70D62A1FB060FC858 /* Pods-nstack-translations-generatorBundle.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -729,7 +674,6 @@
 		};
 		017CE27E1C6781F20075CE41 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B9A1BE5DABA4E85530DF3AD7 /* Pods-nstack-translations-generatorBundle.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				COMBINE_HIDPI_IMAGES = YES;

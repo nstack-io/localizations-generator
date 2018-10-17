@@ -8,12 +8,24 @@
 
 import Foundation
 
-struct GeneratorSettings {
-    var plistPath: String?
-    var keys: (appID: String, appKey: String)?
-    var outputPath: String?
-    var flatTranslations: Bool
-    var availableFromObjC: Bool
+public struct GeneratorSettings {
+    public var plistPath: String?
+    public var keys: (appID: String, appKey: String)?
+    public var outputPath: String?
+    public var flatTranslations: Bool
+    public var availableFromObjC: Bool
+    
+    public init(plistPath: String?,
+                keys: (appID: String, appKey: String)?,
+                outputPath: String?,
+                flatTranslations: Bool,
+                availableFromObjC: Bool) {
+        self.plistPath = plistPath
+        self.keys = keys
+        self.outputPath = outputPath
+        self.flatTranslations = flatTranslations
+        self.availableFromObjC = availableFromObjC
+    }
 }
 
 extension GeneratorSettings {

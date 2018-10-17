@@ -21,6 +21,10 @@ public enum ErrorCode: Int {
     open class func generate(_ arguments: [String]) throws -> String {
         return try Generator.generate(arguments)
     }
+    
+    open class func generateFromData(_ data: Data, _ settings: GeneratorSettings) throws -> (code: String, JSON: [String: AnyObject]) {
+        return try Generator.generateFromData(data, settings)
+    }
 }
 
 struct Generator {
@@ -85,16 +89,17 @@ struct Generator {
         let prefix = (settings.availableFromObjC ? "@objc " : "") + "public final class "
         let postfix = " : " + (settings.availableFromObjC ? "NSObject, " : "") + "Translatable {\n"
         var modelString = prefix + self.modelName + postfix
+        var shouldAddDefaultSectionCodingKeys = false
         
         indent = indent.nextLevel()
 
         for key in output.mainKeys {
             modelString += indent.string()
             modelString += "public var \(key.escaped) = \(output.isFlat ? "\"\"" : "\(key.uppercasedFirstLetter)()")"
-            if key == "defaultSection" { modelString += " //<-default" }
+            if key == "defaultSection" { shouldAddDefaultSectionCodingKeys = true }
             modelString += "\n"
         }
-
+        
         indent = indent.previousLevel()
 
         if let subModels = subModels {

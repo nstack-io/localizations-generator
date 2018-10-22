@@ -27,7 +27,7 @@ TL_CONFIG_PATH="${SRCROOT}/${TL_PROJ_ROOT_FOLDER}/Resources/NStack/NStack.plist"
 TL_OUT_PATH="${SRCROOT}/${TL_PROJ_ROOT_FOLDER}/Classes/Language"
 
 # Check if doing a clean build
-if test -d "${DERIVED_FILE_DIR}"; then
+if test -f "${DERIVED_FILE_DIR}/*.h"; then
 echo "Not clean build, won't fetch translations this time."
 else
 echo "Clean build. Getting translations..."

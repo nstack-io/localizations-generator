@@ -59,7 +59,8 @@ struct Generator {
             try generatedOutput.code.write(toFile: translationsFile, atomically: true, encoding: String.Encoding.utf8)
 
             // Save json
-            let jsonData = try JSONSerialization.data(withJSONObject: generatedOutput.JSON, options: .prettyPrinted)
+            let jsonData = try JSONSerialization.data(withJSONObject: generatedOutput.JSON,
+                                                      options: [.prettyPrinted, .sortedKeys])
             try jsonData.write(to: URL(fileURLWithPath: jsonFile), options: .atomic)
         }
 
@@ -78,7 +79,7 @@ struct Generator {
         let mainModel = try self.generateMainModelFromParserOutput(parsed, subModels: subModels, settings: settings)
 
         // 6. Insert model code into template
-        let finalString = try templateString() + mainModel
+        let finalString = try templateString(settings) + mainModel
 
         return (finalString, parsed.JSON)
     }
@@ -87,13 +88,14 @@ struct Generator {
         var indent = Indentation(level: 0)
 
         let prefix = (settings.availableFromObjC ? "@objc " : "") + "public final class "
-        let postfix = " : " + (settings.availableFromObjC ? "NSObject, " : "") + "Translatable {\n"
+        let postfix = ": " + (settings.availableFromObjC ? "NSObject, " : "") + "Translatable {\n"
         var modelString = prefix + self.modelName + postfix
         var shouldAddDefaultSectionCodingKeys = false
         
         indent = indent.nextLevel()
 
         for key in output.mainKeys {
+            if key.hasPrefix("_") { continue } // skip underscored
             modelString += indent.string()
             modelString += "public var \(key.escaped) = \(output.isFlat ? "\"\"" : "\(key.uppercasedFirstLetter)()")"
             if key == "defaultSection" { shouldAddDefaultSectionCodingKeys = true }
@@ -102,6 +104,53 @@ struct Generator {
         
         indent = indent.previousLevel()
 
+        if shouldAddDefaultSectionCodingKeys {
+            modelString += "\n"
+            indent = indent.nextLevel()
+            modelString += indent.string() + "enum CodingKeys: String, CodingKey {\n"
+            indent = indent.nextLevel()
+            output.mainKeys.forEach({ key in
+                if key.hasPrefix("_") { return } // skip underscored
+                if key == "defaultSection" {
+                    modelString += indent.string() + "case defaultSection = \"default\"\n"
+                } else {
+                    modelString += indent.string() + "case \(key)\n"
+                }
+            })
+            indent = indent.previousLevel()
+            modelString += indent.string() + "}\n"
+        }
+        
+        // Add empty init
+        modelString += "\n"
+        modelString += indent.string() + "public init() { }\n"
+        
+        // Add decode
+        modelString += "\n"
+        modelString += indent.string() + "public init(from decoder: Decoder) throws {\n"
+        indent = indent.nextLevel()
+        modelString += indent.string() + "let container = try decoder.container(keyedBy: CodingKeys.self)\n"
+        output.mainKeys.forEach({
+            if $0.hasPrefix("_") { return } // skip underscored
+            modelString += indent.string() + "\($0.escaped) = try container.decodeIfPresent(\($0.uppercasedFirstLetter).self, forKey: .\($0)) ?? \($0.escaped)\n"
+        })
+        indent = indent.previousLevel()
+        modelString += indent.string() + "}"
+        
+        // Add subscript
+        modelString += "\n"
+        modelString += indent.string() + "public subscript(key: String) -> TranslatableSection? {\n"
+        indent = indent.nextLevel()
+        modelString += indent.string() + "switch key {\n"
+        output.mainKeys.forEach({
+            if $0.hasPrefix("_") { return } // skip underscored
+            modelString += indent.string() + "case CodingKeys.\($0).stringValue: return \($0.escaped)\n"
+        })
+        modelString += indent.string() + "default: return nil\n"
+        modelString += indent.string() + "}\n"
+        indent = indent.previousLevel()
+        modelString += indent.string() + "}"
+        
         if let subModels = subModels {
             modelString += subModels + "\n"
         }
@@ -117,10 +166,8 @@ struct Generator {
         var indent = Indentation(level: 1)
 
         for case let (key, value as [String: AnyObject]) in output.language {
-            
-            
             let prefix = (settings.availableFromObjC ? "@objc " : "") + "public final class "
-            let postfix = (settings.availableFromObjC ? " : NSObject" : "") + " {\n"
+            let postfix = (settings.availableFromObjC ? ": NSObject, TranslatableSection" : ": TranslatableSection") + " {\n"
             var subString = "\n\n" + indent.string() + prefix + "\(key.uppercasedFirstLetter.escaped)" + postfix
             
             indent = indent.nextLevel()
@@ -130,7 +177,33 @@ struct Generator {
                 subString += indent.string()
                 subString += "public var \(subKey.escaped) = \"\"\n"
             }
-
+            
+            // Add empty init
+            subString += "\n"
+            subString += indent.string() + "public init() { }\n"
+            
+            // Add decode
+            subString += "\n"
+            subString += indent.string() + "public init(from decoder: Decoder) throws {\n"
+            indent = indent.nextLevel()
+            subString += indent.string() + "let container = try decoder.container(keyedBy: CodingKeys.self)\n"
+            value.keys.forEach({
+                subString += indent.string() + "\($0.escaped) = try container.decodeIfPresent(String.self, forKey: .\($0)) ?? \"__\($0)\"\n"
+            })
+            indent = indent.previousLevel()
+            subString += indent.string() + "}\n"
+            
+            // Add subscript
+            subString += "\n"
+            subString += indent.string() + "public subscript(key: String) -> String? {\n"
+            indent = indent.nextLevel()
+            subString += indent.string() + "switch key {\n"
+            value.keys.forEach({ subString += indent.string() + "case CodingKeys.\($0).stringValue: return \($0.escaped)\n" })
+            subString += indent.string() + "default: return nil\n"
+            subString += indent.string() + "}\n"
+            indent = indent.previousLevel()
+            subString += indent.string() + "}\n"
+            
             indent = indent.previousLevel()
 
             subString += indent.string() + "}"
@@ -140,8 +213,9 @@ struct Generator {
         return modelsString
     }
 
-    fileprivate static func templateString() throws -> String {
-        let templatePath = Bundle(for: TranslationsGenerator.self).path(forResource: "ImplementationTemplate", ofType: "txt")
+    fileprivate static func templateString(_ settings: GeneratorSettings) throws -> String {
+        let name = "ImplementationTemplate" + (settings.standalone ? "Standalone" : "")
+        let templatePath = Bundle(for: TranslationsGenerator.self).path(forResource: name, ofType: "txt")
         guard let path = templatePath else {
             throw NSError(domain: self.errorDomain, code: ErrorCode.generatorError.rawValue,
                 userInfo: [NSLocalizedDescriptionKey : "Internal inconsistency error. Couldn't find template file to insert generated code into."])

@@ -14,23 +14,32 @@ public struct GeneratorSettings {
     public var outputPath: String?
     public var flatTranslations: Bool
     public var availableFromObjC: Bool
+    public var standalone: Bool
+    public var authorization: String?
+    public var extraHeaders: [String]?
     
     public init(plistPath: String?,
                 keys: (appID: String, appKey: String)?,
                 outputPath: String?,
                 flatTranslations: Bool,
-                availableFromObjC: Bool) {
+                availableFromObjC: Bool,
+                standalone: Bool,
+                authorization: String?,
+                extraHeaders: [String]?) {
         self.plistPath = plistPath
         self.keys = keys
         self.outputPath = outputPath
         self.flatTranslations = flatTranslations
         self.availableFromObjC = availableFromObjC
+        self.standalone = standalone
+        self.authorization = authorization
+        self.extraHeaders = extraHeaders
     }
 }
 
 extension GeneratorSettings {
     static func parseFromArguments(_ arguments: [String]) throws -> GeneratorSettings {
-        if arguments.count < 5 || arguments.count > 9 {
+        if arguments.count < 5 {
             throw NSError(domain: Generator.errorDomain, code: ErrorCode.wrongArguments.rawValue,
                 userInfo: [NSLocalizedDescriptionKey : "Error, wrong number of arguments passed."])
         }
@@ -50,8 +59,11 @@ extension GeneratorSettings {
         var outputPath: String?
         var plistPath: String?
         var keys: (appID: String, appKey: String)?
+        var authorization: String?
         var flatTranslations = false
         var availableFromObjC = false
+        var standalone = false
+        var extraHeaders: [String]?
 
         // Get output path if present
         if let path = parsedArguments["-output"]?.first {
@@ -81,15 +93,35 @@ extension GeneratorSettings {
         if let _ = parsedArguments["-use-objc"] {
             availableFromObjC = true
         }
+        
+        if let _ = parsedArguments["-standalone"] {
+            standalone = true
+        }
+        
+        if let headers = parsedArguments["-extraHeaders"] {
+            extraHeaders = headers
+        }
+        
+        // Get plist path if present
+        if let string = parsedArguments["-authorization"] , string.count == 1 {
+            authorization = string.first
+        }
 
-        return GeneratorSettings(plistPath: plistPath, keys: keys, outputPath: outputPath, flatTranslations: flatTranslations, availableFromObjC: availableFromObjC)
+        return GeneratorSettings(plistPath: plistPath, keys: keys, outputPath: outputPath,
+                                 flatTranslations: flatTranslations, availableFromObjC: availableFromObjC,
+                                 standalone: standalone, authorization: authorization, extraHeaders: extraHeaders)
     }
 
     func downloaderSettings() throws -> DownloaderSettings {
         if let keys = keys {
-            return DownloaderSettings(appID: keys.appID, appKey: keys.appKey, flatTranslations: self.flatTranslations)
+            return DownloaderSettings(appID: keys.appID, appKey: keys.appKey,
+                                      flatTranslations: self.flatTranslations,
+                                      authorization: authorization, extraHeaders: extraHeaders)
         } else if let plistPath = plistPath {
-            return try DownloaderSettings.settingsFromConfigurationFile(plistPath: plistPath)
+            var settings = try DownloaderSettings.settingsFromConfigurationFile(plistPath: plistPath)
+            settings.authorization = authorization
+            settings.extraHeaders = extraHeaders
+            return settings
         }
         throw NSError(domain: Generator.errorDomain, code: ErrorCode.generatorError.rawValue,
             userInfo: [NSLocalizedDescriptionKey : "Couldn't generate downloader settings from arguments."])

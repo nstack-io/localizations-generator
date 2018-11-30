@@ -24,12 +24,5 @@
 // ----------------------------------------------------------------------
 
 import Foundation
-import NStackSDK
-
-public var tr: Translations {
-    guard let manager = NStack.sharedInstance.translationsManager else {
-        return Translations()
-    }
-    return manager.translations()
-}
+import TranslationManager
 

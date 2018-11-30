@@ -28,8 +28,23 @@ struct Downloader {
         let request = NSMutableURLRequest(url: requestURL as URL)
 
         // Add headers
-        request.setValue(settings.appID, forHTTPHeaderField: "X-Application-Id")
-        request.setValue(settings.appKey, forHTTPHeaderField: "X-Rest-Api-Key")
+        if let id = settings.appID, let key = settings.appKey {
+            request.setValue(id, forHTTPHeaderField: "X-Application-Id")
+            request.setValue(key, forHTTPHeaderField: "X-Rest-Api-Key")
+        }
+    
+        // Add auth
+        if let authorization = settings.authorization {
+            request.setValue(authorization, forHTTPHeaderField: "Authorization")
+        }
+        
+        // add headers
+        for header in settings.extraHeaders ?? [] {
+            let comps = header.components(separatedBy: ":")
+            guard comps.count == 2 else { continue }
+            request.setValue(comps[1].trimmingCharacters(in: .whitespacesAndNewlines),
+                             forHTTPHeaderField: comps[0].trimmingCharacters(in: .whitespacesAndNewlines))
+        }
         
         var versionString = "1.0"
         if let bundleVersionString = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String {
@@ -50,7 +65,7 @@ struct Downloader {
                 case 300...999:
                     let content: String?
                     if let data = data {
-                        let object = try? JSONSerialization.jsonObject(with: data, options: .allowFragments)
+                        let object = try? JSONSerialization.jsonObject(with: data, options: [.allowFragments])
                         let json = object as? [String: AnyObject]
                         content = "\(json ?? [:])"
                     } else {

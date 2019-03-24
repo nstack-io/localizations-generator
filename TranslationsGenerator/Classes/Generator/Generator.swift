@@ -108,12 +108,9 @@ struct Generator {
             if key == "defaultSection" { shouldAddDefaultSectionCodingKeys = true }
             modelString += "\n"
         }
-        
-        indent = indent.previousLevel()
 
         if shouldAddDefaultSectionCodingKeys {
             modelString += "\n"
-            indent = indent.nextLevel()
             modelString += indent.string() + "enum CodingKeys: String, CodingKey {\n"
             indent = indent.nextLevel()
             output.mainKeys.forEach({ key in

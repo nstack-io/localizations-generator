@@ -36,9 +36,16 @@ struct Generator {
         // 1. Parse arguments
         let settings = try GeneratorSettings.parseFromArguments(arguments)
 
-        // 2. Download translations from API
-        let dSettings = try settings.downloaderSettings()
-        let dData     = try Downloader.dataWithDownloaderSettings(dSettings)
+        // 2. Download translations from API or load from JSON
+        let dData: Data?
+
+        if let jsonPath = settings.jsonPath {
+            let url = URL(fileURLWithPath: jsonPath)
+            dData = try Data(contentsOf: url)
+        } else {
+            let dSettings = try settings.downloaderSettings()
+            dData = try Downloader.dataWithDownloaderSettings(dSettings)
+        }
 
         // If we got data, continue with generation, throw otherwise
         guard let data = dData else {

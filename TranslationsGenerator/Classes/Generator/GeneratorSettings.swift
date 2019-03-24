@@ -17,6 +17,7 @@ public struct GeneratorSettings {
     public var standalone: Bool
     public var authorization: String?
     public var extraHeaders: [String]?
+    public var jsonPath: String?
     
     public init(plistPath: String?,
                 keys: (appID: String, appKey: String)?,
@@ -25,7 +26,8 @@ public struct GeneratorSettings {
                 availableFromObjC: Bool,
                 standalone: Bool,
                 authorization: String?,
-                extraHeaders: [String]?) {
+                extraHeaders: [String]?,
+                jsonPath: String?) {
         self.plistPath = plistPath
         self.keys = keys
         self.outputPath = outputPath
@@ -34,6 +36,7 @@ public struct GeneratorSettings {
         self.standalone = standalone
         self.authorization = authorization
         self.extraHeaders = extraHeaders
+        self.jsonPath = jsonPath
     }
 }
 
@@ -64,6 +67,7 @@ extension GeneratorSettings {
         var availableFromObjC = false
         var standalone = false
         var extraHeaders: [String]?
+        var jsonPath: String?
 
         // Get output path if present
         if let path = parsedArguments["-output"]?.first {
@@ -107,9 +111,15 @@ extension GeneratorSettings {
             authorization = string.first
         }
 
+        // Get json path if present
+        if let string = parsedArguments["-json"] , string.count == 1 {
+            jsonPath = string.first
+        }
+
         return GeneratorSettings(plistPath: plistPath, keys: keys, outputPath: outputPath,
                                  flatTranslations: flatTranslations, availableFromObjC: availableFromObjC,
-                                 standalone: standalone, authorization: authorization, extraHeaders: extraHeaders)
+                                 standalone: standalone, authorization: authorization, extraHeaders: extraHeaders,
+                                 jsonPath: jsonPath)
     }
 
     func downloaderSettings() throws -> DownloaderSettings {

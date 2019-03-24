@@ -35,9 +35,11 @@ struct Parser {
             throw NSError(domain: Generator.errorDomain, code: ErrorCode.parserError.rawValue, userInfo:
                 [NSLocalizedDescriptionKey : "Parsed JSON wasn't containing translations data."])
         }
-        
+
+        // Check if key is either "en" or "en-UK"
+        let isPossibleLanguageKey = first.key.count == 2 || (first.key.count == 5 && first.key.contains("-"))
         let testKey = first.key[first.key.startIndex..<first.key.index(first.key.startIndex, offsetBy: 2)] // substring 0..2
-        let isWrappedInLanguages = Locale.isoLanguageCodes.contains(String(testKey))
+        let isWrappedInLanguages = isPossibleLanguageKey && Locale.isoLanguageCodes.contains(String(testKey))
         
         var language: [String: AnyObject]
         

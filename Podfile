@@ -1,4 +1,4 @@
-project 'nstack-translations-generator/nstack-translations-generator.xcodeproj'
+project 'nstack-translations-generator.xcodeproj'
 
 # Uncomment the next line to define a global platform for your project
 platform :macos, '10.11'

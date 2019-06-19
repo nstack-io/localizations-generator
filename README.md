@@ -20,6 +20,8 @@ However, this makes it even more portable because you need to copy a single file
 2. Put in the script below and change your project specific IDs and Paths
 3. Everytime you do **Clean** and then **Build**, your translations will be fetched and models generated
 
+You can find the translations Run Scrip [here](translations_script.sh)
+
 ~~~sh
 TL_PROJ_ROOT_FOLDER="ProjectName"
 TL_GEN_PATH="${SRCROOT}/${TL_PROJ_ROOT_FOLDER}/Resources/NStack/nstack-translations-generator.bundle"

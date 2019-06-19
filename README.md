@@ -20,7 +20,7 @@ However, this makes it even more portable because you need to copy a single file
 2. Put in the script below and change your project specific IDs and Paths
 3. Everytime you do **Clean** and then **Build**, your translations will be fetched and models generated
 
-You can find the translations Run Scrip [here](translations_script.sh)
+**You can find the translations run script [here](translations_script.sh).**
 
 ## 👥 Credits
 Made with ❤️ at [Nodes](http://nodesagency.com).

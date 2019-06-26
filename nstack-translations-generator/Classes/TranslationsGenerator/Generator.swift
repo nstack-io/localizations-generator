@@ -99,7 +99,7 @@ struct Generator {
 
         for key in output.mainKeys {
             modelString += indent.string()
-            modelString += "var \(key.escaped) = \(output.isFlat ? "\"\"" : "\(key.uppercasedFirstLetter)()")"
+            modelString += "public var \(key.escaped) = \(output.isFlat ? "\"\"" : "\(key.uppercasedFirstLetter)()")"
             if key == "defaultSection" { modelString += " //<-default" }
             modelString += "\n"
         }
@@ -136,7 +136,7 @@ struct Generator {
             // Add the translation keys for the model
             for subKey in value.keys {
                 subString += indent.string()
-                subString += "var \(subKey.escaped) = \"\"\n"
+                subString += "public var \(subKey.escaped) = \"\"\n"
             }
 
             indent = indent.previousLevel()

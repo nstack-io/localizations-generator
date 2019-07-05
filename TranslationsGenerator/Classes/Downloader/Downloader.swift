@@ -11,21 +11,66 @@ import Foundation
 struct Downloader {
     var semaphore = DispatchSemaphore(value: 0)
 
-    static func dataWithDownloaderSettings(_ settings: DownloaderSettings) throws -> Data? {
-        return try Downloader().dataWithDownloaderSettings(settings)
+    static func dataWithDownloaderSettings(_ settings: DownloaderSettings, localization: Localization) throws -> Data? {
+        return try Downloader().translationDataWithLocalization(localization, settings: settings)
     }
 
-    func dataWithDownloaderSettings(_ settings: DownloaderSettings) throws -> Data? {
-        var requestURL = settings.URL
+    static func localizationsWithDownloaderSettings(_ settings: DownloaderSettings) throws -> [Localization]? {
+        return try Downloader().getLocalizationUrlsWithDownloaderSettings(settings)
+    }
 
-        // Add flat if needed
-        if settings.flatTranslations, var comps = URLComponents(url: requestURL as URL, resolvingAgainstBaseURL: false) {
-            let queryItem = URLQueryItem(name: "flat", value: "true")
-            comps.queryItems?.append(queryItem)
-            requestURL = comps.url as URL? ?? requestURL
+    func getLocalizationUrlsWithDownloaderSettings(_ settings: DownloaderSettings) throws -> [Localization]? {
+
+        var headers: [String : String]  = [:]
+        // Add headers
+        if let id = settings.appID, let key = settings.appKey {
+            headers["X-Application-Id"] = id
+            headers["X-Rest-Api-Key"] = key
+        }
+        if let authorization = settings.authorization {
+            headers["Authorization"] = authorization
         }
 
-        let request = NSMutableURLRequest(url: requestURL as URL)
+        var versionString = "1.0"
+        if let bundleVersionString = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String {
+            versionString = bundleVersionString
+        }
+        headers["n-meta"] = "ios;nstack-translations-generator;\(versionString);macOS;mac"
+
+        let url = settings.localizationsURL
+
+        let session = URLSession.shared
+        let request = session.request(url, method: .get, parameters: nil, headers: headers)
+
+        var responseLocalizations: [Localization]?
+        var finalError: Error?
+
+        let completion: Completion<[Localization]> = { (result) in
+            switch  result {
+            case .success(let localizations):
+                responseLocalizations = localizations
+            case .failure(let error):
+                finalError = error
+            }
+
+            self.semaphore.signal()
+        }
+        session.startDataTask(with: request, completionHandler: completion)
+
+        _ = semaphore.wait(timeout: DispatchTime.distantFuture)
+
+        if let error = finalError {
+            throw error
+        }
+
+        return responseLocalizations
+    }
+
+    func translationDataWithLocalization(_ localization: Localization, settings: DownloaderSettings) throws -> Data? {
+        guard let requestURL = URL(string: localization.url) else {
+            return nil
+        }
+        let request = NSMutableURLRequest(url: requestURL)
 
         // Add headers
         if let id = settings.appID, let key = settings.appKey {

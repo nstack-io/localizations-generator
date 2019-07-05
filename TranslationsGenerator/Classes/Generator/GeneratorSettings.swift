@@ -18,6 +18,7 @@ public struct GeneratorSettings {
     public var authorization: String?
     public var extraHeaders: [String]?
     public var jsonPath: String?
+    public var jsonLocaleIdentifier: String?
     
     public init(plistPath: String?,
                 keys: (appID: String, appKey: String)?,
@@ -27,7 +28,8 @@ public struct GeneratorSettings {
                 standalone: Bool,
                 authorization: String?,
                 extraHeaders: [String]?,
-                jsonPath: String?) {
+                jsonPath: String?,
+                jsonLocaleIdentifier: String?) {
         self.plistPath = plistPath
         self.keys = keys
         self.outputPath = outputPath
@@ -37,6 +39,7 @@ public struct GeneratorSettings {
         self.authorization = authorization
         self.extraHeaders = extraHeaders
         self.jsonPath = jsonPath
+        self.jsonLocaleIdentifier = jsonLocaleIdentifier
     }
 }
 
@@ -68,6 +71,7 @@ extension GeneratorSettings {
         var standalone = false
         var extraHeaders: [String]?
         var jsonPath: String?
+        var jsonLocale: String?
 
         // Get output path if present
         if let path = parsedArguments["-output"]?.first {
@@ -115,11 +119,15 @@ extension GeneratorSettings {
         if let string = parsedArguments["-json"] , string.count == 1 {
             jsonPath = string.first
         }
+        // Get json path if present
+        if let string = parsedArguments["-jsonLocale"] , string.count == 1 {
+            jsonLocale = string.first
+        }
 
         return GeneratorSettings(plistPath: plistPath, keys: keys, outputPath: outputPath,
                                  flatTranslations: flatTranslations, availableFromObjC: availableFromObjC,
                                  standalone: standalone, authorization: authorization, extraHeaders: extraHeaders,
-                                 jsonPath: jsonPath)
+                                 jsonPath: jsonPath, jsonLocaleIdentifier: jsonLocale)
     }
 
     func downloaderSettings() throws -> DownloaderSettings {

@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import TranslationsGenerator
 
 class TranslationsGeneratorTests: XCTestCase {
 
@@ -29,5 +30,4 @@ class TranslationsGeneratorTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
-
 }

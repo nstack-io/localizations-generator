@@ -18,20 +18,20 @@ public enum ErrorCode: Int {
 // Public interface/implementation
 @objc open class TranslationsGenerator: NSObject {
     @discardableResult @objc
-    open class func generate(_ arguments: [String]) throws -> String {
-        return try Generator.generate(arguments)
+    open class func generate(_ arguments: [String]) throws {
+        _ = try Generator.generate(arguments)
     }
     
-    open class func generateFromData(_ data: Data, _ settings: GeneratorSettings) throws -> (code: String, JSON: [String: AnyObject]) {
-        return try Generator.generateFromData(data, settings)
-    }
+//    open class func generateFromData(_ data: Data, _ settings: GeneratorSettings) throws -> (code: String, JSON: [String: AnyObject]) {
+//        return try Generator.generateFromData(data, settings, localeId: )
+//    }
 }
 
 struct Generator {
     static let errorDomain = "com.nodes.translations-generator"
     static let modelName   = "Translations"
 
-    static func generate(_ arguments: [String]) throws -> String {
+    static func generate(_ arguments: [String]) throws {
 
         // 1. Parse arguments
         let settings = try GeneratorSettings.parseFromArguments(arguments)
@@ -39,27 +39,51 @@ struct Generator {
         // 2. Download translations from API or load from JSON
         let dData: Data?
 
-        if let jsonPath = settings.jsonPath {
+        if let jsonPath = settings.jsonPath, let locale = settings.jsonLocaleIdentifier {
             let url = URL(fileURLWithPath: jsonPath)
             dData = try Data(contentsOf: url)
+
+            // If we got data, continue with generation, throw otherwise
+            guard let data = dData else {
+                throw NSError(domain: errorDomain, code: ErrorCode.generatorError.rawValue, userInfo:
+                    [NSLocalizedDescriptionKey : "No data received from downloader."])
+            }
+
+            _ = try writeDataToDisk(data, settings, localeId: locale)
         } else {
             let dSettings = try settings.downloaderSettings()
-            dData = try Downloader.dataWithDownloaderSettings(dSettings)
-        }
+            let localisations = try Downloader.localizationsWithDownloaderSettings(dSettings)
 
-        // If we got data, continue with generation, throw otherwise
-        guard let data = dData else {
-            throw NSError(domain: errorDomain, code: ErrorCode.generatorError.rawValue, userInfo:
-                [NSLocalizedDescriptionKey : "No data received from downloader."])
+            // If we got data, continue with generation, throw otherwise
+            guard let locales = localisations else {
+                throw NSError(domain: errorDomain, code: ErrorCode.generatorError.rawValue, userInfo:
+                    [NSLocalizedDescriptionKey : "No data received from downloader."])
+            }
+
+            for locale in locales {
+                let dData: Data?
+                dData = try Downloader.dataWithDownloaderSettings(dSettings, localization: locale)
+                
+                // If we got data, continue with generation, throw otherwise
+                guard let data = dData else {
+                    throw NSError(domain: errorDomain, code: ErrorCode.generatorError.rawValue, userInfo:
+                        [NSLocalizedDescriptionKey : "No data received from downloader."])
+                }
+
+                _ = try writeDataToDisk(data, settings, localeId: locale.language.locale)
+            }
         }
+    }
+
+    static func writeDataToDisk(_ data: Data, _ settings: GeneratorSettings, localeId: String) throws -> String {
 
         // 3. - 7. Generate the code
-        let generatedOutput = try self.generateFromData(data, settings)
+        let generatedOutput = try self.generateFromData(data, settings, localeId: localeId)
 
         // 8. Write to disk (optionally)
         if let outputPath: NSString = settings.outputPath as NSString? {
             let path: NSString   = outputPath.expandingTildeInPath as NSString
-            let jsonFile         = path.appendingPathComponent(self.modelName + ".json")
+            let jsonFile         = path.appendingPathComponent(self.modelName + "_\(localeId)" + ".json")
             let translationsFile = path.appendingPathComponent(self.modelName + ".swift")
 
             // Save translations
@@ -75,7 +99,7 @@ struct Generator {
         return generatedOutput.code
     }
 
-    static func generateFromData(_ data: Data, _ settings: GeneratorSettings) throws -> (code: String, JSON: [String: AnyObject]) {
+    static func generateFromData(_ data: Data, _ settings: GeneratorSettings, localeId: String) throws -> (code: String, JSON: [String: AnyObject]) {
         // 3. Parse translations
         let parsed = try Parser.parseResponseData(data)
 

@@ -12,6 +12,11 @@
 		017CE2A71C6787F70075CE41 /* TranslationsGenerator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 017CE28D1C6785A30075CE41 /* TranslationsGenerator.framework */; };
 		018121771C69ED21003AEDEA /* TranslationsGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 018121761C69ECF7003AEDEA /* TranslationsGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		01DA430D1C78976900D0FC04 /* ImplementationTemplate.txt in Resources */ = {isa = PBXBuildFile; fileRef = 01DA430C1C78976900D0FC04 /* ImplementationTemplate.txt */; };
+		2301ED2A22CF640C00DA51FB /* URLSession+Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2301ED2822CF63A400DA51FB /* URLSession+Request.swift */; };
+		2301ED2D22CF659C00DA51FB /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2301ED2B22CF659C00DA51FB /* HTTPMethod.swift */; };
+		2301ED2E22CF659C00DA51FB /* HTTPStatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2301ED2C22CF659C00DA51FB /* HTTPStatusCode.swift */; };
+		2301ED3122CF665800DA51FB /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2301ED3022CF665800DA51FB /* Localization.swift */; };
+		2301ED3322CF66AB00DA51FB /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2301ED3222CF66AB00DA51FB /* Language.swift */; };
 		4BEB675802B887383D43E489 /* Pods_TranslationsGenerator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E542EC77F964BEA400B6BF8 /* Pods_TranslationsGenerator.framework */; };
 		A95D3AA6B98CC1065FAA7AE9 /* Pods_TranslationsGeneratorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5793EFD3A20502E2E0D0C7BF /* Pods_TranslationsGeneratorTests.framework */; };
 		B4715A6A224841230020F25B /* Downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4715A5E224841220020F25B /* Downloader.swift */; };
@@ -84,6 +89,11 @@
 		018121761C69ECF7003AEDEA /* TranslationsGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TranslationsGenerator.h; sourceTree = "<group>"; };
 		01DA430C1C78976900D0FC04 /* ImplementationTemplate.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ImplementationTemplate.txt; sourceTree = "<group>"; };
 		1B477C03F51C597E021B9C4D /* Pods-TranslationsGenerator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TranslationsGenerator.release.xcconfig"; path = "../nstack-translations-generator/Pods/Target Support Files/Pods-TranslationsGenerator/Pods-TranslationsGenerator.release.xcconfig"; sourceTree = "<group>"; };
+		2301ED2822CF63A400DA51FB /* URLSession+Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLSession+Request.swift"; sourceTree = "<group>"; };
+		2301ED2B22CF659C00DA51FB /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		2301ED2C22CF659C00DA51FB /* HTTPStatusCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPStatusCode.swift; sourceTree = "<group>"; };
+		2301ED3022CF665800DA51FB /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
+		2301ED3222CF66AB00DA51FB /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		3CAE0327A1B39683BC5E858A /* Pods-TranslationsGeneratorTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TranslationsGeneratorTests.debug.xcconfig"; path = "../nstack-translations-generator/Pods/Target Support Files/Pods-TranslationsGeneratorTests/Pods-TranslationsGeneratorTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5793EFD3A20502E2E0D0C7BF /* Pods_TranslationsGeneratorTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TranslationsGeneratorTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BDD6A274A7EF9C93589B97E /* Pods_nstack_translations_generatorBundle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nstack_translations_generatorBundle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -188,6 +198,7 @@
 		017CE2951C6786990075CE41 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				2301ED2F22CF663A00DA51FB /* Models */,
 				C05B0ABB2174B335003612DE /* main.swift */,
 				B4715A5D224841220020F25B /* Downloader */,
 				B4715A67224841230020F25B /* Extensions */,
@@ -208,6 +219,15 @@
 				017CE29D1C6786990075CE41 /* Bundle-Info.plist */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2301ED2F22CF663A00DA51FB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2301ED3022CF665800DA51FB /* Localization.swift */,
+				2301ED3222CF66AB00DA51FB /* Language.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		B4715A5D224841220020F25B /* Downloader */ = {
@@ -239,6 +259,9 @@
 		B4715A65224841230020F25B /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				2301ED2822CF63A400DA51FB /* URLSession+Request.swift */,
+				2301ED2B22CF659C00DA51FB /* HTTPMethod.swift */,
+				2301ED2C22CF659C00DA51FB /* HTTPStatusCode.swift */,
 				B4715A66224841230020F25B /* Indentation.swift */,
 			);
 			path = Other;
@@ -397,6 +420,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 017CE21B1C6776B50075CE41;
@@ -527,11 +551,16 @@
 			files = (
 				B4715A6C224841230020F25B /* Parser.swift in Sources */,
 				B4715A70224841230020F25B /* Escaping.swift in Sources */,
+				2301ED3122CF665800DA51FB /* Localization.swift in Sources */,
 				B4715A6F224841230020F25B /* Indentation.swift in Sources */,
 				B4715A6A224841230020F25B /* Downloader.swift in Sources */,
 				B4715A6B224841230020F25B /* DownloaderSettings.swift in Sources */,
+				2301ED2A22CF640C00DA51FB /* URLSession+Request.swift in Sources */,
 				B4715A71224841230020F25B /* Extensions.swift in Sources */,
+				2301ED3322CF66AB00DA51FB /* Language.swift in Sources */,
 				B4715A6E224841230020F25B /* GeneratorSettings.swift in Sources */,
+				2301ED2E22CF659C00DA51FB /* HTTPStatusCode.swift in Sources */,
+				2301ED2D22CF659C00DA51FB /* HTTPMethod.swift in Sources */,
 				B4715A6D224841230020F25B /* Generator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

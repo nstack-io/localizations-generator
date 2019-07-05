@@ -9,7 +9,7 @@
 import Foundation
 
 struct DownloaderSettings {
-    var URL: Foundation.URL
+    var localizationsURL: String
     var appID: String?
     var appKey: String?
     var flatTranslations: Bool
@@ -18,8 +18,8 @@ struct DownloaderSettings {
 }
 
 extension DownloaderSettings {
-    // Default URL
-    fileprivate static let defaultURL = Foundation.URL(string: "https://nstack.io/api/v1/translate/mobile/keys?all=true")!
+    // Default Localization Config URL
+    fileprivate static let localizationsURL =  "https://nstack.io/api/v2/content/localize/resources/platforms/mobile"
 
     // Dictionary keys
     fileprivate static let plistURLKey    = "REST_API_URL"
@@ -38,7 +38,7 @@ extension DownloaderSettings {
                 userInfo: [NSLocalizedDescriptionKey : "Couldn't parse plist into a dictionary."])
         }
 
-        var downloadURL = defaultURL
+        var downloadURL = localizationsURL
         
         var appId: String?
         var appKey: String?
@@ -53,8 +53,8 @@ extension DownloaderSettings {
             auth = authorization
         }
         
-        if let customURLString = dictionary[plistURLKey] as? String, let customURL = Foundation.URL(string: customURLString) {
-            downloadURL = customURL
+        if let customURLString = dictionary[plistURLKey] as? String{
+            downloadURL = customURLString
         }
 
         let flat = dictionary[plistFlatKey] as? Bool
@@ -64,7 +64,7 @@ extension DownloaderSettings {
         }
         
         return DownloaderSettings(
-            URL: downloadURL,
+            localizationsURL: downloadURL,
             appID: appId,
             appKey: appKey,
             flatTranslations: flat ?? false,
@@ -73,7 +73,7 @@ extension DownloaderSettings {
     }
 
     init(appID: String?, appKey: String?, flatTranslations: Bool, authorization: String?, extraHeaders: [String]?) {
-        self.URL = DownloaderSettings.defaultURL
+        self.localizationsURL = DownloaderSettings.localizationsURL
         self.appID = appID
         self.appKey = appKey
         self.flatTranslations = flatTranslations

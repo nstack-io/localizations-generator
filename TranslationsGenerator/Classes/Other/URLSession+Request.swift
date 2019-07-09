@@ -29,7 +29,7 @@ extension URLSession {
     func request(_ urlString: String,
                  method: HTTPMethod = .get,
                  parameters: [String: Any]? = nil,
-                 headers: [String: Any]? = nil) -> URLRequest {
+                 headers: [String: String]? = nil) -> URLRequest {
         let url: URL
         
         if method == .get {
@@ -40,7 +40,7 @@ extension URLSession {
         
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
-        
+        request.allHTTPHeaderFields = headers
         return request
     }
     
@@ -156,6 +156,9 @@ extension URLSession {
             return data
             
         default:
+            if let data = data, let message = String(data: data, encoding: .utf8) {
+                throw NSError(domain: "", code: response.statusCode, userInfo: ["response": message])
+            }
             let error = NSError(domain: "", code: 0, userInfo: nil)
             throw error
         }

@@ -119,7 +119,7 @@ struct Generator {
         var indent = Indentation(level: 0)
 
         let prefix = (settings.availableFromObjC ? "@objc " : "") + "public final class "
-        let postfix = ": " + (settings.availableFromObjC ? "NSObject, " : "") + "Translatable {\n"
+        let postfix = ": " + (settings.availableFromObjC ? "NSObject, " : "") + "LocalizableModel {\n"
         var modelString = prefix + self.modelName + postfix
         var shouldAddDefaultSectionCodingKeys = false
         
@@ -167,7 +167,7 @@ struct Generator {
         
         // Add subscript
         modelString += "\n"
-        modelString += indent.string() + "public subscript(key: String) -> TranslatableSection? {\n"
+        modelString += indent.string() + "public subscript(key: String) -> LocalizableSection? {\n"
         indent = indent.nextLevel()
         modelString += indent.string() + "switch key {\n"
         output.mainKeys.forEach({
@@ -195,7 +195,7 @@ struct Generator {
 
         for case let (key, value as [String: AnyObject]) in output.language {
             let prefix = (settings.availableFromObjC ? "@objc " : "") + "public final class "
-            let postfix = (settings.availableFromObjC ? ": NSObject, TranslatableSection" : ": TranslatableSection") + " {\n"
+            let postfix = (settings.availableFromObjC ? ": NSObject, LocalizableSection" : ": LocalizableSection") + " {\n"
             var subString = "\n\n" + indent.string() + prefix + "\(key.uppercasedFirstLetter.escaped)" + postfix
             
             indent = indent.nextLevel()

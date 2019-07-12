@@ -11,4 +11,7 @@ import Foundation
 public struct Language: Codable {
     public let name: String
     public let locale: String
+    public let direction: String
+    public let isDefault: Bool
+    public let isBestFit: Bool
 }

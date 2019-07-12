@@ -30,19 +30,34 @@ struct Parser {
         } else if let t = content?["translations"] as? [String : AnyObject] {
             content = t
         }
-
-        guard let langsDictionary = content, let firstLanguage = langsDictionary.values.first as? [String: AnyObject] else {
+        
+        guard let langsDictionary = content, let first = langsDictionary.first else {
             throw NSError(domain: Generator.errorDomain, code: ErrorCode.parserError.rawValue, userInfo:
                 [NSLocalizedDescriptionKey : "Parsed JSON wasn't containing translations data."])
         }
 
+        // Check if key is either "en" or "en-UK"
+        let isPossibleLanguageKey = first.key.count == 2 || (first.key.count == 5 && first.key.contains("-"))
+        let testKey = first.key[first.key.startIndex..<first.key.index(first.key.startIndex, offsetBy: 2)] // substring 0..2
+        let isWrappedInLanguages = isPossibleLanguageKey && Locale.isoLanguageCodes.contains(String(testKey))
+        
+        var language: [String: AnyObject]
+        
+        if isWrappedInLanguages, let val = first.value as? [String: AnyObject] {
+            // the nested lang is value
+            language = val
+        } else {
+            // the root obj is the translations
+            language = langsDictionary
+        }
+
         // Fix for default
-        var language = firstLanguage
         if let object = language["default"] {
             language.removeValue(forKey: "default")
             language["defaultSection"] = object
         }
 
-        return ParserOutput(JSON: dictionary, mainKeys: language.map({ return $0.0 }), language: language, isFlat: language is [String: String])
+        return ParserOutput(JSON: dictionary, mainKeys: language.map({ return $0.0 }),
+                            language: language, isFlat: language is [String: String])
     }
 }

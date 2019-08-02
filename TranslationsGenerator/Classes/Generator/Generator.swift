@@ -17,8 +17,7 @@ public enum ErrorCode: Int {
 
 // Public interface/implementation
 @objc open class TranslationsGenerator: NSObject {
-    @discardableResult @objc
-    open class func generate(_ arguments: [String]) throws {
+    @objc open class func generate(_ arguments: [String]) throws {
         _ = try Generator.generate(arguments)
     }
     
@@ -151,12 +150,13 @@ struct Generator {
         
         // Add empty init
         modelString += "\n"
-        modelString += indent.string() + "public init() { }\n"
+        modelString += indent.string() + "public override init() { super.init() }\n"
         
         // Add decode
         modelString += "\n"
-        modelString += indent.string() + "public init(from decoder: Decoder) throws {\n"
+        modelString += indent.string() + "public required init(from decoder: Decoder) throws {\n"
         indent = indent.nextLevel()
+        modelString += indent.string() + "super.init()\n"
         modelString += indent.string() + "let container = try decoder.container(keyedBy: CodingKeys.self)\n"
         output.mainKeys.forEach({
             if $0.hasPrefix("_") { return } // skip underscored
@@ -167,7 +167,7 @@ struct Generator {
         
         // Add subscript
         modelString += "\n"
-        modelString += indent.string() + "public subscript(key: String) -> LocalizableSection? {\n"
+        modelString += indent.string() + "public override subscript(key: String) -> LocalizableSection? {\n"
         indent = indent.nextLevel()
         modelString += indent.string() + "switch key {\n"
         output.mainKeys.forEach({
@@ -205,25 +205,43 @@ struct Generator {
                 subString += indent.string()
                 subString += "public var \(subKey.escaped) = \"\"\n"
             }
-            
+
+            // RITO - Start
+            subString += "\n"
+            subString += indent.string() + "enum CodingKeys: String, CodingKey {\n"
+            indent = indent.nextLevel()
+
+            for subKey in value.keys {
+                if subKey.hasPrefix("_") { continue } // skip underscored
+                subString += indent.string() + "case \(subKey)\n"
+            }
+
+            indent = indent.previousLevel()
+            subString += indent.string() + "}\n"
+            // RITO - End
+
             // Add empty init
             subString += "\n"
-            subString += indent.string() + "public init() { }\n"
+            subString += indent.string() + "public override init() { super.init() }\n"
             
             // Add decode
             subString += "\n"
-            subString += indent.string() + "public init(from decoder: Decoder) throws {\n"
+            subString += indent.string() + "public required init(from decoder: Decoder) throws {\n"
             indent = indent.nextLevel()
+            subString += indent.string() + "super.init()\n"
             subString += indent.string() + "let container = try decoder.container(keyedBy: CodingKeys.self)\n"
+
             value.keys.forEach({
                 subString += indent.string() + "\($0.escaped) = try container.decodeIfPresent(String.self, forKey: .\($0)) ?? \"__\($0)\"\n"
+
             })
+
             indent = indent.previousLevel()
             subString += indent.string() + "}\n"
             
             // Add subscript
             subString += "\n"
-            subString += indent.string() + "public subscript(key: String) -> String? {\n"
+            subString += indent.string() + "public override subscript(key: String) -> String? {\n"
             indent = indent.nextLevel()
             subString += indent.string() + "switch key {\n"
             value.keys.forEach({ subString += indent.string() + "case CodingKeys.\($0).stringValue: return \($0.escaped)\n" })

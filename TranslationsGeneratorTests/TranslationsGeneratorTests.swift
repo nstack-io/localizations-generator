@@ -33,14 +33,45 @@ class TranslationsGeneratorTests: XCTestCase {
 
     //This is using the Taxa api endpoints, to test with your application
     //modify values accordingly
-    lazy var settings = GeneratorSettings.init(plistPath: nil, keys: (appID: "63z7NtttDqbYeo51eOxGezBjKzizsKhknRBc", appKey: "245T83h3auiVMGnOaRQ3N7Yagto8oEkD2VvO"), outputPath: "", flatTranslations: false, availableFromObjC: false, standalone: true, authorization: nil, extraHeaders: nil, jsonPath: "", jsonLocaleIdentifier: nil)
+    lazy var settings = GeneratorSettings.init(plistPath: nil, keys: (appID: "5dSr0geJis6PSTpABBR6zfwGbGZDJ2rJZW90", appKey: "XRiVQholofzxvsqxSfWsS3u8769OYszgrNck"), outputPath: "/Users/andrewlloydnodes/nstack-translations-generator/TranslationsGeneratorTests", flatTranslations: false, availableFromObjC: false, standalone: true, authorization: nil, extraHeaders: nil, jsonPath: "", jsonLocaleIdentifier: nil)
 
 
-    func testGenerate() throws {
+    func testGenerateLocalizations() throws {
         XCTAssertNotNil(settings)
         let dSettings = try settings.downloaderSettings()
         XCTAssertNotNil(dSettings)
         let localisations = try Downloader.localizationsWithDownloaderSettings(dSettings)
         XCTAssertNotNil(localisations)
+    }
+
+    func testGetTranslationData() throws {
+        XCTAssertNotNil(settings)
+        let dSettings = try settings.downloaderSettings()
+        XCTAssertNotNil(dSettings)
+        let localisations = try Downloader.localizationsWithDownloaderSettings(dSettings)
+
+        let locale = localisations?.first
+        XCTAssertNotNil(locale)
+        let dData = try Downloader.dataWithDownloaderSettings(dSettings, localization: locale!)
+        XCTAssertNotNil(dData)
+    }
+
+    //If you want to run this test, make sure Translations.swift is empty,
+    //once run succesfully it will create a swift file with a required dependency
+    //that this project does not have (TranslationManager)
+    func testWriteData() throws {
+
+        XCTAssertNotNil(settings)
+        let dSettings = try settings.downloaderSettings()
+        XCTAssertNotNil(dSettings)
+        let localisations = try Downloader.localizationsWithDownloaderSettings(dSettings)
+
+        let locale = localisations?.first
+        XCTAssertNotNil(locale)
+        let dData = try Downloader.dataWithDownloaderSettings(dSettings, localization: locale!)
+        XCTAssertNotNil(dData)
+
+        let code = try Generator.writeDataToDisk(dData!, settings, localeId: "en-GB")
+        XCTAssert(code.count > 0)
     }
 }

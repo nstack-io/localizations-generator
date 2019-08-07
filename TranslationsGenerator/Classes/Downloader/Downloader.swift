@@ -45,10 +45,10 @@ struct Downloader {
         var responseLocalizations: [Localization]?
         var finalError: Error?
 
-        let completion: Completion<[Localization]> = { (result) in
+        let completion: Completion<DataModel<[Localization]>> = { (result) in
             switch  result {
-            case .success(let localizations):
-                responseLocalizations = localizations
+            case .success(let response):
+                responseLocalizations = response.model
             case .failure(let error):
                 finalError = error
             }

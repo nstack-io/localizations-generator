@@ -30,4 +30,17 @@ class TranslationsGeneratorTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
+
+    //This is using the Taxa api endpoints, to test with your application
+    //modify values accordingly
+    lazy var settings = GeneratorSettings.init(plistPath: nil, keys: (appID: "63z7NtttDqbYeo51eOxGezBjKzizsKhknRBc", appKey: "245T83h3auiVMGnOaRQ3N7Yagto8oEkD2VvO"), outputPath: "", flatTranslations: false, availableFromObjC: false, standalone: true, authorization: nil, extraHeaders: nil, jsonPath: "", jsonLocaleIdentifier: nil)
+
+
+    func testGenerate() throws {
+        XCTAssertNotNil(settings)
+        let dSettings = try settings.downloaderSettings()
+        XCTAssertNotNil(dSettings)
+        let localisations = try Downloader.localizationsWithDownloaderSettings(dSettings)
+        XCTAssertNotNil(localisations)
+    }
 }

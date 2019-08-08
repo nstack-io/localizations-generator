@@ -10,6 +10,24 @@ import Foundation
 
 struct SKTGenerator: Generator {
     
+    func writeDataToDisk(_ data: Data, _ settings: GeneratorSettings, localeId: String) throws -> String {
+        
+        // 3. - 7. Generate the code
+        let generatedOutput = try self.generateFromData(data, settings, localeId: localeId)
+        
+        // 8. Write to disk (optionally)
+        if let outputPath: NSString = settings.outputPath as NSString? {
+            let path: NSString   = outputPath.expandingTildeInPath as NSString
+            let translationsFile = path.appendingPathComponent(self.modelName + ".swift")
+            
+            // Save SKTranslations
+            try generatedOutput.code.write(toFile: translationsFile, atomically: true, encoding: String.Encoding.utf8)
+        }
+        
+        // 7. Finish
+        return generatedOutput.code
+    }
+    
     func generateMainModelFromParserOutput(_ output: ParserOutput, subModels: String?, settings: GeneratorSettings) throws -> String {
         
         var indent = Indentation(level: 0)

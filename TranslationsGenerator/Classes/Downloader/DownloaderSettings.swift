@@ -34,8 +34,9 @@ extension DownloaderSettings {
         let plist = try PropertyListSerialization.propertyList(from: data, options: PropertyListSerialization.MutabilityOptions(), format: nil)
 
         guard let dictionary = plist as? [String: AnyObject] else {
-            throw NSError(domain: Generator.errorDomain, code: ErrorCode.downloaderError.rawValue,
-                userInfo: [NSLocalizedDescriptionKey : "Couldn't parse plist into a dictionary."])
+            throw NSError(domain: Constants.ErrorDomain.tGenerator.rawValue,
+                          code: ErrorCode.downloaderError.rawValue,
+                          userInfo: [NSLocalizedDescriptionKey : "Couldn't parse plist into a dictionary."])
         }
 
         var downloadURL = localizationsURL

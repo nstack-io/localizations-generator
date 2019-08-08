@@ -19,7 +19,9 @@ struct Parser {
     static func parseResponseData(_ data: Data) throws -> ParserOutput {
         let object = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions(rawValue: 0))
         guard let dictionary = object as? [String: AnyObject] else {
-            throw NSError(domain: Generator.errorDomain, code: ErrorCode.parserError.rawValue, userInfo:
+            throw NSError(domain: Constants.ErrorDomain.tGenerator.rawValue,
+                          code: ErrorCode.parserError.rawValue,
+                          userInfo:
                 [NSLocalizedDescriptionKey : "The data isn't in the correct format. Translations JSON file should have a dictionary as it's root object."])
         }
 
@@ -32,8 +34,9 @@ struct Parser {
         }
         
         guard let langsDictionary = content, let first = langsDictionary.first else {
-            throw NSError(domain: Generator.errorDomain, code: ErrorCode.parserError.rawValue, userInfo:
-                [NSLocalizedDescriptionKey : "Parsed JSON wasn't containing translations data."])
+            throw NSError(domain: Constants.ErrorDomain.tGenerator.rawValue,
+                          code: ErrorCode.parserError.rawValue,
+                          userInfo: [NSLocalizedDescriptionKey : "Parsed JSON wasn't containing translations data."])
         }
 
         // Check if key is either "en" or "en-UK"

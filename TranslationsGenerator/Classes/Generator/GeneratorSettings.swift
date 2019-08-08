@@ -46,8 +46,9 @@ public struct GeneratorSettings {
 extension GeneratorSettings {
     static func parseFromArguments(_ arguments: [String]) throws -> GeneratorSettings {
         if arguments.count < 5 {
-            throw NSError(domain: Generator.errorDomain, code: ErrorCode.wrongArguments.rawValue,
-                userInfo: [NSLocalizedDescriptionKey : "Error, wrong number of arguments passed."])
+            throw NSError(domain: Constants.ErrorDomain.tGenerator.rawValue,
+                          code: ErrorCode.wrongArguments.rawValue,
+                          userInfo: [NSLocalizedDescriptionKey : "Error, wrong number of arguments passed."])
         }
 
         // Parse arguments
@@ -90,8 +91,9 @@ extension GeneratorSettings {
 
         // Check if we have keys
         if plistPath == nil && (keys?.appKey == nil || keys?.appID == nil) {
-            throw NSError(domain: Generator.errorDomain, code: ErrorCode.wrongArguments.rawValue,
-                userInfo: [NSLocalizedDescriptionKey : "No or multiple plist paths, or wrong keys format."])
+            throw NSError(domain: Constants.ErrorDomain.tGenerator.rawValue,
+                          code: ErrorCode.wrongArguments.rawValue,
+                          userInfo: [NSLocalizedDescriptionKey : "No or multiple plist paths, or wrong keys format."])
         }
 
         if let flat = parsedArguments["-flat"] , flat.count == 1 && flat[0] == "1" {
@@ -141,7 +143,8 @@ extension GeneratorSettings {
             settings.extraHeaders = extraHeaders
             return settings
         }
-        throw NSError(domain: Generator.errorDomain, code: ErrorCode.generatorError.rawValue,
-            userInfo: [NSLocalizedDescriptionKey : "Couldn't generate downloader settings from arguments."])
+        throw NSError(domain: Constants.ErrorDomain.tGenerator.rawValue,
+                      code: ErrorCode.generatorError.rawValue,
+                      userInfo: [NSLocalizedDescriptionKey : "Couldn't generate downloader settings from arguments."])
     }
 }

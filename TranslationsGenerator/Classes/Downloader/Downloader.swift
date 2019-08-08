@@ -118,8 +118,9 @@ struct Downloader {
                     }
 
                     let errorString = "Server response contained error: \(content ?? "")"
-                    customError = NSError(domain: Generator.errorDomain, code: ErrorCode.downloaderError.rawValue,
-                        userInfo: [NSLocalizedDescriptionKey : errorString])
+                    customError = NSError(domain: Constants.ErrorDomain.tGenerator.rawValue,
+                                          code: ErrorCode.downloaderError.rawValue,
+                                          userInfo: [NSLocalizedDescriptionKey : errorString])
                 default: break
                 }
             }

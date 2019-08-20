@@ -25,11 +25,12 @@
 
 import Foundation
 import NStackSDK
+import TranslationManager
 
 public var tr: Translations {
     guard let manager = NStack.sharedInstance.translationsManager else {
         return Translations()
     }
-    return manager.translations()
+    return try! manager.translations()
 }
 

@@ -135,9 +135,6 @@ struct Downloader {
                 if let _ = newLanguageJSON?["is_default"] as? Bool {
                     newLanguageJSON?["is_default"] = localization.language.isDefault
                 }
-                if let _ = newLanguageJSON?["is_best_fit"] as? Bool {
-                    newLanguageJSON?["is_best_fit"] = localization.language.isBestFit
-                }
 
                 //overwrite the inital json response with the update json response with new meta values
                 if var newMeta = json?["meta"] as? [String : Any] {

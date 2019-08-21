@@ -74,4 +74,21 @@ class TranslationsGeneratorTests: XCTestCase {
         let code = try Generator.writeDataToDisk(dData!, settings, localeId: "en-GB")
         XCTAssert(code.count > 0)
     }
+
+    func testPassThroughIsDefaultToFallbackJsons() throws {
+
+        XCTAssertNotNil(settings)
+        let dSettings = try settings.downloaderSettings()
+        XCTAssertNotNil(dSettings)
+        let localisations = try Downloader.localizationsWithDownloaderSettings(dSettings)
+
+        for locale in localisations ?? [] {
+            XCTAssertNotNil(locale)
+            let dData = try Downloader.dataWithDownloaderSettings(dSettings, localization: locale)
+            XCTAssertNotNil(dData)
+
+            let code = try Generator.writeDataToDisk(dData!, settings, localeId: locale.language.locale)
+            XCTAssert(code.count > 0)
+        }
+    }
 }

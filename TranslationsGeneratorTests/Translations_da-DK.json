@@ -2,26 +2,26 @@
   "data" : {
     "default" : {
       "emptyKey" : "__emptyKey",
-      "keyys" : "englishKeyys",
-      "successKey" : "Success"
+      "keyys" : "danishKeyys",
+      "successKey" : "DET VAR EN SUCCESS"
     },
     "oneMoreSection" : {
-      "soManyKeys" : "AndValues",
-      "test1" : "<p>test<\/p>\r\n",
+      "soManyKeys" : "OrDanishValues",
+      "test1" : "__test1",
       "test2" : "__test2"
     },
     "otherSection" : {
-      "otherString" : "Haha"
+      "otherString" : "Danish Haha"
     }
   },
   "meta" : {
     "language" : {
       "direction" : "LRM",
-      "id" : 11,
-      "is_best_fit" : true,
-      "is_default" : true,
-      "locale" : "en-GB",
-      "name" : "English (UK)"
+      "id" : 6,
+      "is_best_fit" : false,
+      "is_default" : false,
+      "locale" : "da-DK",
+      "name" : "Danish"
     },
     "platform" : {
       "id" : 24,

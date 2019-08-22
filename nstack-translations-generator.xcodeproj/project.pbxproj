@@ -25,7 +25,7 @@
 		B4715A6A224841230020F25B /* Downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4715A5E224841220020F25B /* Downloader.swift */; };
 		B4715A6B224841230020F25B /* DownloaderSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4715A5F224841220020F25B /* DownloaderSettings.swift */; };
 		B4715A6C224841230020F25B /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4715A61224841230020F25B /* Parser.swift */; };
-		B4715A6D224841230020F25B /* Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4715A63224841230020F25B /* Generator.swift */; };
+		B4715A6D224841230020F25B /* TGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4715A63224841230020F25B /* TGenerator.swift */; };
 		B4715A6E224841230020F25B /* GeneratorSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4715A64224841230020F25B /* GeneratorSettings.swift */; };
 		B4715A6F224841230020F25B /* Indentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4715A66224841230020F25B /* Indentation.swift */; };
 		B4715A70224841230020F25B /* Escaping.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4715A68224841230020F25B /* Escaping.swift */; };
@@ -34,6 +34,9 @@
 		C05B0AA02174B126003612DE /* TranslationsGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05B0A9F2174B126003612DE /* TranslationsGeneratorTests.swift */; };
 		C05B0AA22174B126003612DE /* TranslationsGenerator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 017CE28D1C6785A30075CE41 /* TranslationsGenerator.framework */; };
 		C05B0ABC2174B335003612DE /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05B0ABB2174B335003612DE /* main.swift */; };
+		C4E6F3C722FB0C3400BA7DE7 /* SKTGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E6F3C522FB0BD800BA7DE7 /* SKTGenerator.swift */; };
+		C4E6F3CC22FC0E8E00BA7DE7 /* Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E6F3CA22FC0E7E00BA7DE7 /* Generator.swift */; };
+		C4E6F3CF22FC101700BA7DE7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E6F3CD22FC0FA100BA7DE7 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,7 +110,7 @@
 		B4715A5E224841220020F25B /* Downloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Downloader.swift; sourceTree = "<group>"; };
 		B4715A5F224841220020F25B /* DownloaderSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloaderSettings.swift; sourceTree = "<group>"; };
 		B4715A61224841230020F25B /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
-		B4715A63224841230020F25B /* Generator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Generator.swift; sourceTree = "<group>"; };
+		B4715A63224841230020F25B /* TGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TGenerator.swift; sourceTree = "<group>"; };
 		B4715A64224841230020F25B /* GeneratorSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratorSettings.swift; sourceTree = "<group>"; };
 		B4715A66224841230020F25B /* Indentation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Indentation.swift; sourceTree = "<group>"; };
 		B4715A68224841230020F25B /* Escaping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Escaping.swift; sourceTree = "<group>"; };
@@ -118,6 +121,9 @@
 		C05B0AA12174B126003612DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C05B0ABB2174B335003612DE /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		C3CE17F3B15AD77873122945 /* Pods-TranslationsGenerator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TranslationsGenerator.debug.xcconfig"; path = "../nstack-translations-generator/Pods/Target Support Files/Pods-TranslationsGenerator/Pods-TranslationsGenerator.debug.xcconfig"; sourceTree = "<group>"; };
+		C4E6F3C522FB0BD800BA7DE7 /* SKTGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKTGenerator.swift; sourceTree = "<group>"; };
+		C4E6F3CA22FC0E7E00BA7DE7 /* Generator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Generator.swift; sourceTree = "<group>"; };
+		C4E6F3CD22FC0FA100BA7DE7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		DE1DC8C95A74407F104D0A3E /* Pods_nstack_translations_generator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nstack_translations_generator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9D811A6D919726C62BA068E /* Pods-TranslationsGeneratorTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TranslationsGeneratorTests.release.xcconfig"; path = "../nstack-translations-generator/Pods/Target Support Files/Pods-TranslationsGeneratorTests/Pods-TranslationsGeneratorTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -256,7 +262,9 @@
 		B4715A62224841230020F25B /* Generator */ = {
 			isa = PBXGroup;
 			children = (
-				B4715A63224841230020F25B /* Generator.swift */,
+				C4E6F3CA22FC0E7E00BA7DE7 /* Generator.swift */,
+				B4715A63224841230020F25B /* TGenerator.swift */,
+				C4E6F3C522FB0BD800BA7DE7 /* SKTGenerator.swift */,
 				B4715A64224841230020F25B /* GeneratorSettings.swift */,
 			);
 			path = Generator;
@@ -269,6 +277,7 @@
 				2301ED2B22CF659C00DA51FB /* HTTPMethod.swift */,
 				2301ED2C22CF659C00DA51FB /* HTTPStatusCode.swift */,
 				B4715A66224841230020F25B /* Indentation.swift */,
+				C4E6F3CD22FC0FA100BA7DE7 /* Constants.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -563,16 +572,19 @@
 				B4715A6C224841230020F25B /* Parser.swift in Sources */,
 				B4715A70224841230020F25B /* Escaping.swift in Sources */,
 				2301ED3122CF665800DA51FB /* Localization.swift in Sources */,
+				C4E6F3C722FB0C3400BA7DE7 /* SKTGenerator.swift in Sources */,
 				B4715A6F224841230020F25B /* Indentation.swift in Sources */,
 				B4715A6A224841230020F25B /* Downloader.swift in Sources */,
 				B4715A6B224841230020F25B /* DownloaderSettings.swift in Sources */,
+				C4E6F3CF22FC101700BA7DE7 /* Constants.swift in Sources */,
 				2301ED2A22CF640C00DA51FB /* URLSession+Request.swift in Sources */,
 				B4715A71224841230020F25B /* Extensions.swift in Sources */,
+				C4E6F3CC22FC0E8E00BA7DE7 /* Generator.swift in Sources */,
 				2301ED3322CF66AB00DA51FB /* Language.swift in Sources */,
 				B4715A6E224841230020F25B /* GeneratorSettings.swift in Sources */,
 				2301ED2E22CF659C00DA51FB /* HTTPStatusCode.swift in Sources */,
 				2301ED2D22CF659C00DA51FB /* HTTPMethod.swift in Sources */,
-				B4715A6D224841230020F25B /* Generator.swift in Sources */,
+				B4715A6D224841230020F25B /* TGenerator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

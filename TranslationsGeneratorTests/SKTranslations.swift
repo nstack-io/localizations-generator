@@ -26,7 +26,7 @@
 import Foundation
 import TranslationManager
 
-public final class Translations: LocalizableModel {
+public final class SKTranslations: LocalizableModel {
     public var oneMoreSection = OneMoreSection()
     public var defaultSection = DefaultSection()
     public var otherSection = OtherSection()
@@ -67,7 +67,12 @@ public final class Translations: LocalizableModel {
             case test2
         }
 
-        public override init() { super.init() }
+        public override init() {
+            super.init()
+            soManyKeys = "\(classNameLowerCased()).soManyKeys"
+            test1 = "\(classNameLowerCased()).test1"
+            test2 = "\(classNameLowerCased()).test2"
+        }
 
         public required init(from decoder: Decoder) throws {
             super.init()
@@ -78,12 +83,7 @@ public final class Translations: LocalizableModel {
         }
 
         public override subscript(key: String) -> String? {
-            switch key {
-            case CodingKeys.soManyKeys.stringValue: return soManyKeys
-            case CodingKeys.test1.stringValue: return test1
-            case CodingKeys.test2.stringValue: return test2
-            default: return nil
-            }
+            return ""
         }
     }
 
@@ -98,7 +98,12 @@ public final class Translations: LocalizableModel {
             case successKey
         }
 
-        public override init() { super.init() }
+        public override init() {
+            super.init()
+            emptyKey = "\(classNameLowerCased()).emptyKey"
+            keyys = "\(classNameLowerCased()).keyys"
+            successKey = "\(classNameLowerCased()).successKey"
+        }
 
         public required init(from decoder: Decoder) throws {
             super.init()
@@ -109,12 +114,7 @@ public final class Translations: LocalizableModel {
         }
 
         public override subscript(key: String) -> String? {
-            switch key {
-            case CodingKeys.emptyKey.stringValue: return emptyKey
-            case CodingKeys.keyys.stringValue: return keyys
-            case CodingKeys.successKey.stringValue: return successKey
-            default: return nil
-            }
+            return ""
         }
     }
 
@@ -125,7 +125,10 @@ public final class Translations: LocalizableModel {
             case otherString
         }
 
-        public override init() { super.init() }
+        public override init() {
+            super.init()
+            otherString = "\(classNameLowerCased()).otherString"
+        }
 
         public required init(from decoder: Decoder) throws {
             super.init()
@@ -134,10 +137,7 @@ public final class Translations: LocalizableModel {
         }
 
         public override subscript(key: String) -> String? {
-            switch key {
-            case CodingKeys.otherString.stringValue: return otherString
-            default: return nil
-            }
+            return ""
         }
     }
 }

@@ -19,6 +19,7 @@
 		2301ED3322CF66AB00DA51FB /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2301ED3222CF66AB00DA51FB /* Language.swift */; };
 		231C6CD022FB148600C1B26F /* Translations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231C6CCE22FB148600C1B26F /* Translations.swift */; };
 		231C6CD122FB148600C1B26F /* Translations_en-GB.json in Resources */ = {isa = PBXBuildFile; fileRef = 231C6CCF22FB148600C1B26F /* Translations_en-GB.json */; };
+		2333A1DA230EB1A9003520B0 /* SKTranslations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2333A1D9230EB1A9003520B0 /* SKTranslations.swift */; };
 		23E79B3F230C57AD00CC2F60 /* Translations_da-DK.json in Resources */ = {isa = PBXBuildFile; fileRef = 23E79B3E230C57AD00CC2F60 /* Translations_da-DK.json */; };
 		4BEB675802B887383D43E489 /* Pods_TranslationsGenerator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E542EC77F964BEA400B6BF8 /* Pods_TranslationsGenerator.framework */; };
 		A95D3AA6B98CC1065FAA7AE9 /* Pods_TranslationsGeneratorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5793EFD3A20502E2E0D0C7BF /* Pods_TranslationsGeneratorTests.framework */; };
@@ -102,6 +103,7 @@
 		2301ED3222CF66AB00DA51FB /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		231C6CCE22FB148600C1B26F /* Translations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Translations.swift; sourceTree = "<group>"; };
 		231C6CCF22FB148600C1B26F /* Translations_en-GB.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Translations_en-GB.json"; sourceTree = "<group>"; };
+		2333A1D9230EB1A9003520B0 /* SKTranslations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKTranslations.swift; sourceTree = "<group>"; };
 		23E79B3E230C57AD00CC2F60 /* Translations_da-DK.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Translations_da-DK.json"; sourceTree = "<group>"; };
 		3CAE0327A1B39683BC5E858A /* Pods-TranslationsGeneratorTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TranslationsGeneratorTests.debug.xcconfig"; path = "../nstack-translations-generator/Pods/Target Support Files/Pods-TranslationsGeneratorTests/Pods-TranslationsGeneratorTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5793EFD3A20502E2E0D0C7BF /* Pods_TranslationsGeneratorTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TranslationsGeneratorTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -297,6 +299,7 @@
 				23E79B3E230C57AD00CC2F60 /* Translations_da-DK.json */,
 				231C6CCF22FB148600C1B26F /* Translations_en-GB.json */,
 				231C6CCE22FB148600C1B26F /* Translations.swift */,
+				2333A1D9230EB1A9003520B0 /* SKTranslations.swift */,
 				C05B0A9F2174B126003612DE /* TranslationsGeneratorTests.swift */,
 				C05B0AA12174B126003612DE /* Info.plist */,
 			);
@@ -592,6 +595,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2333A1DA230EB1A9003520B0 /* SKTranslations.swift in Sources */,
 				C05B0AA02174B126003612DE /* TranslationsGeneratorTests.swift in Sources */,
 				231C6CD022FB148600C1B26F /* Translations.swift in Sources */,
 			);

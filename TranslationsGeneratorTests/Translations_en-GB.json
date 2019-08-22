@@ -18,7 +18,7 @@
     "language" : {
       "direction" : "LRM",
       "id" : 11,
-      "is_best_fit" : true,
+      "is_best_fit" : false,
       "is_default" : true,
       "locale" : "en-GB",
       "name" : "English (UK)"

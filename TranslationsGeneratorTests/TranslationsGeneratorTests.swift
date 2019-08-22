@@ -71,7 +71,26 @@ class TranslationsGeneratorTests: XCTestCase {
         let dData = try Downloader.dataWithDownloaderSettings(dSettings, localization: locale!)
         XCTAssertNotNil(dData)
 
-        let code = try Generator.writeDataToDisk(dData!, settings, localeId: "en-GB")
+        let code = try TGenerator().writeDataToDisk(dData!, settings, localeId: "en-GB")
+        XCTAssert(code.count > 0)
+    }
+
+    //If you want to run this test, make sure SKTranslations.swift is empty,
+    //once run succesfully it will create a swift file with a required dependency
+    //that this project does not have (TranslationManager)
+    func testWriteSKTData() throws {
+
+        XCTAssertNotNil(settings)
+        let dSettings = try settings.downloaderSettings()
+        XCTAssertNotNil(dSettings)
+        let localisations = try Downloader.localizationsWithDownloaderSettings(dSettings)
+
+        let locale = localisations?.first
+        XCTAssertNotNil(locale)
+        let dData = try Downloader.dataWithDownloaderSettings(dSettings, localization: locale!)
+        XCTAssertNotNil(dData)
+
+        let code = try SKTGenerator().writeDataToDisk(dData!, settings, localeId: "en-GB")
         XCTAssert(code.count > 0)
     }
 
@@ -87,7 +106,7 @@ class TranslationsGeneratorTests: XCTestCase {
             let dData = try Downloader.dataWithDownloaderSettings(dSettings, localization: locale)
             XCTAssertNotNil(dData)
 
-            let code = try Generator.writeDataToDisk(dData!, settings, localeId: locale.language.locale)
+            let code = try TGenerator().writeDataToDisk(dData!, settings, localeId: locale.language.locale)
             XCTAssert(code.count > 0)
         }
     }

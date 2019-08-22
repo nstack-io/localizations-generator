@@ -113,7 +113,13 @@ extension Generator {
     }
     
     func templateString(_ settings: GeneratorSettings) throws -> String {
-        let name = "ImplementationTemplate" + (settings.standalone ? "Standalone" : "")
+
+        var name = "ImplementationTemplate" + (settings.standalone ? "Standalone" : "")
+        //for the SKTGenerator we always want standalone
+        if self is SKTGenerator {
+            name = "ImplementationTemplateStandalone"
+        }
+
         let templatePath = Bundle(for: TranslationsGenerator.self).path(forResource: name, ofType: "txt")
         guard let path = templatePath else {
             throw NSError(domain: self.errorDomain, code: ErrorCode.generatorError.rawValue,

@@ -117,7 +117,7 @@ extension Generator {
         var name = "ImplementationTemplate" + (settings.standalone ? "Standalone" : "")
         //for the SKTGenerator we always want standalone
         if self is SKTGenerator {
-            name = "ImplementationTemplateStandalone"
+            name = "SKTImplementationTemplate"
         }
 
         let templatePath = Bundle(for: TranslationsGenerator.self).path(forResource: name, ofType: "txt")

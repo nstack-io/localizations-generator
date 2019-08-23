@@ -20,7 +20,7 @@
 		231C6CD022FB148600C1B26F /* Translations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231C6CCE22FB148600C1B26F /* Translations.swift */; };
 		231C6CD122FB148600C1B26F /* Translations_en-GB.json in Resources */ = {isa = PBXBuildFile; fileRef = 231C6CCF22FB148600C1B26F /* Translations_en-GB.json */; };
 		2333A1DA230EB1A9003520B0 /* SKTranslations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2333A1D9230EB1A9003520B0 /* SKTranslations.swift */; };
-		2333A1E4230FDBD1003520B0 /* SKTImplementationTemplate.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2333A1E3230FDBD0003520B0 /* SKTImplementationTemplate.txt */; };
+		2333A1E5230FEE87003520B0 /* SKTImplementationTemplate.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2333A1E3230FDBD0003520B0 /* SKTImplementationTemplate.txt */; };
 		23E79B3F230C57AD00CC2F60 /* Translations_da-DK.json in Resources */ = {isa = PBXBuildFile; fileRef = 23E79B3E230C57AD00CC2F60 /* Translations_da-DK.json */; };
 		4BEB675802B887383D43E489 /* Pods_TranslationsGenerator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E542EC77F964BEA400B6BF8 /* Pods_TranslationsGenerator.framework */; };
 		A95D3AA6B98CC1065FAA7AE9 /* Pods_TranslationsGeneratorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5793EFD3A20502E2E0D0C7BF /* Pods_TranslationsGeneratorTests.framework */; };
@@ -472,6 +472,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2333A1E5230FEE87003520B0 /* SKTImplementationTemplate.txt in Resources */,
 				01DA430D1C78976900D0FC04 /* ImplementationTemplate.txt in Resources */,
 				B4715A73224842A30020F25B /* ImplementationTemplateStandalone.txt in Resources */,
 			);
@@ -481,7 +482,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2333A1E4230FDBD1003520B0 /* SKTImplementationTemplate.txt in Resources */,
 				231C6CD122FB148600C1B26F /* Translations_en-GB.json in Resources */,
 				23E79B3F230C57AD00CC2F60 /* Translations_da-DK.json in Resources */,
 			);

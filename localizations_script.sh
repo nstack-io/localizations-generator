@@ -5,9 +5,9 @@ TL_OUT_PATH="${SRCROOT}/${TL_PROJ_ROOT_FOLDER}/Resources/NStack/Localizations"
 
 # Check if doing a clean build
 if test -f "${DERIVED_FILE_DIR}/LocalizationsGenerator.lock"; then
-echo "Not clean build, won't fetch localizations this time."
+echo "Not clean build, won't fetch translations this time."
 else
 echo "Clean build. Getting translations..."
-"${TL_GEN_PATH}/Contents/MacOS/nstack-localizations-generator" -plist "${TL_CONFIG_PATH}" -output "${TL_OUT_PATH}" -standalone
+"${TL_GEN_PATH}/Contents/MacOS/nstack-localizations-generator" -plist "${TL_CONFIG_PATH}" -output "${TL_OUT_PATH}"
 touch "${DERIVED_FILE_DIR}/LocalizationsGenerator.lock" # create lock file
 fi

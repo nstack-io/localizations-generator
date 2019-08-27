@@ -13,6 +13,7 @@
 		02F4CDBFCE4C8F30E861C1D6 /* Pods_LocalizationsGeneratorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 644FEF9CC1D8BE6A3E2B7ADB /* Pods_LocalizationsGeneratorTests.framework */; };
 		231C6CD022FB148600C1B26F /* Localizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231C6CCE22FB148600C1B26F /* Localizations.swift */; };
 		231C6CD122FB148600C1B26F /* Localizations_en-GB.json in Resources */ = {isa = PBXBuildFile; fileRef = 231C6CCF22FB148600C1B26F /* Localizations_en-GB.json */; };
+		232F316823157B49007DF98B /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23903918231533AB005184A3 /* main.swift */; };
 		2333A1DA230EB1A9003520B0 /* SKLocalizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2333A1D9230EB1A9003520B0 /* SKLocalizations.swift */; };
 		23903920231533AB005184A3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23903903231533AB005184A3 /* Constants.swift */; };
 		23903921231533AB005184A3 /* URLSession+Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23903904231533AB005184A3 /* URLSession+Request.swift */; };
@@ -30,11 +31,8 @@
 		2390392D231533AB005184A3 /* GeneratorSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23903915231533AB005184A3 /* GeneratorSettings.swift */; };
 		2390392E231533AB005184A3 /* SKTGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23903916231533AB005184A3 /* SKTGenerator.swift */; };
 		2390392F231533AB005184A3 /* TGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23903917231533AB005184A3 /* TGenerator.swift */; };
-		23903930231533AB005184A3 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23903918231533AB005184A3 /* main.swift */; };
-		23903931231533AB005184A3 /* Bundle-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2390391A231533AB005184A3 /* Bundle-Info.plist */; };
 		23903932231533AB005184A3 /* ImplementationTemplateStandalone.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2390391B231533AB005184A3 /* ImplementationTemplateStandalone.txt */; };
 		23903933231533AB005184A3 /* SKTImplementationTemplate.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2390391C231533AB005184A3 /* SKTImplementationTemplate.txt */; };
-		23903934231533AB005184A3 /* Generator-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2390391D231533AB005184A3 /* Generator-Info.plist */; };
 		23903935231533AB005184A3 /* ImplementationTemplate.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2390391E231533AB005184A3 /* ImplementationTemplate.txt */; };
 		239039382315343D005184A3 /* LocalizationsGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 2390391F231533AB005184A3 /* LocalizationsGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		23E79B3F230C57AD00CC2F60 /* Localizations_da-DK.json in Resources */ = {isa = PBXBuildFile; fileRef = 23E79B3E230C57AD00CC2F60 /* Localizations_da-DK.json */; };
@@ -475,8 +473,6 @@
 			files = (
 				23903935231533AB005184A3 /* ImplementationTemplate.txt in Resources */,
 				23903933231533AB005184A3 /* SKTImplementationTemplate.txt in Resources */,
-				23903931231533AB005184A3 /* Bundle-Info.plist in Resources */,
-				23903934231533AB005184A3 /* Generator-Info.plist in Resources */,
 				23903932231533AB005184A3 /* ImplementationTemplateStandalone.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -564,6 +560,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				232F316823157B49007DF98B /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -580,7 +577,6 @@
 			files = (
 				23903924231533AB005184A3 /* HTTPStatusCode.swift in Sources */,
 				23903923231533AB005184A3 /* HTTPMethod.swift in Sources */,
-				23903930231533AB005184A3 /* main.swift in Sources */,
 				23903929231533AB005184A3 /* Parser.swift in Sources */,
 				2390392A231533AB005184A3 /* Escaping.swift in Sources */,
 				2390392D231533AB005184A3 /* GeneratorSettings.swift in Sources */,
@@ -758,7 +754,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/TranslationsGenerator/Supporting Files/Bundle-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/LocalizationsGenerator/Supporting Files/Bundle-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nodes.nstack-localizations-generatorBundle";
 				PRODUCT_NAME = "nstack-localizations-generator";
@@ -772,7 +768,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/TranslationsGenerator/Supporting Files/Bundle-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/LocalizationsGenerator/Supporting Files/Bundle-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nodes.nstack-localizations-generatorBundle";
 				PRODUCT_NAME = "nstack-localizations-generator";

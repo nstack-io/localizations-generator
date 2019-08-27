@@ -1,0 +1,31 @@
+{
+  "data" : {
+    "default" : {
+      "emptyKey" : "__emptyKey",
+      "keyys" : "__keyys",
+      "successKey" : "__successKey"
+    },
+    "oneMoreSection" : {
+      "soManyKeys" : "__soManyKeys",
+      "test1" : "__test1",
+      "test2" : "__test2"
+    },
+    "otherSection" : {
+      "otherString" : "__otherString"
+    }
+  },
+  "meta" : {
+    "language" : {
+      "direction" : "LRM",
+      "id" : 9,
+      "is_best_fit" : false,
+      "is_default" : false,
+      "locale" : "de-DE",
+      "name" : "German (Germany)"
+    },
+    "platform" : {
+      "id" : 24,
+      "slug" : "mobile"
+    }
+  }
+}

@@ -27,7 +27,7 @@ import Foundation
 import NStackSDK
 import LocalizationManager
 
-public var lcl: Localizations {
+public var lc: Localizations {
     guard let manager = NStack.sharedInstance.localizationManager else {
         return Localizations()
     }

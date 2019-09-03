@@ -8,7 +8,8 @@
     "oneMoreSection" : {
       "soManyKeys" : "AndValues",
       "test1" : "<p>test<\/p>\r\n",
-      "test2" : "__test2"
+      "test2" : "__test2",
+      "testURL" : "https:\/\/www.nodesagency.com\/"
     },
     "otherSection" : {
       "otherString" : "Haha"

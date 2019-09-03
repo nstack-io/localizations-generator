@@ -8,7 +8,8 @@
     "oneMoreSection" : {
       "soManyKeys" : "__soManyKeys",
       "test1" : "__test1",
-      "test2" : "__test2"
+      "test2" : "__test2",
+      "testURL" : "__testURL"
     },
     "otherSection" : {
       "otherString" : "__otherString"

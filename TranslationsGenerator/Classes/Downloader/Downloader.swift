@@ -35,7 +35,7 @@ struct Downloader {
         if let bundleVersionString = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String {
             versionString = bundleVersionString
         }
-        headers["n-meta"] = "ios;nstack-localizations-generator;\(versionString);macOS;mac"
+        headers["n-meta"] = "ios;nstack-translations-generator;\(versionString);macOS;mac"
 
         let url = settings.localizationsURL
 
@@ -96,7 +96,7 @@ struct Downloader {
             versionString = bundleVersionString
         }
 
-        request.setValue("ios;nstack-localizations-generator;\(versionString);macOS;mac", forHTTPHeaderField: "n-meta")
+        request.setValue("ios;nstack-translations-generator;\(versionString);macOS;mac", forHTTPHeaderField: "n-meta")
         
         var actualData: Data?
         var finalError: Error?

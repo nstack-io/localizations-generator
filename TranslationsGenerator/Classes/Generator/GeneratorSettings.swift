@@ -145,9 +145,9 @@ extension GeneratorSettings {
     func downloaderSettings() throws -> DownloaderSettings {
         if let keys = keys {
             return DownloaderSettings(appID: keys.appID, appKey: keys.appKey,
-                                      flatTranslations: self.flatTranslations,
+                                      flatTranslations: flatTranslations,
                                       authorization: authorization,
-                                      convertFromSnakeCase: self.convertFromSnakeCase,
+                                      convertFromSnakeCase: convertFromSnakeCase,
                                       extraHeaders: extraHeaders)
         } else if let plistPath = plistPath {
             var settings = try DownloaderSettings.settingsFromConfigurationFile(plistPath: plistPath)

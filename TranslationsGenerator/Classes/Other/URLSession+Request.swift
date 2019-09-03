@@ -43,41 +43,29 @@ extension URLSession {
         request.allHTTPHeaderFields = headers
         return request
     }
-    
-    func dataTask<T>(with request: URLRequest,
-                     completionHandler: @escaping (Result<T>) -> Void) -> URLSessionDataTask {
-        let handler = dataHandler(completionHandler)
-        let task = dataTask(with: request, completionHandler: handler)
-        return task
-    }
-    
-    @discardableResult
-    func startDataTask<T>(with request: URLRequest,
-                          completionHandler: @escaping (Result<T>) -> Void) -> URLSessionDataTask {
-        let task = dataTask(with: request, completionHandler: completionHandler)
-        task.resume()
-        return task
-    }
-    
+
     func dataTask<T: Codable>(with request: URLRequest,
+                              convertFromSnakeCase: Bool,
                               completionHandler: @escaping (Result<T>) -> Void) -> URLSessionDataTask {
-        let handler = dataHandler(completionHandler)
+        let handler = dataHandler(convertFromSnakeCase: convertFromSnakeCase, handler: completionHandler)
         let task = dataTask(with: request, completionHandler: handler)
         return task
     }
     
     @discardableResult
     func startDataTask<T: Codable>(with request: URLRequest,
+                                   convertFromSnakeCase: Bool,
                               completionHandler: @escaping (Result<T>) -> Void) -> URLSessionDataTask {
-        let task = dataTask(with: request, completionHandler: completionHandler)
+        let task = dataTask(with: request, convertFromSnakeCase: convertFromSnakeCase, completionHandler: completionHandler)
         task.resume()
         return task
     }
     
     func dataTask<T: WrapperModelType>(with request: URLRequest,
                                        wrapperType: T.Type,
+                                       convertFromSnakeCase: Bool,
                                        completionHandler: @escaping (Result<T.ModelType>) -> Void) -> URLSessionDataTask {
-        let handler = dataHandler(completionHandler, wrapperType: wrapperType)
+        let handler = dataHandler(convertFromSnakeCase: convertFromSnakeCase, handler: completionHandler, wrapperType: wrapperType)
         let task = dataTask(with: request, completionHandler: handler)
         return task
     }
@@ -85,37 +73,25 @@ extension URLSession {
     @discardableResult
     func startDataTask<T: WrapperModelType>(with request: URLRequest,
                                             wrapperType: T.Type,
+                                            convertFromSnakeCase: Bool,
                                         completionHandler: @escaping (Result<T.ModelType>) -> Void) -> URLSessionDataTask {
-        let task = dataTask(with: request, wrapperType: wrapperType, completionHandler: completionHandler)
+        let task = dataTask(with: request,
+                            wrapperType: wrapperType,
+                            convertFromSnakeCase: convertFromSnakeCase,
+                            completionHandler: completionHandler)
         task.resume()
         return task
     }
-    
-    private func dataHandler<T>(_ handler: @escaping (Result<T>) -> Void) -> ((Data?, URLResponse?, Error?) -> Void) {
-        return { data, response, error in
-            do {
-                let data = try self.validate(data, response, error)
-                let decoded = try JSONSerialization.jsonObject(with: data, options: [])
-                
-                guard let model = decoded as? T else {
-                    // FIXME: Fix this
-                    throw NSError(domain: "", code: 10, userInfo: nil)
-                }
-                handler(Result.success(model))
-                
-            } catch {
-                handler(.failure(error))
-            }
-        }
-    }
-    
-    private func dataHandler<T: Codable>(_ handler: @escaping (Result<T>) -> Void) -> ((Data?, URLResponse?, Error?) -> Void) {
+
+    private func dataHandler<T: Codable>( convertFromSnakeCase: Bool, handler: @escaping (Result<T>) -> Void) -> ((Data?, URLResponse?, Error?) -> Void) {
         return { data, response, error in
             do {
                 let data = try self.validate(data, response, error)
                 let decoder = JSONDecoder()
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
-                
+                if convertFromSnakeCase {
+                    decoder.keyDecodingStrategy = .convertFromSnakeCase
+                }
+
                 let decoded = try decoder.decode(T.self, from: data)
                 handler(Result.success(decoded))
             } catch {
@@ -124,13 +100,16 @@ extension URLSession {
         }
     }
     
-    private func dataHandler<T: WrapperModelType>(_ handler: @escaping (Result<T.ModelType>) -> Void,
+    private func dataHandler<T: WrapperModelType>( convertFromSnakeCase: Bool, handler: @escaping (Result<T.ModelType>) -> Void,
                                                   wrapperType: T.Type) -> ((Data?, URLResponse?, Error?) -> Void) {
         return { data, response, error in
             do {
                 let data = try self.validate(data, response, error)
                 let decoder = JSONDecoder()
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                if convertFromSnakeCase {
+                    decoder.keyDecodingStrategy = .convertFromSnakeCase
+                }
+
                 
                 let parentData = try decoder.decode(wrapperType, from: data)
                 handler(Result.success(parentData.model))

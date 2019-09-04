@@ -55,7 +55,7 @@ struct Downloader {
 
             self.semaphore.signal()
         }
-        session.startDataTask(with: request, completionHandler: completion)
+        session.startDataTask(with: request, convertFromSnakeCase: settings.convertFromSnakeCase, completionHandler: completion)
 
         _ = semaphore.wait(timeout: DispatchTime.distantFuture)
 

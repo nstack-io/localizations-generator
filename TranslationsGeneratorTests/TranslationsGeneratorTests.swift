@@ -33,7 +33,7 @@ class TranslationsGeneratorTests: XCTestCase {
 
     //This is using the Taxa api endpoints, to test with your application
     //modify values accordingly
-    lazy var settings = GeneratorSettings.init(plistPath: nil, keys: (appID: "5dSr0geJis6PSTpABBR6zfwGbGZDJ2rJZW90", appKey: "XRiVQholofzxvsqxSfWsS3u8769OYszgrNck"), outputPath: "/Users/andrewlloydnodes/nstack-translations-generator/TranslationsGeneratorTests", flatTranslations: false, availableFromObjC: false, standalone: true, authorization: nil, extraHeaders: nil, jsonPath: "", jsonLocaleIdentifier: nil)
+    lazy var settings = GeneratorSettings.init(plistPath: nil, keys: (appID: "5dSr0geJis6PSTpABBR6zfwGbGZDJ2rJZW90", appKey: "XRiVQholofzxvsqxSfWsS3u8769OYszgrNck"), outputPath: "/Users/andrewlloydnodes/nstack-translations-generator/TranslationsGeneratorTests", flatTranslations: false, convertFromSnakeCase: true, availableFromObjC: false, standalone: true, authorization: nil, extraHeaders: nil, jsonPath: "", jsonLocaleIdentifier: nil)
 
 
     func testGenerateLocalizations() throws {

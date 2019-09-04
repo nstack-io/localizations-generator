@@ -24,3 +24,125 @@
 // ----------------------------------------------------------------------
 
 import Foundation
+import LocalizationManager
+
+public final class Localizations: LocalizableModel {
+    public var defaultSection = DefaultSection()
+    public var oneMoreSection = OneMoreSection()
+    public var otherSection = OtherSection()
+
+    enum CodingKeys: String, CodingKey {
+        case defaultSection = "default"
+        case oneMoreSection
+        case otherSection
+    }
+
+    public override init() { super.init() }
+
+    public required init(from decoder: Decoder) throws {
+        super.init()
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        defaultSection = try container.decodeIfPresent(DefaultSection.self, forKey: .defaultSection) ?? defaultSection
+        oneMoreSection = try container.decodeIfPresent(OneMoreSection.self, forKey: .oneMoreSection) ?? oneMoreSection
+        otherSection = try container.decodeIfPresent(OtherSection.self, forKey: .otherSection) ?? otherSection
+    }
+
+    public override subscript(key: String) -> LocalizableSection? {
+        switch key {
+        case CodingKeys.defaultSection.stringValue: return defaultSection
+        case CodingKeys.oneMoreSection.stringValue: return oneMoreSection
+        case CodingKeys.otherSection.stringValue: return otherSection
+        default: return nil
+        }
+    }
+
+    public final class DefaultSection: LocalizableSection {
+        public var emptyKey = ""
+        public var keyys = ""
+        public var successKey = ""
+
+        enum CodingKeys: String, CodingKey {
+            case emptyKey
+            case keyys
+            case successKey
+        }
+
+        public override init() { super.init() }
+
+        public required init(from decoder: Decoder) throws {
+            super.init()
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            emptyKey = try container.decodeIfPresent(String.self, forKey: .emptyKey) ?? "__emptyKey"
+            keyys = try container.decodeIfPresent(String.self, forKey: .keyys) ?? "__keyys"
+            successKey = try container.decodeIfPresent(String.self, forKey: .successKey) ?? "__successKey"
+        }
+
+        public override subscript(key: String) -> String? {
+            switch key {
+            case CodingKeys.emptyKey.stringValue: return emptyKey
+            case CodingKeys.keyys.stringValue: return keyys
+            case CodingKeys.successKey.stringValue: return successKey
+            default: return nil
+            }
+        }
+    }
+
+    public final class OneMoreSection: LocalizableSection {
+        public var soManyKeys = ""
+        public var test1 = ""
+        public var test2 = ""
+        public var testURL = ""
+
+        enum CodingKeys: String, CodingKey {
+            case soManyKeys
+            case test1
+            case test2
+            case testURL
+        }
+
+        public override init() { super.init() }
+
+        public required init(from decoder: Decoder) throws {
+            super.init()
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            soManyKeys = try container.decodeIfPresent(String.self, forKey: .soManyKeys) ?? "__soManyKeys"
+            test1 = try container.decodeIfPresent(String.self, forKey: .test1) ?? "__test1"
+            test2 = try container.decodeIfPresent(String.self, forKey: .test2) ?? "__test2"
+            testURL = try container.decodeIfPresent(String.self, forKey: .testURL) ?? "__testURL"
+        }
+
+        public override subscript(key: String) -> String? {
+            switch key {
+            case CodingKeys.soManyKeys.stringValue: return soManyKeys
+            case CodingKeys.test1.stringValue: return test1
+            case CodingKeys.test2.stringValue: return test2
+            case CodingKeys.testURL.stringValue: return testURL
+            default: return nil
+            }
+        }
+    }
+
+    public final class OtherSection: LocalizableSection {
+        public var otherString = ""
+
+        enum CodingKeys: String, CodingKey {
+            case otherString
+        }
+
+        public override init() { super.init() }
+
+        public required init(from decoder: Decoder) throws {
+            super.init()
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            otherString = try container.decodeIfPresent(String.self, forKey: .otherString) ?? "__otherString"
+        }
+
+        public override subscript(key: String) -> String? {
+            switch key {
+            case CodingKeys.otherString.stringValue: return otherString
+            default: return nil
+            }
+        }
+    }
+}
+

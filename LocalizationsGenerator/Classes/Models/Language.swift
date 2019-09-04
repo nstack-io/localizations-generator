@@ -14,4 +14,10 @@ public struct Language: Codable {
     public let direction: String
     public let isDefault: Bool
     public let isBestFit: Bool
+
+    enum CodingKeys: String, CodingKey {
+        case name, locale, direction
+        case isBestFit = "is_best_fit"
+        case isDefault = "is_default"
+    }
 }

@@ -31,6 +31,6 @@ public var lc: Localizations {
     guard let manager = NStack.sharedInstance.localizationManager else {
         return Localizations()
     }
-    return try! manager.localizations()
+    return try! manager.localization()
 }
 

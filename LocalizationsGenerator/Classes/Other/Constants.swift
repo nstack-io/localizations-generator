@@ -15,8 +15,8 @@ struct Constants {
     }
     
     enum ModelName: String {
-        case tGenerator = "Localizations"
-        case sktGenerator = "SKLocalizations"
+        case tGenerator = "Localization"
+        case sktGenerator = "SKLocalization"
     }
     
     static func errorDomainFor(_ generator: Generator) -> String {

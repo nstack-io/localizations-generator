@@ -13,6 +13,7 @@ public struct GeneratorSettings {
     public var keys: (appID: String, appKey: String)?
     public var outputPath: String?
     public var flatLocalizations: Bool
+    public var convertFromSnakeCase: Bool
     public var availableFromObjC: Bool
     public var standalone: Bool
     public var authorization: String?
@@ -24,6 +25,7 @@ public struct GeneratorSettings {
                 keys: (appID: String, appKey: String)?,
                 outputPath: String?,
                 flatLocalizations: Bool,
+                convertFromSnakeCase: Bool,
                 availableFromObjC: Bool,
                 standalone: Bool,
                 authorization: String?,
@@ -34,6 +36,7 @@ public struct GeneratorSettings {
         self.keys = keys
         self.outputPath = outputPath
         self.flatLocalizations = flatLocalizations
+        self.convertFromSnakeCase = convertFromSnakeCase
         self.availableFromObjC = availableFromObjC
         self.standalone = standalone
         self.authorization = authorization
@@ -68,6 +71,7 @@ extension GeneratorSettings {
         var keys: (appID: String, appKey: String)?
         var authorization: String?
         var flatLocalizations = false
+        var convertFromSnakeCase = false
         var availableFromObjC = false
         var standalone = false
         var extraHeaders: [String]?
@@ -99,6 +103,10 @@ extension GeneratorSettings {
         if let flat = parsedArguments["-flat"] , flat.count == 1 && flat[0] == "1" {
             flatLocalizations = true
         }
+
+        if let convertSnakeCase = parsedArguments["-convertFromSnakeCase"] , convertSnakeCase.count == 1 && convertSnakeCase[0] == "1" {
+            convertFromSnakeCase = true
+        }
         
         if let _ = parsedArguments["-use-objc"] {
             availableFromObjC = true
@@ -127,7 +135,9 @@ extension GeneratorSettings {
         }
 
         return GeneratorSettings(plistPath: plistPath, keys: keys, outputPath: outputPath,
-                                 flatLocalizations: flatLocalizations, availableFromObjC: availableFromObjC,
+                                 flatLocalizations: flatLocalizations,
+                                 convertFromSnakeCase: convertFromSnakeCase,
+                                 availableFromObjC: availableFromObjC,
                                  standalone: standalone, authorization: authorization, extraHeaders: extraHeaders,
                                  jsonPath: jsonPath, jsonLocaleIdentifier: jsonLocale)
     }
@@ -135,8 +145,10 @@ extension GeneratorSettings {
     func downloaderSettings() throws -> DownloaderSettings {
         if let keys = keys {
             return DownloaderSettings(appID: keys.appID, appKey: keys.appKey,
-                                      flatLocalizations: self.flatLocalizations,
-                                      authorization: authorization, extraHeaders: extraHeaders)
+                                      flatLocalizations: flatLocalizations,
+                                      authorization: authorization,
+                                      convertFromSnakeCase: convertFromSnakeCase,
+                                      extraHeaders: extraHeaders)
         } else if let plistPath = plistPath {
             var settings = try DownloaderSettings.settingsFromConfigurationFile(plistPath: plistPath)
             settings.authorization = authorization

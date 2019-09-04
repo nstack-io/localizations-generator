@@ -15,6 +15,7 @@ struct DownloaderSettings {
     var flatLocalizations: Bool
     var authorization: String?
     var extraHeaders: [String]?
+    var convertFromSnakeCase: Bool
 }
 
 extension DownloaderSettings {
@@ -26,6 +27,7 @@ extension DownloaderSettings {
     fileprivate static let plistAppIDKey  = "APPLICATION_ID"
     fileprivate static let plistAppKeyKey = "REST_API_KEY"
     fileprivate static let plistFlatKey   = "FLAT"
+    fileprivate static let plistConvertSnakeCaseKey = "CONVERTSNAKECASE"
     fileprivate static let authorizationKey  = "AUTHORIZATION"
     fileprivate static let extraHeadersKey = "EXTRAHEADERS"
 
@@ -59,6 +61,7 @@ extension DownloaderSettings {
         }
 
         let flat = dictionary[plistFlatKey] as? Bool
+        let snakeCase = dictionary[plistConvertSnakeCaseKey] as? Bool
 
         if let headers = dictionary[extraHeadersKey] as? [String] {
             extraHeaders = headers
@@ -70,15 +73,17 @@ extension DownloaderSettings {
             appKey: appKey,
             flatLocalizations: flat ?? false,
             authorization: auth,
-            extraHeaders: extraHeaders)
+            extraHeaders: extraHeaders,
+            convertFromSnakeCase: snakeCase ?? false)
     }
 
-    init(appID: String?, appKey: String?, flatLocalizations: Bool, authorization: String?, extraHeaders: [String]?) {
+    init(appID: String?, appKey: String?, flatLocalizations: Bool, authorization: String?, convertFromSnakeCase: Bool, extraHeaders: [String]?) {
         self.localizationsURL = DownloaderSettings.localizationsURL
         self.appID = appID
         self.appKey = appKey
         self.flatLocalizations = flatLocalizations
         self.authorization = authorization
+        self.convertFromSnakeCase = convertFromSnakeCase
         self.extraHeaders = extraHeaders
     }
 }

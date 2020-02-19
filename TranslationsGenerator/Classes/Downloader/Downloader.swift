@@ -40,7 +40,8 @@ struct Downloader {
         let url = settings.localizationsURL
 
         let session = URLSession.shared
-        var request = session.request(url, method: .get, parameters: nil, headers: headers)
+
+        var request = session.request(url, method: .get, parameters: ["dev": "true"], headers: headers)
         
         // add headers
         for header in settings.extraHeaders ?? [] {

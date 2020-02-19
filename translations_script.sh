@@ -8,6 +8,6 @@ if test -f "${DERIVED_FILE_DIR}/TranslationsGenerator.lock"; then
 echo "Not clean build, won't fetch translations this time."
 else
 echo "Clean build. Getting translations..."
-"${TL_GEN_PATH}/Contents/MacOS/nstack-translations-generator" -plist "${TL_CONFIG_PATH}" -output "${TL_OUT_PATH}" -standalone
+"${TL_GEN_PATH}/Contents/MacOS/nstack-translations-generator" -plist "${TL_CONFIG_PATH}" -output "${TL_OUT_PATH}"
 touch "${DERIVED_FILE_DIR}/TranslationsGenerator.lock" # create lock file
 fi

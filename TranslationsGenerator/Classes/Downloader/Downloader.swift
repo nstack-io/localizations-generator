@@ -40,7 +40,7 @@ struct Downloader {
         let url = settings.localizationsURL
 
         let session = URLSession.shared
-        let request = session.request(url, method: .get, parameters: nil, headers: headers)
+        let request = session.request(url, method: .get, parameters: ["dev": "true"], headers: headers)
 
         var responseLocalizations: [Localization]?
         var finalError: Error?

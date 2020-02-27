@@ -25,7 +25,7 @@
 
 import Foundation
 import NStackSDK
-import TranslationManager
+import LocalizationManager
 
 public var skt: SKTranslations {
     return SKTranslations()

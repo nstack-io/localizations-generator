@@ -1,6 +1,6 @@
 //
 //  Generator.swift
-//  nstack-translations-generator
+//  nstack-localizations-generator
 //
 //  Created by Bob De Kort on 08/08/2019.
 //  Copyright © 2019 Nodes. All rights reserved.
@@ -120,7 +120,7 @@ extension Generator {
             name = "SKTImplementationTemplate"
         }
 
-        let templatePath = Bundle(for: TranslationsGenerator.self).path(forResource: name, ofType: "txt")
+        let templatePath = Bundle(for: LocalizationsGenerator.self).path(forResource: name, ofType: "txt")
         guard let path = templatePath else {
             throw NSError(domain: self.errorDomain, code: ErrorCode.generatorError.rawValue,
                           userInfo: [NSLocalizedDescriptionKey : "Internal inconsistency error. Couldn't find template file to insert generated code into."])

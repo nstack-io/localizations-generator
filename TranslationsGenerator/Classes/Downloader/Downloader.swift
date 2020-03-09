@@ -1,6 +1,6 @@
 //
 //  Downloader.swift
-//  nstack-translations-generator
+//  nstack-localizations-generator
 //
 //  Created by Dominik Hádl on 08/02/16.
 //  Copyright © 2016 Nodes. All rights reserved.
@@ -12,7 +12,7 @@ struct Downloader {
     var semaphore = DispatchSemaphore(value: 0)
 
     static func dataWithDownloaderSettings(_ settings: DownloaderSettings, localization: Localization) throws -> Data? {
-        return try Downloader().translationDataWithLocalization(localization, settings: settings)
+        return try Downloader().dataWithLocalization(localization, settings: settings)
     }
 
     static func localizationsWithDownloaderSettings(_ settings: DownloaderSettings) throws -> [Localization]? {
@@ -35,7 +35,7 @@ struct Downloader {
         if let bundleVersionString = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String {
             versionString = bundleVersionString
         }
-        headers["n-meta"] = "ios;nstack-translations-generator;\(versionString);macOS;mac"
+        headers["n-meta"] = "ios;nstack-localizations-generator;\(versionString);macOS;mac"
 
         let url = settings.localizationsURL
 
@@ -75,7 +75,7 @@ struct Downloader {
         return responseLocalizations
     }
 
-    func translationDataWithLocalization(_ localization: Localization, settings: DownloaderSettings) throws -> Data? {
+    func dataWithLocalization(_ localization: Localization, settings: DownloaderSettings) throws -> Data? {
         guard let requestURL = URL(string: localization.url) else {
             return nil
         }
@@ -105,7 +105,7 @@ struct Downloader {
             versionString = bundleVersionString
         }
 
-        request.setValue("ios;nstack-translations-generator;\(versionString);macOS;mac", forHTTPHeaderField: "n-meta")
+        request.setValue("ios;nstack-localizations-generator;\(versionString);macOS;mac", forHTTPHeaderField: "n-meta")
         
         var actualData: Data?
         var finalError: Error?

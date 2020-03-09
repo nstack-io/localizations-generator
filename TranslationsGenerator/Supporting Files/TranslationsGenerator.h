@@ -1,6 +1,6 @@
 //
-//  TranslationsGenerator.h
-//  TranslationsGenerator
+//  LocalizationsGenerator.h
+//  LocalizationsGenerator
 //
 //  Created by Dominik Hádl on 07/02/16.
 //  Copyright © 2016 Nodes. All rights reserved.

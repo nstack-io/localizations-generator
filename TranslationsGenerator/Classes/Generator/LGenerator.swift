@@ -1,6 +1,6 @@
 //
-//  TranslationsGenerator.swift
-//  nstack-translations-generator
+//  LocalizationsGenerator.swift
+//  nstack-localizations-generator
 //
 //  Created by Dominik Hádl on 07/02/16.
 //  Copyright © 2016 Nodes. All rights reserved.
@@ -16,9 +16,9 @@ public enum ErrorCode: Int {
 }
 
 // Public interface/implementation
-@objc open class TranslationsGenerator: NSObject {
+@objc open class LocalizationsGenerator: NSObject {
     @objc open class func generate(_ arguments: [String]) throws {
-        _ = try TGenerator().generate(arguments)
+        _ = try LGenerator().generate(arguments)
         _ = try SKTGenerator().generate(arguments)
     }
     
@@ -27,7 +27,7 @@ public enum ErrorCode: Int {
 //    }
 }
 
-struct TGenerator: Generator {
+struct LGenerator: Generator {
 
     func generateMainModelFromParserOutput(_ output: ParserOutput, subModels: String?, settings: GeneratorSettings) throws -> String {
         

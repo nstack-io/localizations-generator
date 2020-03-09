@@ -1,6 +1,6 @@
 //
-//  TranslationsGeneratorTests.swift
-//  TranslationsGeneratorTests
+//  LocalizationsGeneratorTests.swift
+//  LocalizationsGeneratorTests
 //
 //  Created by Dominik Hadl on 15/10/2018.
 //  Copyright © 2018 Nodes. All rights reserved.
@@ -71,7 +71,7 @@ class TranslationsGeneratorTests: XCTestCase {
         let dData = try Downloader.dataWithDownloaderSettings(dSettings, localization: locale!)
         XCTAssertNotNil(dData)
 
-        let code = try TGenerator().writeDataToDisk(dData!, settings, localeId: "en-GB")
+        let code = try LGenerator().writeDataToDisk(dData!, settings, localeId: "en-GB")
         XCTAssert(code.count > 0)
     }
 
@@ -106,7 +106,7 @@ class TranslationsGeneratorTests: XCTestCase {
             let dData = try Downloader.dataWithDownloaderSettings(dSettings, localization: locale)
             XCTAssertNotNil(dData)
 
-            let code = try TGenerator().writeDataToDisk(dData!, settings, localeId: locale.language.locale)
+            let code = try LGenerator().writeDataToDisk(dData!, settings, localeId: locale.language.locale)
             XCTAssert(code.count > 0)
         }
     }

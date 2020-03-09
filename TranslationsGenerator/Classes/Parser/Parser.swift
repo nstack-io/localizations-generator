@@ -1,6 +1,6 @@
 //
 //  Parser.swift
-//  nstack-translations-generator
+//  nstack-localizations-generator
 //
 //  Created by Dominik Hádl on 14/02/16.
 //  Copyright © 2016 Nodes. All rights reserved.
@@ -22,7 +22,7 @@ struct Parser {
             throw NSError(domain: Constants.ErrorDomain.tGenerator.rawValue,
                           code: ErrorCode.parserError.rawValue,
                           userInfo:
-                [NSLocalizedDescriptionKey : "The data isn't in the correct format. Translations JSON file should have a dictionary as it's root object."])
+                [NSLocalizedDescriptionKey : "The data isn't in the correct format. Localizations JSON file should have a dictionary as its root object."])
         }
 
         var content: [String: AnyObject]? = dictionary
@@ -36,7 +36,7 @@ struct Parser {
         guard let langsDictionary = content, let first = langsDictionary.first else {
             throw NSError(domain: Constants.ErrorDomain.tGenerator.rawValue,
                           code: ErrorCode.parserError.rawValue,
-                          userInfo: [NSLocalizedDescriptionKey : "Parsed JSON wasn't containing translations data."])
+                          userInfo: [NSLocalizedDescriptionKey : "Parsed JSON didn't contain localization data."])
         }
 
         // Check if key is either "en" or "en-UK"

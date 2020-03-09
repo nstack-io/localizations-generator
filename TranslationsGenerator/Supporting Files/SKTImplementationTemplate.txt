@@ -27,7 +27,9 @@ import Foundation
 import NStackSDK
 import LocalizationManager
 
-public var skt: SKTranslations {
-    return SKTranslations()
+public var skl: SKLocalizations {
+    return SKLocalizations()
 }
+
+public var skt: SKLocalizations { skl }
 

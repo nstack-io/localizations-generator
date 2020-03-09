@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:nstack-translations-generator.xcodeproj">
+      location = "group:/Users/chris/Desktop/Nodes/Internal/nstack-translations-generator/nstack-localizations-generator.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

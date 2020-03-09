@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "017CE2781C6781F20075CE41"
-               BuildableName = "nstack-translations-generator.bundle"
-               BlueprintName = "nstack-translations-generatorBundle"
-               ReferencedContainer = "container:nstack-translations-generator.xcodeproj">
+               BuildableName = "nstack-localizations-generator.bundle"
+               BlueprintName = "nstack-localizations-generatorBundle"
+               ReferencedContainer = "container:nstack-localizations-generator.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -44,9 +44,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "017CE2781C6781F20075CE41"
-            BuildableName = "nstack-translations-generator.bundle"
-            BlueprintName = "nstack-translations-generatorBundle"
-            ReferencedContainer = "container:nstack-translations-generator.xcodeproj">
+            BuildableName = "nstack-localizations-generator.bundle"
+            BlueprintName = "nstack-localizations-generatorBundle"
+            ReferencedContainer = "container:nstack-localizations-generator.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </LaunchAction>
@@ -60,9 +60,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "017CE2781C6781F20075CE41"
-            BuildableName = "nstack-translations-generator.bundle"
-            BlueprintName = "nstack-translations-generatorBundle"
-            ReferencedContainer = "container:nstack-translations-generator.xcodeproj">
+            BuildableName = "nstack-localizations-generator.bundle"
+            BlueprintName = "nstack-localizations-generatorBundle"
+            ReferencedContainer = "container:nstack-localizations-generator.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

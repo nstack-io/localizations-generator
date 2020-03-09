@@ -1,6 +1,6 @@
 //
 //  Localization.swift
-//  TranslationsGenerator
+//  LocalizationsGenerator
 //
 //  Created by Andrew Lloyd on 05/07/2019.
 //  Copyright © 2019 Nodes. All rights reserved.

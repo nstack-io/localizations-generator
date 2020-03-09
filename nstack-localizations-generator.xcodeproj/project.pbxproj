@@ -176,7 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				017CE2571C67788B0075CE41 /* Localizations Generator */,
-				C05B0A9E2174B126003612DE /* TranslationsGeneratorTests */,
+				C05B0A9E2174B126003612DE /* LocalizationsGeneratorTests */,
 				017CE2561C6778780075CE41 /* Frameworks */,
 				017CE2251C6776B50075CE41 /* Products */,
 				C6F4279211B75044B8DF0500 /* Pods */,
@@ -212,7 +212,7 @@
 				017CE29C1C6786990075CE41 /* Supporting Files */,
 			);
 			name = "Localizations Generator";
-			path = TranslationsGenerator;
+			path = LocalizationsGenerator;
 			sourceTree = "<group>";
 		};
 		017CE2951C6786990075CE41 /* Classes */ = {
@@ -300,7 +300,7 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		C05B0A9E2174B126003612DE /* TranslationsGeneratorTests */ = {
+		C05B0A9E2174B126003612DE /* LocalizationsGeneratorTests */ = {
 			isa = PBXGroup;
 			children = (
 				23E79B3E230C57AD00CC2F60 /* Translations_da-DK.json */,
@@ -310,7 +310,8 @@
 				C05B0A9F2174B126003612DE /* TranslationsGeneratorTests.swift */,
 				C05B0AA12174B126003612DE /* Info.plist */,
 			);
-			path = TranslationsGeneratorTests;
+			name = LocalizationsGeneratorTests;
+			path = "LocalizationsGenerator Tests";
 			sourceTree = "<group>";
 		};
 		C6F4279211B75044B8DF0500 /* Pods */ = {

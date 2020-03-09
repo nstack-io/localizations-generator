@@ -1,9 +1,11 @@
-# 💬 nstack-translations-generator
+# 💬 nstack-localizations-generator
+(Formerly nstack-translations-manager)
+
 > No more string keys, strongly typed translations are the way!
 
-A tool to generate translations from [NStack](http://nstack.io) API. 
+A tool to generate localizations from [NStack](http://nstack.io) API. 
 
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/nodes-ios/nstack-translations-generator/blob/master/LICENSE)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/nodes-ios/nstack-localizations-generator/blob/master/LICENSE)
 ![Plaform](https://img.shields.io/badge/platform-osx-lightgrey.svg)
 
 ## 📦 How does it work
@@ -20,10 +22,10 @@ However, this makes it even more portable because you need to copy a single file
 2. Put in the script below and change your project specific IDs and Paths
 3. Everytime you do **Clean** and then **Build**, your translations will be fetched and models generated
 
-**You can find the translations run script [here](translations_script.sh).**
+**You can find the localizations run script [here](translations_script.sh).**
 
 ## 👥 Credits
 Made with ❤️ at [Nodes](http://nodesagency.com).
 
 ## 📄 License
-**nstack-translations-generator** is available under the MIT license. See the [LICENSE](https://github.com/nodes-ios/nstack-translations-generator/blob/master/LICENSE) file for more info.
+**nstack-translations-generator** is available under the MIT license. See the [LICENSE](https://github.com/nodes-ios/nstack-localizations-generator/blob/master/LICENSE) file for more info.

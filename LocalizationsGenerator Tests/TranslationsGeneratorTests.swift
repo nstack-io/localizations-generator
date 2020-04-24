@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import TranslationsGenerator
+@testable import LocalizationsGenerator
 
 class TranslationsGeneratorTests: XCTestCase {
 

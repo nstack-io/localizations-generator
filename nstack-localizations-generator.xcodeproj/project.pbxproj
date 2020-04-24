@@ -17,11 +17,10 @@
 		2301ED2E22CF659C00DA51FB /* HTTPStatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2301ED2C22CF659C00DA51FB /* HTTPStatusCode.swift */; };
 		2301ED3122CF665800DA51FB /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2301ED3022CF665800DA51FB /* Localization.swift */; };
 		2301ED3322CF66AB00DA51FB /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2301ED3222CF66AB00DA51FB /* Language.swift */; };
-		231C6CD022FB148600C1B26F /* Translations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231C6CCE22FB148600C1B26F /* Translations.swift */; };
 		231C6CD122FB148600C1B26F /* Translations_en-GB.json in Resources */ = {isa = PBXBuildFile; fileRef = 231C6CCF22FB148600C1B26F /* Translations_en-GB.json */; };
-		2333A1DA230EB1A9003520B0 /* SKTranslations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2333A1D9230EB1A9003520B0 /* SKTranslations.swift */; };
 		2333A1E5230FEE87003520B0 /* SKTImplementationTemplate.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2333A1E3230FDBD0003520B0 /* SKTImplementationTemplate.txt */; };
 		23E79B3F230C57AD00CC2F60 /* Translations_da-DK.json in Resources */ = {isa = PBXBuildFile; fileRef = 23E79B3E230C57AD00CC2F60 /* Translations_da-DK.json */; };
+		291AC8122452CC7300165127 /* TranslationsGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05B0A9F2174B126003612DE /* TranslationsGeneratorTests.swift */; };
 		73D5CDA891D6A2A804149319 /* Pods_LocalizationsGenerator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F354175DABACAC295CA75C5 /* Pods_LocalizationsGenerator.framework */; };
 		B4715A6A224841230020F25B /* Downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4715A5E224841220020F25B /* Downloader.swift */; };
 		B4715A6B224841230020F25B /* DownloaderSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4715A5F224841220020F25B /* DownloaderSettings.swift */; };
@@ -32,7 +31,6 @@
 		B4715A70224841230020F25B /* Escaping.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4715A68224841230020F25B /* Escaping.swift */; };
 		B4715A71224841230020F25B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4715A69224841230020F25B /* Extensions.swift */; };
 		B4715A73224842A30020F25B /* ImplementationTemplateStandalone.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4715A72224842A20020F25B /* ImplementationTemplateStandalone.txt */; };
-		C05B0AA02174B126003612DE /* TranslationsGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05B0A9F2174B126003612DE /* TranslationsGeneratorTests.swift */; };
 		C05B0AA22174B126003612DE /* LocalizationsGenerator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 017CE28D1C6785A30075CE41 /* LocalizationsGenerator.framework */; };
 		C05B0ABC2174B335003612DE /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05B0ABB2174B335003612DE /* main.swift */; };
 		C4E6F3C722FB0C3400BA7DE7 /* SKTGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E6F3C522FB0BD800BA7DE7 /* SKTGenerator.swift */; };
@@ -608,9 +606,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2333A1DA230EB1A9003520B0 /* SKTranslations.swift in Sources */,
-				C05B0AA02174B126003612DE /* TranslationsGeneratorTests.swift in Sources */,
-				231C6CD022FB148600C1B26F /* Translations.swift in Sources */,
+				291AC8122452CC7300165127 /* TranslationsGeneratorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -858,7 +854,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = LocalizationsGeneratorTests/Info.plist;
+				INFOPLIST_FILE = "LocalizationsGenerator Tests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -884,7 +880,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = LocalizationsGeneratorTests/Info.plist;
+				INFOPLIST_FILE = "LocalizationsGenerator Tests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_FAST_MATH = YES;

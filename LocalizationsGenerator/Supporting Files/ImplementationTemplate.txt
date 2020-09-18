@@ -25,7 +25,14 @@
 
 import Foundation
 import NStackSDK
+
+#if canImport(NLocalizationManager)
+import NLocalizationManager
+#endif
+
+#if canImport(LocalizationManager)
 import LocalizationManager
+#endif
 
 public var lo: Localizations {
     guard let manager = NStack.sharedInstance.localizationManager else {

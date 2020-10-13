@@ -20,7 +20,8 @@ However, this makes it even more portable because you need to copy a single file
 
 1. In your Xcode project *(build phases)* add **New Run Script Phase** and drag it before **Compile Sources** phase
 2. Put in the script below and change your project specific IDs and Paths
-3. Everytime you do **Clean** and then **Build**, your translations will be fetched and models generated
+3. Go to [the latest release](https://github.com/nodes-ios/nstack-localizations-generator/releases) and download the `nstack-localizations-generator.bundle.zip`, unzip it and copy it to `${SRCROOT}/${TL_PROJ_ROOT_FOLDER}/Resources/NStack/`. This will be referenced from the build script, so the location has to match the one in the script.
+4. Everytime you do **Clean** and then **Build**, your translations will be fetched and models generated
 
 **You can find the localizations run script [here](translations_script.sh).**
 

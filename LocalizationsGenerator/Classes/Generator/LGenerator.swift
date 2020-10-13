@@ -36,7 +36,6 @@ struct LGenerator: Generator {
         let prefix = (settings.availableFromObjC ? "@objc " : "") + "public final class "
         let postfix = ": " + (settings.availableFromObjC ? "NSObject, " : "") + "LocalizableModel {\n"
         var modelString = prefix + self.modelName + postfix
-        var shouldAddDefaultSectionCodingKeys = false
         
         indent = indent.nextLevel()
 
@@ -44,25 +43,22 @@ struct LGenerator: Generator {
             if key.hasPrefix("_") { continue } // skip underscored
             modelString += indent.string()
             modelString += "public var \(key.escaped) = \(output.isFlat ? "\"\"" : "\(key.uppercasedFirstLetter)()")"
-            if key == "defaultSection" { shouldAddDefaultSectionCodingKeys = true }
             modelString += "\n"
         }
 
-        if shouldAddDefaultSectionCodingKeys {
-            modelString += "\n"
-            modelString += indent.string() + "enum CodingKeys: String, CodingKey {\n"
-            indent = indent.nextLevel()
-            output.mainKeys.forEach({ key in
-                if key.hasPrefix("_") { return } // skip underscored
-                if key == "defaultSection" {
-                    modelString += indent.string() + "case defaultSection = \"default\"\n"
-                } else {
-                    modelString += indent.string() + "case \(key)\n"
-                }
-            })
-            indent = indent.previousLevel()
-            modelString += indent.string() + "}\n"
-        }
+        modelString += "\n"
+        modelString += indent.string() + "enum CodingKeys: String, CodingKey {\n"
+        indent = indent.nextLevel()
+        output.mainKeys.forEach({ key in
+            if key.hasPrefix("_") { return } // skip underscored
+            if key == "defaultSection" {
+                modelString += indent.string() + "case defaultSection = \"default\"\n"
+            } else {
+                modelString += indent.string() + "case \(key)\n"
+            }
+        })
+        indent = indent.previousLevel()
+        modelString += indent.string() + "}\n"
         
         // Add empty init
         modelString += "\n"

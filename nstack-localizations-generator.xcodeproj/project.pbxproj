@@ -24,7 +24,6 @@
 		29FDC4072481552F00EC6A1B /* GeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FDC4062481552F00EC6A1B /* GeneratorTests.swift */; };
 		29FDC4092481557B00EC6A1B /* GeneratorTestsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FDC4082481557B00EC6A1B /* GeneratorTestsData.swift */; };
 		29FDC40A2481582900EC6A1B /* GeneratorTestsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FDC4082481557B00EC6A1B /* GeneratorTestsData.swift */; };
-		73D5CDA891D6A2A804149319 /* Pods_LocalizationsGenerator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F354175DABACAC295CA75C5 /* Pods_LocalizationsGenerator.framework */; };
 		B4715A6A224841230020F25B /* Downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4715A5E224841220020F25B /* Downloader.swift */; };
 		B4715A6B224841230020F25B /* DownloaderSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4715A5F224841220020F25B /* DownloaderSettings.swift */; };
 		B4715A6C224841230020F25B /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4715A61224841230020F25B /* Parser.swift */; };
@@ -39,7 +38,6 @@
 		C4E6F3C722FB0C3400BA7DE7 /* SKTGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E6F3C522FB0BD800BA7DE7 /* SKTGenerator.swift */; };
 		C4E6F3CC22FC0E8E00BA7DE7 /* Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E6F3CA22FC0E7E00BA7DE7 /* Generator.swift */; };
 		C4E6F3CF22FC101700BA7DE7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E6F3CD22FC0FA100BA7DE7 /* Constants.swift */; };
-		E5F792D96A7FC9980559D31E /* Pods_LocalizationsGeneratorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFC8B16961CEFF4816D01D26 /* Pods_LocalizationsGeneratorTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,7 +88,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0175AA4DB79D780D6FC68CFB /* Pods-LocalizationsGenerator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocalizationsGenerator.release.xcconfig"; path = "../nstack-translations-generator/Pods/Target Support Files/Pods-LocalizationsGenerator/Pods-LocalizationsGenerator.release.xcconfig"; sourceTree = "<group>"; };
 		017CE2241C6776B50075CE41 /* nstack-localizations-generator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "nstack-localizations-generator"; sourceTree = BUILT_PRODUCTS_DIR; };
 		017CE2791C6781F20075CE41 /* nstack-localizations-generator.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "nstack-localizations-generator.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
 		017CE28D1C6785A30075CE41 /* LocalizationsGenerator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LocalizationsGenerator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -98,7 +95,6 @@
 		018121751C69ECF7003AEDEA /* Generator-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Generator-Info.plist"; sourceTree = "<group>"; };
 		018121761C69ECF7003AEDEA /* TranslationsGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TranslationsGenerator.h; sourceTree = "<group>"; };
 		01DA430C1C78976900D0FC04 /* ImplementationTemplate.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ImplementationTemplate.txt; sourceTree = "<group>"; };
-		1B477C03F51C597E021B9C4D /* Pods-TranslationsGenerator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TranslationsGenerator.release.xcconfig"; path = "../nstack-translations-generator/Pods/Target Support Files/Pods-TranslationsGenerator/Pods-TranslationsGenerator.release.xcconfig"; sourceTree = "<group>"; };
 		2301ED2822CF63A400DA51FB /* URLSession+Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLSession+Request.swift"; sourceTree = "<group>"; };
 		2301ED2B22CF659C00DA51FB /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		2301ED2C22CF659C00DA51FB /* HTTPStatusCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPStatusCode.swift; sourceTree = "<group>"; };
@@ -111,12 +107,6 @@
 		23E79B3E230C57AD00CC2F60 /* Translations_da-DK.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Translations_da-DK.json"; sourceTree = "<group>"; };
 		29FDC4062481552F00EC6A1B /* GeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratorTests.swift; sourceTree = "<group>"; };
 		29FDC4082481557B00EC6A1B /* GeneratorTestsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratorTestsData.swift; sourceTree = "<group>"; };
-		2F354175DABACAC295CA75C5 /* Pods_LocalizationsGenerator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LocalizationsGenerator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3CAE0327A1B39683BC5E858A /* Pods-TranslationsGeneratorTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TranslationsGeneratorTests.debug.xcconfig"; path = "../nstack-translations-generator/Pods/Target Support Files/Pods-TranslationsGeneratorTests/Pods-TranslationsGeneratorTests.debug.xcconfig"; sourceTree = "<group>"; };
-		57D175A9884E8271C3D3E628 /* Pods-LocalizationsGenerator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocalizationsGenerator.debug.xcconfig"; path = "../nstack-translations-generator/Pods/Target Support Files/Pods-LocalizationsGenerator/Pods-LocalizationsGenerator.debug.xcconfig"; sourceTree = "<group>"; };
-		6BDD6A274A7EF9C93589B97E /* Pods_nstack_translations_generatorBundle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nstack_translations_generatorBundle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		98B681E3CCBB422B30A3ED3C /* Pods-LocalizationsGeneratorTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocalizationsGeneratorTests.debug.xcconfig"; path = "../nstack-translations-generator/Pods/Target Support Files/Pods-LocalizationsGeneratorTests/Pods-LocalizationsGeneratorTests.debug.xcconfig"; sourceTree = "<group>"; };
-		A43BDB2E6FC25993808864FE /* Pods-LocalizationsGeneratorTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocalizationsGeneratorTests.release.xcconfig"; path = "../nstack-translations-generator/Pods/Target Support Files/Pods-LocalizationsGeneratorTests/Pods-LocalizationsGeneratorTests.release.xcconfig"; sourceTree = "<group>"; };
 		B4715A5E224841220020F25B /* Downloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Downloader.swift; sourceTree = "<group>"; };
 		B4715A5F224841220020F25B /* DownloaderSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloaderSettings.swift; sourceTree = "<group>"; };
 		B4715A61224841230020F25B /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
@@ -126,17 +116,13 @@
 		B4715A68224841230020F25B /* Escaping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Escaping.swift; sourceTree = "<group>"; };
 		B4715A69224841230020F25B /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		B4715A72224842A20020F25B /* ImplementationTemplateStandalone.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ImplementationTemplateStandalone.txt; sourceTree = "<group>"; };
-		BFC8B16961CEFF4816D01D26 /* Pods_LocalizationsGeneratorTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LocalizationsGeneratorTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C05B0A9D2174B126003612DE /* LocalizationsGeneratorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocalizationsGeneratorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C05B0A9F2174B126003612DE /* TranslationsGeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationsGeneratorTests.swift; sourceTree = "<group>"; };
 		C05B0AA12174B126003612DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C05B0ABB2174B335003612DE /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		C3CE17F3B15AD77873122945 /* Pods-TranslationsGenerator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TranslationsGenerator.debug.xcconfig"; path = "../nstack-translations-generator/Pods/Target Support Files/Pods-TranslationsGenerator/Pods-TranslationsGenerator.debug.xcconfig"; sourceTree = "<group>"; };
 		C4E6F3C522FB0BD800BA7DE7 /* SKTGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKTGenerator.swift; sourceTree = "<group>"; };
 		C4E6F3CA22FC0E7E00BA7DE7 /* Generator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Generator.swift; sourceTree = "<group>"; };
 		C4E6F3CD22FC0FA100BA7DE7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		DE1DC8C95A74407F104D0A3E /* Pods_nstack_translations_generator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nstack_translations_generator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E9D811A6D919726C62BA068E /* Pods-TranslationsGeneratorTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TranslationsGeneratorTests.release.xcconfig"; path = "../nstack-translations-generator/Pods/Target Support Files/Pods-TranslationsGeneratorTests/Pods-TranslationsGeneratorTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,7 +145,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				73D5CDA891D6A2A804149319 /* Pods_LocalizationsGenerator.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,7 +153,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C05B0AA22174B126003612DE /* LocalizationsGenerator.framework in Frameworks */,
-				E5F792D96A7FC9980559D31E /* Pods_LocalizationsGeneratorTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,9 +164,7 @@
 			children = (
 				017CE2571C67788B0075CE41 /* Localizations Generator */,
 				C05B0A9E2174B126003612DE /* LocalizationsGeneratorTests */,
-				017CE2561C6778780075CE41 /* Frameworks */,
 				017CE2251C6776B50075CE41 /* Products */,
-				C6F4279211B75044B8DF0500 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -195,17 +177,6 @@
 				C05B0A9D2174B126003612DE /* LocalizationsGeneratorTests.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		017CE2561C6778780075CE41 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				DE1DC8C95A74407F104D0A3E /* Pods_nstack_translations_generator.framework */,
-				6BDD6A274A7EF9C93589B97E /* Pods_nstack_translations_generatorBundle.framework */,
-				2F354175DABACAC295CA75C5 /* Pods_LocalizationsGenerator.framework */,
-				BFC8B16961CEFF4816D01D26 /* Pods_LocalizationsGeneratorTests.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		017CE2571C67788B0075CE41 /* Localizations Generator */ = {
@@ -319,22 +290,6 @@
 			path = "LocalizationsGenerator Tests";
 			sourceTree = "<group>";
 		};
-		C6F4279211B75044B8DF0500 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				C3CE17F3B15AD77873122945 /* Pods-TranslationsGenerator.debug.xcconfig */,
-				1B477C03F51C597E021B9C4D /* Pods-TranslationsGenerator.release.xcconfig */,
-				3CAE0327A1B39683BC5E858A /* Pods-TranslationsGeneratorTests.debug.xcconfig */,
-				E9D811A6D919726C62BA068E /* Pods-TranslationsGeneratorTests.release.xcconfig */,
-				57D175A9884E8271C3D3E628 /* Pods-LocalizationsGenerator.debug.xcconfig */,
-				0175AA4DB79D780D6FC68CFB /* Pods-LocalizationsGenerator.release.xcconfig */,
-				98B681E3CCBB422B30A3ED3C /* Pods-LocalizationsGeneratorTests.debug.xcconfig */,
-				A43BDB2E6FC25993808864FE /* Pods-LocalizationsGeneratorTests.release.xcconfig */,
-			);
-			name = Pods;
-			path = ../Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -390,7 +345,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 017CE2921C6785A30075CE41 /* Build configuration list for PBXNativeTarget "LocalizationsGenerator" */;
 			buildPhases = (
-				4C27808CB04990EAFE9326D4 /* [CP] Check Pods Manifest.lock */,
 				017CE2881C6785A30075CE41 /* Sources */,
 				017CE28A1C6785A30075CE41 /* Headers */,
 				017CE28B1C6785A30075CE41 /* Resources */,
@@ -409,11 +363,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C05B0AA52174B126003612DE /* Build configuration list for PBXNativeTarget "LocalizationsGeneratorTests" */;
 			buildPhases = (
-				F56D652293297AFB4C8E1765 /* [CP] Check Pods Manifest.lock */,
 				C05B0A992174B126003612DE /* Sources */,
 				C05B0A9A2174B126003612DE /* Frameworks */,
 				C05B0A9B2174B126003612DE /* Resources */,
-				9ED1BB7369167F0A7A868CEF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -432,7 +384,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1000;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1160;
 				ORGANIZATIONNAME = Nodes;
 				TargetAttributes = {
 					017CE2231C6776B50075CE41 = {
@@ -445,21 +397,22 @@
 					};
 					017CE28C1C6785A30075CE41 = {
 						CreatedOnToolsVersion = 7.2;
-						LastSwiftMigration = 0930;
+						LastSwiftMigration = 1160;
 					};
 					C05B0A9C2174B126003612DE = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1160;
 						ProvisioningStyle = Automatic;
 					};
 				};
 			};
 			buildConfigurationList = 017CE21F1C6776B50075CE41 /* Build configuration list for PBXProject "nstack-localizations-generator" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
+				Base,
 			);
 			mainGroup = 017CE21B1C6776B50075CE41;
 			productRefGroup = 017CE2251C6776B50075CE41 /* Products */;
@@ -502,73 +455,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		4C27808CB04990EAFE9326D4 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-LocalizationsGenerator-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9ED1BB7369167F0A7A868CEF /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-LocalizationsGeneratorTests/Pods-LocalizationsGeneratorTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
-				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LocalizationsGeneratorTests/Pods-LocalizationsGeneratorTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F56D652293297AFB4C8E1765 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-LocalizationsGeneratorTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		017CE2201C6776B50075CE41 /* Sources */ = {
@@ -800,7 +686,6 @@
 		};
 		017CE2931C6785A30075CE41 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 57D175A9884E8271C3D3E628 /* Pods-LocalizationsGenerator.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CODE_SIGN_IDENTITY = "";
@@ -819,7 +704,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -827,7 +712,6 @@
 		};
 		017CE2941C6785A30075CE41 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0175AA4DB79D780D6FC68CFB /* Pods-LocalizationsGenerator.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CODE_SIGN_IDENTITY = "";
@@ -845,7 +729,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.nodes.LocalizationsGenerator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -853,7 +737,6 @@
 		};
 		C05B0AA62174B126003612DE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 98B681E3CCBB422B30A3ED3C /* Pods-LocalizationsGeneratorTests.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -873,13 +756,12 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
 		C05B0AA72174B126003612DE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A43BDB2E6FC25993808864FE /* Pods-LocalizationsGeneratorTests.release.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -896,7 +778,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nodes.TranslationsGeneratorTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};

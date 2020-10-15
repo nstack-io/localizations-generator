@@ -26,7 +26,7 @@ public struct Indentation {
 }
 
 public extension Indentation {
-    public func string() -> String {
+    func string() -> String {
         var string = ""
         let indent = (customString ?? Indentation.defaultString)
         
@@ -39,11 +39,11 @@ public extension Indentation {
 }
 
 public extension Indentation {
-    public func nextLevel() -> Indentation {
+    func nextLevel() -> Indentation {
         return Indentation(level: level + 1, customString: customString)
     }
     
-    public func previousLevel() -> Indentation {
+    func previousLevel() -> Indentation {
         return Indentation(level: level > 0 ? level - 1 : 0, customString: customString)
     }
 }

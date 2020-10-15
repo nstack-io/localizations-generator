@@ -105,7 +105,7 @@ struct LGenerator: Generator {
 
         var indent = Indentation(level: 1)
 
-        for case let (key, value as [String: AnyObject]) in output.language {
+        for case let (key, value as [String: AnyObject]) in output.language.sorted(by: {$0.0 < $1.0}) {
             let prefix = (settings.availableFromObjC ? "@objc " : "") + "public final class "
             let postfix = (settings.availableFromObjC ? ": NSObject, LocalizableSection" : ": LocalizableSection") + " {\n"
             var subString = "\n\n" + indent.string() + prefix + "\(key.uppercasedFirstLetter.escaped)" + postfix
@@ -113,7 +113,7 @@ struct LGenerator: Generator {
             indent = indent.nextLevel()
 
             // Add the translation keys for the model
-            for subKey in value.keys {
+            for subKey in value.keys.sorted(by: {$0 < $1}) {
                 subString += indent.string()
                 subString += "public var \(subKey.escaped) = \"\"\n"
             }
@@ -123,7 +123,7 @@ struct LGenerator: Generator {
             subString += indent.string() + "enum CodingKeys: String, CodingKey {\n"
             indent = indent.nextLevel()
 
-            for subKey in value.keys {
+            for subKey in value.keys.sorted(by: {$0 < $1}) {
                 if subKey.hasPrefix("_") { continue } // skip underscored
                 subString += indent.string() + "case \(subKey)\n"
             }
@@ -143,7 +143,7 @@ struct LGenerator: Generator {
             subString += indent.string() + "super.init()\n"
             subString += indent.string() + "let container = try decoder.container(keyedBy: CodingKeys.self)\n"
 
-            value.keys.forEach({
+            value.keys.sorted(by: {$0 < $1}).forEach({
                 subString += indent.string() + "\($0.escaped) = try container.decodeIfPresent(String.self, forKey: .\($0)) ?? \"__\($0)\"\n"
 
             })
@@ -156,7 +156,7 @@ struct LGenerator: Generator {
             subString += indent.string() + "public override subscript(key: String) -> String? {\n"
             indent = indent.nextLevel()
             subString += indent.string() + "switch key {\n"
-            value.keys.forEach({ subString += indent.string() + "case CodingKeys.\($0).stringValue: return \($0.escaped)\n" })
+            value.keys.sorted(by: {$0 < $1}).forEach({ subString += indent.string() + "case CodingKeys.\($0).stringValue: return \($0.escaped)\n" })
             subString += indent.string() + "default: return nil\n"
             subString += indent.string() + "}\n"
             indent = indent.previousLevel()

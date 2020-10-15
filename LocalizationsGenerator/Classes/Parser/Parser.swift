@@ -60,7 +60,7 @@ struct Parser {
             language["defaultSection"] = object
         }
 
-        return ParserOutput(JSON: dictionary, mainKeys: language.map({ return $0.0 }),
+        return ParserOutput(JSON: dictionary, mainKeys: language.map({ return $0.0 }).sorted(by: {$0 < $1}),
                             language: language, isFlat: language is [String: String])
     }
 }

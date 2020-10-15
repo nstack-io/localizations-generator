@@ -12,7 +12,7 @@ import XCTest
 class GeneratorTests: XCTestCase {
     // This is using the Taxa api endpoints, to test with your application
     // modify values accordingly
-    lazy var settings = GeneratorSettings(plistPath: nil, keys: nil, outputPath: "/Users/andrewlloydnodes/nstack-translations-generator/TranslationsGeneratorTests", flatTranslations: false, convertFromSnakeCase: true, availableFromObjC: false, standalone: true, authorization: nil, extraHeaders: nil, jsonPath: "", jsonLocaleIdentifier: nil)
+    lazy var settings = GeneratorSettings(plistPath: nil, keys: nil, outputPath: nil, flatTranslations: false, convertFromSnakeCase: true, availableFromObjC: false, standalone: true, authorization: nil, extraHeaders: nil, jsonPath: "", jsonLocaleIdentifier: nil)
 
     func testGenerateLocalizationsWithDefaultSection() {
         guard let jsonData = GeneratorTestsData.jsonWithDefaultString.data(using: .utf8) else {
@@ -40,5 +40,19 @@ class GeneratorTests: XCTestCase {
         }
 
         XCTAssertEqual(code, GeneratorTestsData.expectedCodeWithoutDefault)
+    }
+
+    func testGeneratedLocalizationsOrder() {
+        guard let jsonData = GeneratorTestsData.jsonWithManyKeysAndSectionsString.data(using: .utf8) else {
+            XCTFail()
+            return
+        }
+
+        guard let (code, _) = try? LGenerator().generateFromData(jsonData, settings, localeId: "da-DK") else {
+            XCTFail()
+            return
+        }
+
+        XCTAssertEqual(code, GeneratorTestsData.expectedCodeWithManyKeysAndSections)
     }
 }

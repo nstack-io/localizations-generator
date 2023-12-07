@@ -17,6 +17,9 @@ public enum ErrorCode: Int {
 
 // Public interface/implementation
 @objc open class LocalizationsGenerator: NSObject {
+    
+    static var parsedDataSet: Set<[String: AnyHashable]> = []
+    
     @objc open class func generate(_ arguments: [String]) throws {
         _ = try LGenerator().generate(arguments)
         _ = try SKTGenerator().generate(arguments)
@@ -115,6 +118,9 @@ struct LGenerator: Generator {
             // Add the translation keys for the model
             for subKey in value.keys.sorted(by: {$0 < $1}) {
                 subString += indent.string()
+                // Generate documentation with values for key in section `key` and value `subKey`
+                subString += generateDocumentationFor(section: key, key: subKey, using: output.JSON)
+                subString += indent.string()
                 subString += "public var \(subKey.escaped) = \"\"\n"
             }
 
@@ -169,5 +175,25 @@ struct LGenerator: Generator {
         }
 
         return modelsString
+    }
+    
+    func generateDocumentationFor(section: String, key: String, using json: [String: AnyObject]) -> String {
+        
+        //We generate stuff like this: /// da-DK: Vælg; en-DK: Select;
+        
+        let actualSection = section == "defaultSection" ? "default" : section
+        var commentRow = "/**\n"
+        for parsedData in LocalizationsGenerator.parsedDataSet {
+            if let meta = parsedData["meta"] as? [String: AnyObject],
+               let language = meta["language"] as? [String: AnyObject],
+               let locale = language["locale"] as? String,
+               let translationDict = parsedData["data"] as? [String: AnyObject],
+               let translationSection = translationDict[actualSection] as? [String: String],
+               let translatedValue = translationSection[key] {
+                commentRow += " - **\(locale)**: \(translatedValue);\n"
+            }
+        }
+        commentRow += "\n*/"
+        return commentRow
     }
 }

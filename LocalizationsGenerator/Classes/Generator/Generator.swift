@@ -45,7 +45,10 @@ extension Generator {
                 throw NSError(domain: errorDomain, code: ErrorCode.generatorError.rawValue, userInfo:
                     [NSLocalizedDescriptionKey : "No data received from downloader."])
             }
-            
+            let parsedJSON = try Parser.parseResponseData(data).JSON
+            if let parsedHashableJSON = parsedJSON as? [String: AnyHashable] {
+                LocalizationsGenerator.parsedDataSet.insert(parsedHashableJSON)
+            }
             _ = try writeDataToDisk(data, settings, localeId: locale)
         } else {
             let dSettings = try settings.downloaderSettings()
@@ -66,7 +69,10 @@ extension Generator {
                     throw NSError(domain: errorDomain, code: ErrorCode.generatorError.rawValue, userInfo:
                         [NSLocalizedDescriptionKey : "No data received from downloader."])
                 }
-                
+                let parsedJSON = try Parser.parseResponseData(data).JSON
+                if let parsedHashableJSON = parsedJSON as? [String: AnyHashable] {
+                    LocalizationsGenerator.parsedDataSet.insert(parsedHashableJSON)
+                }
                 _ = try writeDataToDisk(data, settings, localeId: locale.language.locale)
             }
         }
@@ -129,9 +135,13 @@ extension Generator {
         let string = try String(contentsOfFile: path)
         
         guard let versionString = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else {
-            return string.replacingOccurrences(of: " v#VERSION#", with: "")
+            return string
+                .replacingOccurrences(of: " v#VERSION#", with: "")
+                .replacingOccurrences(of: "d#DATE#", with: "\(Date())")
         }
         
-        return string.replacingOccurrences(of: "#VERSION#", with: versionString)
+        return string
+            .replacingOccurrences(of: "d#DATE#", with: "\(Date())")
+            .replacingOccurrences(of: "#VERSION#", with: versionString)
     }
 }
